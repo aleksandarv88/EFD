@@ -1,0 +1,131 @@
+============================================================
+EFD: ONSET OF DYNAMICS (Full Development)
+=========================================
+
+## 1. Starting Point
+
+There is a substrate of admissible differences (Ω).
+
+Consistency pressure selects a maximally coherent region **M**.
+
+**M** has a boundary **∂M** where multiple admissible but incompatible extensions exist (noise = boundary non-invariance).
+
+Inside **M**, some relations reference themselves and stay coherent: **feedback loops L**.
+
+Any loop (or cluster of loops) induces its minimal coherence closure **Mₗ**.
+
+Coupling glues several loops into a joint closure when they share constraints.
+
+An observer is such a loop-cluster with a finite interface to its boundary.
+
+This is all inherited from the existing EFD Foundations.
+
+---
+
+## 2. Emergent Sequence (Internal Time)
+
+A loop-cluster cannot satisfy all boundary choices at once.
+
+Therefore, it must re-apply its coherence checks in a specific order.
+
+This ordered re-coherence sequence defines a temporal structure for that cluster.
+
+Call this ordered sequence the **observer’s time**.
+
+Time is thus **internal** to the cluster, not global in Ω.
+
+---
+
+## 3. Emergent Causal Structure
+
+A change at one interface element can require re-coherence at another.
+
+If re-coherence at **A** is always performed before **B**, then **A** influences **B** in that order.
+
+Define **A → B** (A precedes B) if B’s coherence assignment depends on A’s assignment within the cluster’s sequence.
+
+The set of such precedences inside **Mₗ** is the **causal structure** for that loop-cluster.
+
+Causality here means: “must be settled first so the other can be settled.”
+
+---
+
+## 4. Emergent Speed Limit (c)
+
+Re-coherence does not occur everywhere at once; it propagates along relations defining **Mₗ**.
+
+There exists a shortest possible number of steps (or smallest coherence cost) for a change at point **X** to become required at point **Y**.
+
+This defines a minimum re-coherence time per unit connection (or "hop") in the structure.
+
+The inverse of this minimum is the maximum propagation rate of constraint changes.
+
+Call this maximum rate **c** for that observer.
+
+**c** is not imposed externally; it is fixed by the structure of **Mₗ** and its update rule.
+
+---
+
+## 5. Paths and Effective Metric
+
+Between two interface points, there can be multiple re-coherence routes.
+
+Each route has a total coherence cost (or total number of ordered steps).
+
+The route with minimal cost is the **effective straight path** between those points.
+
+Define the **distance** between two points as the minimal cost of re-coherence between them.
+
+This makes distance an **emergent property** of the coherence structure, not a background assumption.
+
+Collections of such distances define an **effective metric** for the observer.
+
+---
+
+## 6. Curvature (Holonomy of Re-Coherence)
+
+Consider re-cohering around a small closed cycle in **Mₗ**.
+
+If, after completing the cycle, the assignments differ from the starting state, a mismatch exists.
+
+This mismatch comes from overlaps of constraints and is the **holonomy** of the cycle.
+
+Non-zero holonomy means the effective metric is not globally flat — there is **curvature**.
+
+Thus, curvature = “re-coherence around a loop does not return you to the same assignment.”
+
+---
+
+## 7. Coherence Cost and Energy
+
+Every persistent loop or cluster must keep certain assignments coherent despite boundary flicker.
+
+Maintaining these assignments incurs a non-zero **coherence cost**.
+
+This stable, required cost is the loop’s **rest energy (E₀)**.
+
+Because the underlying rule is uniform throughout **Mₗ**, the total coherence cost is conserved under re-coherence.
+
+Conservation of coherence cost is the EFD analog of **energy conservation**.
+
+---
+
+## Transition to Next Layer: EFD → Emergent Physical Structures
+
+At this point, the system exhibits all minimal prerequisites for a dynamic world:
+
+* **Time** (ordered re-coherence)
+* **Causality** (precedence of dependencies)
+* **Speed limit c** (maximum propagation rate)
+* **Space/metric** (minimal coherence paths)
+* **Curvature** (holonomy mismatch)
+* **Energy** (conserved coherence cost)
+
+The following physical concepts — **mass**, **E = m c²**, **forces**, **constants**, and **singularity avoidance** — depend on these dynamics and therefore belong to the next phase:
+
+> **EFD: Emergent Physical Structures**
+> Where coherence cost, coupling, and bounded closure produce matter, motion, and physical law.
+
+============================================================
+End of Document
+===============

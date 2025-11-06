@@ -1,0 +1,227 @@
+============================================================
+EFD: ONSET OF DYNAMICS — STAGE 3 (v3.1)
+METRIC & CURVATURE FROM COHERENCE
+============================================================
+
+## PURPOSE
+Build geometry (distance, geodesics, curvature) purely from Stage 1–2
+primitives. No external metric, units, or calculus are introduced. All
+constructs derive from the coherence functional C, the ε*–stable influence
+structure, and re-coherence semantics (R with least fixed points).
+
+------------------------------------------------------------
+0) IMPORTS (Stage 1 v3.4, Stage 2 v3.3)
+------------------------------------------------------------
+• ε* : smallest maximizer of the τ-plateau width at boundary scale σ_∂.
+• Influence graph at state X: G_X(ε*) = (V,E) on loop-closures {M_ℓ}.
+• Symmetric influence I_X(M_ℓj | M_ℓi) (Stage 1 best-response influence).
+• Dynamic/robust notions (Stage 2): G_{k,t}, E^★, E^⋃, time-respecting paths.
+• Rank ρ, height τ, level-synchronous scheduling (Stage 2).
+
+All geometry here is a **snapshot** at a fixed state X; time-dependence is
+handled by re-evaluating at updated states X′ after re-coherence.
+
+============================================================
+1) METRIC SUPPORT GRAPH (UNDIRECTED) FROM INFLUENCE
+============================================================
+Definition 1.1 (Metric support U_X).
+U_X has vertex set V and undirected edge {i,j} iff
+  J_{ij}(X) := max{ I_X(M_ℓj | M_ℓi), I_X(M_ℓi | M_ℓj) } > ε*.
+Edges will carry symmetric nonnegative weights w_{ij}(X) (Sec. 2).
+
+Remarks:
+• U_X captures **mutual** responsiveness from C via the same influence used
+  in Stages 1–2 (no new primitive).
+• Geometry is per connected component of U_X (∞ distance across components).
+
+============================================================
+2) EDGE WEIGHTS FROM INFLUENCE (ε*-EMERGENT)
+============================================================
+Definition 2.1 (ε*-normalized effective weight).
+For {i,j}∈E(U_X), set
+  w_{ij}(X) := ε* / J_{ij}(X)  ∈ (0,1],
+and w_{ij} := +∞ if {i,j}∉E(U_X).
+
+Properties:
+• Symmetry: w_{ij}=w_{ji}.  Positivity: w_{ij}>0 on edges.  w_{ii}=0.
+• Emergence: depends only on (C, ε*, X) via Stage-1 influence.
+
+Intuition: larger mutual influence ⇒ smaller traversal cost; ε* provides
+intrinsic normalization—no extra scales.
+
+============================================================
+3) PATH METRIC AND GEODESICS
+============================================================
+Definition 3.1 (Path cost and distance).
+For any path γ=(v_0,…,v_k), define L_X(γ):=Σ w_{v_m v_{m+1}}(X).
+The distance d_X(i,j):=inf_{γ:i→j in U_X} L_X(γ), with d_X=+∞ if disconnected.
+
+Theorem 3.2 (Metric axioms on each component).
+On any connected component of U_X, d_X satisfies nonnegativity/identity,
+symmetry, and the triangle inequality.  (Standard shortest-path metric.)
+
+Corollary 3.3 (Bi-Lipschitz with hop distance under bounded influence).
+Let ε*<ι_min ≤ J_{ij}(X) ≤ ι_max<∞ on the component. Then
+  (ε*/ι_max)·Hop_X(i,j) ≤ d_X(i,j) ≤ (ε*/ι_min)·Hop_X(i,j).
+**Regularity regime.** This assumption only relates d_X to hop distance.
+Outside it, d_X remains a valid metric; the comparison may fail.
+
+============================================================
+4) PARALLEL TRANSPORT AND DISCRETE HOLONOMY (FROM R)
+============================================================
+Setup 4.0 (Local variation space).
+At block i, let 𝒜_i be the finite set of admissible **atomic edits** (Stage 1)
+supported in M_ℓi. For σ∈𝒜_i, write ΔC_i(σ) for coherence change at i
+(others fixed unless induced by R).
+
+Definition 4.1 (One-step transport along an edge).
+Fix an orientation i→j for {i,j} (e.g., direct from larger influence:
+I_X(j|i) ≥ I_X(i|j)). Given σ∈𝒜_i:
+  X′ := R_i(σ·X)  (least fixed point at i),
+  T_{i→j}(σ) := argmax_{τ∈𝒜_j} C( R_j(τ·X′) )
+with Stage-1 emergent tie-break (minimal edits, then minimal |ΔC|).
+If {i,j}∉E(U_X), T_{i→j} undefined.
+**Orientation note.** Reversing all edge orientations conjugates transports;
+the **holonomy magnitude** below is unchanged (Sec. 4.4(b)).
+
+Definition 4.2 (Path transport and holonomy).
+For γ: v_0→…→v_k, set T_γ := T_{v_{k-1}→v_k}∘…∘T_{v_0→v_1}.
+For a loop γ based at i, H_γ := T_γ : 𝒜_i→𝒜_i.
+
+Definition 4.3 (Holonomy magnitude via C).
+For σ∈𝒜_i with |ΔC_i(σ)|>0, define h_γ(σ):=
+  |ΔC_i( H_γ(σ) ) − ΔC_i(σ)|.
+Set  ℋ_X(γ):= sup_{σ∈𝒜_i, |ΔC_i(σ)|>0} h_γ(σ)/|ΔC_i(σ)|.
+**Boundedness note.** 𝒜_i is finite (Stage-1 finite labels). Under refinements,
+use a finite generating set; the sup can be approximated monotonically.
+
+Theorem 4.4 (Holonomy properties).
+(a) Identity loop ⇒ ℋ_X=0.  (b) Basepoint/orientation changes act by
+conjugation ⇒ ℋ_X invariant. (c) Concatenation: ℋ_X(γ1∘γ2) ≤ f(ℋ_X(γ1),ℋ_X(γ2))
+with f(a,b) ≤ a+b for small a,b (subadditive up to higher orders). (d) If the
+underlying U_X is a tree in the region, all contractible loops have ℋ_X=0.
+
+============================================================
+5) DISCRETE CURVATURE: TWO EMERGENT OPTIONS
+============================================================
+
+(A) Holonomy-based loop curvature (canonical 2-complex)
+-------------------------------------------------------
+**Canonical 2-complex (no choice).** Let Flag(U_X) be the **clique/flag complex**
+of U_X: every (k+1)-clique spans a k-simplex. This complex is uniquely determined
+by U_X (itself from C and ε*).
+
+**Combinatorial area.** For a loop γ in the 1-skeleton of U_X, define
+  area_X(γ) := min # { 2-simplices in Flag(U_X) }
+over 2-chains whose boundary is γ.
+
+**Weighted variant (still emergent).** For a face f={i,j,k}, set
+  a_f := (w_{ij}+w_{jk}+w_{ki})/3, and let area_X(γ) be the minimum total a_f
+over fillings. (Uses only w from C,ε*.)
+
+Definition 5.1 (Local loop curvature at i).
+Let 𝒮_i be simple loops through i in the 1-skeleton. Define
+  K_hol(i) := limsup_{γ∈𝒮_i, area_X(γ)→0}  ℋ_X(γ) / area_X(γ).
+
+Lemma 5.2 (Invariance & plateau stability).
+Flag(U_X) and area_X are graph-isomorphism invariants; on the ε* τ-plateau,
+U_X (hence Flag(U_X), area_X) are stable ⇒ K_hol is observer-invariant and
+plateau-stable.
+
+(B) Ollivier–Ricci curvature from influence-weighted measures
+-------------------------------------------------------------
+Definition 5.3 (Neighbor measures).
+For each i, define μ_i on N(i) by
+  μ_i(j) := J_{ij}(X) / Σ_{k∈N(i)} J_{ik}(X).
+Let W_1(μ_i,μ_j; d_X) be the 1-Wasserstein distance w.r.t. d_X.
+
+Definition 5.4 (Edge curvature).
+  κ(i,j) := 1 − W_1(μ_i, μ_j; d_X) / w_{ij}.
+
+Theorem 5.5 (Basic properties).
+(a) Isomorphism-invariance for κ and K_hol. (b) ε*-plateau stability for κ and d_X.
+(c) Usual regimes: tree-like ⇒ κ≈0; expander-like ⇒ κ>0; divergent neighborhoods ⇒ κ<0.
+
+============================================================
+6) RELATIONS BETWEEN d_X, HOP, AND CURVATURE
+============================================================
+Proposition 6.1 (Coarse equivalence under regularity).
+Under the bounded-influence regime of Cor. 3.3, d_X is bi-Lipschitz to Hop,
+so neighborhood transport costs and W_1 are comparable; small-loop holonomy
+agrees in sign with discrete Ricci under mild regularity.
+
+============================================================
+7) EMERGENCE & INVARIANCE CHECK
+============================================================
+• No new primitives: U_X, w_{ij}, d_X, T, ℋ, κ arise from C, ε*, I_X, and R.
+• Observer invariance: Isomorphisms preserve I_X ⇒ U_X, weights, d_X, κ, K_hol.
+• Plateau stability: ε=ε* on a τ-plateau ⇒ U_X, w_{ij}, d_X, κ, Flag(U_X), area_X stable.
+
+============================================================
+8) EXAMPLES (ASCII)
+============================================================
+(1) Weighted chain (uniform influence)
+  i—j—k—l with J=J0 on edges ⇒ w=ε*/J0.
+  d_X(i,l)=3·(ε*/J0). Tree ⇒ ℋ_X=0; κ≈0 except at ends.
+
+(2) 2D lattice patch with a “defect”
+  A grid where one edge has smaller J ⇒ larger w ⇒ geodesics bend around it.
+  Small loops encircling the defect have ℋ_X>0; κ positive near the defect.
+
+(3) Triangle vs path
+  Triangle i—j—k—i (equal J) ⇒ positive κ and nontrivial holonomy.
+  Path i—j—k—l ⇒ κ≈0; holonomy zero (no cycles).
+
+============================================================
+9) PSEUDOCODE (weights, distances, curvature)
+============================================================
+# Build U_X and weights (emergent from C, ε*)
+for each unordered pair {i,j}:
+    J_ij = max( I_X(j|i), I_X(i|j) )
+    if J_ij > ε*:
+        w_ij = ε* / J_ij
+        add undirected edge {i,j} with weight w_ij
+
+# Distances (run Dijkstra per component)
+for each source i:
+    d_X[i,·] = Dijkstra(U_X, weights)
+
+# Influence-weighted neighbor measures for Ollivier
+for each i:
+    Z = sum_{k in N(i)} J_ik
+    μ_i(k) = J_ik / Z
+
+# Edge curvature κ(i,j)
+for each edge {i,j}:
+    κ(i,j) = 1 - Wasserstein1(μ_i, μ_j; ground = d_X) / w_ij
+
+# Holonomy magnitude on a local cycle basis
+for each simple cycle γ through i:
+    compute ℋ_X(γ) by transporting atomic edits via T along γ
+    (use a finite generating set of 𝒜_i; monotone sup approximation)
+
+Notes:
+• W_1 can be computed with standard Earth-Mover/Hungarian solvers on small neighborhoods.
+• For large graphs, recompute influence sparsely around blocks changed during Stage-2 dynamics.
+
+============================================================
+10) RESULTS
+============================================================
+• A **distance** d_X is defined purely from (C, ε*, influence); metric axioms hold.
+• d_X and the Stage-2 hop structure are tightly related under a clear regularity regime.
+• Two **curvature** notions emerge:
+  – K_hol from transport-induced holonomy on Flag(U_X) (canonical, no choice),
+  – κ from influence-weighted neighbor transport (Ollivier–Ricci).
+• Observer invariance and ε*-plateau stability hold for all constructs.
+
+============================================================
+11) FORESHADOW (to Stage 5)
+============================================================
+Under refinement (mesh→0, |ΔC|→0), target theorems:
+  (i) Γ-convergence of discrete path energies to a length metric with field g_{ij},
+  (ii) convergence of holonomy/κ to Riemannian curvature tensors,
+  (iii) scaling of τ to a continuous time parameter t (from Stage 2).
+
+============================================================
+End of Stage 3 (v3.1)
+============================================================

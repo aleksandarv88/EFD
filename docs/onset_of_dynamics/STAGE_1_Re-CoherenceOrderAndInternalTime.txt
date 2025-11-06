@@ -1,0 +1,235 @@
+============================================================
+EFD: ONSET OF DYNAMICS — STAGE 1 (v3.4)
+RE-COHERENCE ORDER AND INTERNAL TIME
+============================================================
+
+## SCOPE
+This document formalizes the emergence of internal time from the EFD
+Foundations without introducing non-emergent primitives. All choices
+(ε, neighborhoods, projection metrics, tie-breaks) are derived from the
+coherence functional C, the substrate Ω, and the boundary ∂M, or are
+validated by τ-invariance on stability plateaus.
+
+------------------------------------------------------------
+0) PRELIMINARIES (Imported from Foundations)
+------------------------------------------------------------
+Ω  : substrate of admissible relations (discrete difference primitives).
+M ⊂ Ω : coherent region (maximizer of a coherence functional C).
+∂M : boundary (admissible but incompatible extensions = “noise”).
+L  : feedback loop; M_ℓ : minimal closure of L (coherent).
+C  : coherence functional, bounded above on finite subgraphs.
+
+All updates are combinatorial on discrete structures. Finite local
+alphabets (labels) per relation are assumed for computability; infinite
+generalizations are handled via posets/limits (Sec. 10).
+
+------------------------------------------------------------
+1) COHERENCE CHANGE AND VIOLATIONS
+------------------------------------------------------------
+For a finite state X ⊂ M and local modification σ (atomic toggle/replace
+of a finite set of relations in Ω), define:
+  ΔC_X(σ) := C(σ·X) − C(X).
+
+Violation set at X:
+  V(X) := { r ∈ X : ∃ local σ touching r with ΔC_X(σ) > 0 }.
+
+(“Before” = X, “after” = σ·X; no ambiguity.)
+
+------------------------------------------------------------
+2) NEIGHBORHOODS INDUCED BY C (no extra structure)
+------------------------------------------------------------
+Let C factor into local factors F_k over scopes S_k ⊂ M (factor graph).
+Define the neighborhood of relation r_j as:
+  N_j := ⋃ { S_k : r_j ∈ S_k }.
+This is read off the sparsity of C (emergent).
+
+------------------------------------------------------------
+3) BEST-RESPONSE AND DISCRETE INFLUENCE (derived from C)
+------------------------------------------------------------
+ASSUMPTION (finite local alphabets).
+Each relation r has a finite label set Σ_r. (Continuous cases use
+quantization/refinement; see Sec. 10.)
+
+BEST-RESPONSE (local, C-maximizing; emergent tie-break).
+Given state X and perturbation σ on r_i, define
+  BR_X(r_j | σ) := argmax_{a ∈ Σ_{r_j}} C( X with r_j := a, σ applied ),
+with tie-break by lexicographic minimality of:
+  (i) atomic edit count relative to X; (ii) |ΔC| magnitude.
+(No external ordering introduced.)
+
+DISCRETE INFLUENCE (no derivatives).
+For relations r_i, r_j:
+  I_X(r_j | r_i) := max_{σ toggles r_i over Σ_{r_i}}
+                    | C( X′ with r_j := BR_X(r_j | σ) )
+                    − C( X  with r_j := BR_X(r_j | id) ) |,
+where X′ := σ·X, and “id” = no change at r_i.
+
+For loop-closures M_ℓᵢ, M_ℓⱼ:
+  I_X(M_ℓⱼ | M_ℓᵢ) := max_{r_i∈M_ℓᵢ, r_j∈M_ℓⱼ} I_X(r_j | r_i).
+
+------------------------------------------------------------
+4) INFLUENCE THRESHOLD ε* (emergent, boundary-calibrated)
+------------------------------------------------------------
+Boundary perturbation at X via projection Π (Sec. 8) yields
+  δC_X(r) := C(Π(r)·X) − C(X),  r ∈ ∂M.
+Define boundary scale σ_∂ := median( |δC_X(r)| ) over a boundary batch.
+
+For ε varying, build G_X(ε) (Sec. 6) and define τ(ε) as the height of
+its condensation DAG. A value ε lies on a τ-stability plateau if τ(ε)
+remains constant under ε-small changes and boundary perturbations up to
+scale σ_∂.
+
+EMERGENT SELECTION (no κ):
+  ε* := the smallest ε that maximizes the width of the τ-stability
+        plateau under boundary-scale perturbations σ_∂.
+
+(Least edges among maximizers → least added structure.)
+
+STRUCTURAL STABILITY LEMMA.
+On any ε-interval where edges of G_X(ε) do not change, SCCs, G′, and τ
+are invariant.
+
+------------------------------------------------------------
+5) RE-COHERENCE OPERATOR ON A LATTICE (Tarski default)
+------------------------------------------------------------
+Let 𝒟 be the product lattice of local assignments on M (finite Σ_r).
+Define R : 𝒟 → 𝒟 monotone and inflationary (X ≤ R(X)), implementing
+local best-responses that do not decrease C.
+
+TARSKI–KNASTER.
+On a complete lattice, monotone R has least/greatest fixed points.
+Ascending iteration from ⊥ reaches the least fixed point in finitely
+many steps on finite SCC state spaces.
+
+LEMMA (SCC convergence).
+For an SCC S, iterating R_S from ⊥ yields a fixed point X_S^* in finitely
+many steps (no metric/contractivity assumed).
+
+(OPTIONAL IMPLEMENTATION ONLY: α-averaged/damped updates give rates in
+Hamming/ℓ₁; not used in theorems.)
+
+------------------------------------------------------------
+6) G, SCCs, CONDENSATION, ORDER (all standard)
+------------------------------------------------------------
+Construct directed influence graph at X:
+  V = { M_ℓ },   E_ε = { M_ℓᵢ → M_ℓⱼ : I_X(M_ℓⱼ | M_ℓᵢ) > ε }.
+Let G_X(ε) = (V, E_ε).
+
+Compute SCCs by Kosaraju to partition V into {S₁,…,S_K}.
+Contract SCCs to nodes → condensation graph G′_X(ε), a DAG.
+Define partial order A < B if there is a path A → … → B.
+
+------------------------------------------------------------
+7) EMERGENT TIME τ (height; parallel-aware)
+------------------------------------------------------------
+Time at X for threshold ε is:
+  τ(ε) := height( G′_X(ε) ) = max length of chains A₁ < … < A_n.
+This is minimal sequential depth with parallel updates within each DAG
+level. τ is a DAG isomorphism invariant; by structural stability it is
+constant on ε-plateaus.
+
+Define **system time** as τ* := τ(ε*).
+
+------------------------------------------------------------
+8) NOISE PROJECTION Π FROM ∂M (induced by C; no external metric)
+------------------------------------------------------------
+Let D_C be a (discrete) Bregman divergence induced by C
+(using convex envelope/subgradient in discrete labels). Define
+  Π(r) := argmin_{s∈M} D_C(r, s).
+
+Boundary perturbation:
+  δC_X(r) := C( Π(r)·X ) − C(X).
+
+BOUNDARY PERSISTENCE (emergent assumptions).
+
+• Deterministic genericity (optional):
+  If M is maximal under C and Ω admits admissible extensions, then for
+  any finite ball B ⊂ M there exist r ∈ ∂M whose Π(r) affects B:
+  |δC_X(r)| ≥ η_B > 0 → re-coherence restarts in B.
+
+• Probabilistic (default):
+  A stationary ergodic boundary source on ∂M with nonzero D_C-mass in
+  every admissible neighborhood yields infinitely many nontrivial δC
+  almost surely (Borel–Cantelli) → perpetual re-coherence without an
+  external clock.
+
+------------------------------------------------------------
+9) THEOREMS AND COROLLARIES
+------------------------------------------------------------
+THEOREM 1 (Blockwise fixed points).
+For each SCC S, monotone R_S on its finite lattice admits a least fixed
+point X_S^*, obtained by ascending iteration.
+
+THEOREM 2 (Emergent causal order and time).
+With ε*, the condensation graph G′_X(ε*) is a DAG; its height τ* is an
+isomorphism invariant and is constant across the ε*-plateau. Blocks at
+the same level commute (no precedence), so updates are maximally
+parallel subject to dependencies.
+
+COROLLARY (Parallelism).
+If A and B are incomparable in G′, R_A ∘ R_B = R_B ∘ R_A.
+
+------------------------------------------------------------
+10) INFINITE / LOCALLY FINITE / ORDINAL TIME
+------------------------------------------------------------
+PROGRESS MEASURE (well-foundedness).
+Each accepted update strictly increases a well-founded measure, e.g.,
+lexicographic ( #violations decreasing, −∑ΔC increasing ), preventing
+infinite descending chains.
+
+ORDINAL RANK.
+If G′ is well-founded and possibly infinite, define node rank by
+transfinite recursion:
+  ρ(v) = sup{ ρ(u) + 1 : u → v }.
+Local time at v is τ_v := ρ(v) (countable ordinal in locally finite
+cases). Finite observer horizons use τ_R (restriction to R-neighborhoods).
+
+CONTINUUM LIMIT.
+Under refinement where |ΔC| → 0 and τ_R scales like R/Δt_min, a
+continuous parameter t emerges (carried to Stage 2).
+
+------------------------------------------------------------
+11) TOY EXAMPLE (explicit τ shift)
+------------------------------------------------------------
+Influences: I(B|A)=3, I(C|B)=3, I(A|C)=3, I(D|A)=0.2; others≈0.
+
+Case 1: ε ∈ (0.2, 3).
+Edges: A→B, B→C, C→A; D isolated.
+SCCs: S1={A,B,C}, S2={D}.  G′ has two nodes with no edge.  τ=1.
+
+Case 2: ε just below 0.2.
+Add edge A→D (one-way).  SCCs unchanged.  G′: S1 → S2.  τ=2.
+
+ε* selection picks the smallest ε maximizing plateau width under σ_∂.
+If the (0.2,3) plateau is wider than (~0,0.2), ε* lies in (0.2,3),
+hence τ* = 1.
+
+------------------------------------------------------------
+12) PSEUDOCODE (influence → SCCs → τ*, τ-preserving check)
+------------------------------------------------------------
+INPUT: closures {Mℓ}, state X
+1:  Estimate boundary scale σ_∂ from a batch of Π(∂M) at X
+2:  Sweep ε; for each ε:
+3:     Build E_ε with I_X approximated by local enumeration/sampling
+4:     SCCs ← Kosaraju(E_ε); G′ ← Condensation(SCCs, E_ε)
+5:     τ(ε) ← DAGHeight(G′)
+6:  Select ε* as smallest ε maximizing τ-plateau width under σ_∂
+7:  (Optional) Refine I_X until τ(ε*) stabilizes  → τ-preserving acceptance
+8:  Return τ* = τ(ε*), G′(ε*), SCC layering, block fixed points X_S^*
+
+(Approximate influence is acceptable iff τ(ε*) remains unchanged under
+additional samples; no extra knob.)
+
+------------------------------------------------------------
+13) REFERENCES (pinpoint)
+------------------------------------------------------------
+Harary, F. (1969). Graph Theory, §9.2 (DAG height invariants).
+Kahn, A. (1962). Topological sorting of large networks.
+Kosaraju, S. (1978). Linear-time SCC decomposition.
+Tarski, A. (1955). A lattice-theoretic fixpoint theorem.
+Pearl, J. (2009). Causality, Ch. 2 (influence/causal graphs).
+Opial (1967); Krasnosel’skii–Mann (1955–63): averaged/nonexpansive maps.
+
+============================================================
+End of Stage 1 (v3.4)
+============================================================

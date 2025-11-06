@@ -1,14 +1,11 @@
-# Python
+@"
 __pycache__/
 *.py[cod]
 *.pyo
 .venv/
-
-# Sims artifacts
 sims/**/logs/
-# Uncomment if you DON'T want images in git:
+# Uncomment next line if you DON'T want images in git:
 # sims/**/images/v*/
-
-# OS
 .DS_Store
 Thumbs.db
+"@ | Out-File -Encoding ASCII .gitignore
