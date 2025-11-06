@@ -1,14 +1,14 @@
 # Onset_Of_Dynamics/sims/00_common/sim_plots.py
+from __future__ import annotations
 from pathlib import Path
 import matplotlib.pyplot as plt
 from lib.efd.viz import setup_matplotlib, save_png, save_svg, save_mp4
 from lib.efd.io_utils import ensure_version_dir, next_fig_path
 
-def start_fig_env(images_root: Path) -> tuple[Path, dict]:
-    setup_matplotlib()  # dpi=180, tight bbox, fonts
+def start_fig_env(images_root: Path) -> Path:
+    setup_matplotlib()                # dpi=180, tight bbox, fonts
     vdir = ensure_version_dir(images_root)  # images/vNNN
-    meta = {"version_dir": vdir, "saved": []}
-    return vdir, meta
+    return vdir
 
 def save_fig(fig: plt.Figure, vdir: Path, prefix: str="fig") -> Path:
     p = next_fig_path(vdir, prefix=prefix, ext=".png")
