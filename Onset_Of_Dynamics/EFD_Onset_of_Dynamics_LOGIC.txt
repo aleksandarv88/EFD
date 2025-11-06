@@ -1,0 +1,145 @@
+EFD: Onset of Dynamics
+
+This is the stage where a static, maximally coherent structure (your v4.0) starts to look like a world with signals, time, geometry, matter, and forces.
+
+1. Starting point
+
+There is a substrate of admissible differences (Ω).
+
+Consistency pressure selects a maximally coherent region M.
+
+M has a boundary ∂M where multiple admissible but incompatible extensions exist (noise = boundary non-invariance).
+
+Inside M, some relations reference themselves and stay coherent: feedback loops L.
+
+Any loop (or cluster of loops) induces its minimal coherence closure Mₗ.
+
+Coupling glues several loops into a joint closure when they share constraints.
+
+An observer is such a loop-cluster with a finite interface to its boundary.
+
+This is all from your existing EFD.
+
+2. Emergent sequence (internal time)
+
+A loop-cluster cannot satisfy all boundary choices at once.
+
+Therefore it must re-apply its coherence checks in an order.
+
+This ordered re-coherence is the sequence for that cluster.
+
+Call this sequence the observer’s time.
+
+Time is thus internal to the cluster, not global in Ω.
+
+3. Emergent causal structure
+
+A change at one interface element can require a re-coherence at another.
+
+If re-coherence at A is always performed before re-coherence at B, then A can influence B in that sequence.
+
+Define A → B (A precedes B) if B’s coherent assignment depends on A’s assignment within the cluster’s sequence.
+
+The set of such precedences inside Mₗ is the causal structure for that loop-cluster.
+
+Causality here = “must be settled first so the other can be settled.”
+
+4. Emergent speed limit (c)
+
+Re-coherence does not happen everywhere at once; it propagates along the relations that define Mₗ.
+
+There is a shortest possible number of steps (or smallest coherence cost) for a change at point X to become required at point Y.
+
+This gives a minimum re-coherence time per unit “hop” in the structure.
+
+The inverse of this minimum is the maximum propagation rate of constraint changes.
+
+Call this maximum rate c for that observer.
+
+c is not imposed from outside; it is fixed by the structure of Mₗ and its update rule.
+
+5. Paths and effective metric
+
+Between two interface points, there can be several re-coherence routes.
+
+Each route has a total coherence cost (or total number of ordered steps).
+
+The route with minimal cost is the effective straight path between those points.
+
+Define the “distance” between two points as the minimal cost of re-coherence between them.
+
+This makes distance an emergent property of the coherence structure, not a background assumption.
+
+Collections of such distances give an effective metric for the observer.
+
+6. Curvature (holonomy of re-coherence)
+
+Consider re-cohering around a small closed cycle in Mₗ.
+
+If after completing the cycle the assignments are not exactly what they were before, there is mismatch.
+
+This mismatch comes from overlaps of constraints and is the holonomy of the cycle.
+
+Non-zero holonomy means the effective metric is not globally flat: there is curvature.
+
+Thus curvature here = “re-coherence around a loop does not return you to the same assignment.”
+
+7. Coherence cost and energy
+
+Every persistent loop or cluster must keep certain assignments even against boundary flicker.
+
+Keeping these assignments has a non-zero coherence cost.
+
+This stable, required cost is the loop’s rest energy.
+
+Because the underlying rule is the same everywhere in Mₗ, the total coherence cost is conserved under internal re-coherence.
+
+That conservation is the EFD version of energy conservation.
+
+8. Mass as tied rest energy
+
+There is already a maximum propagation rate c in the structure.
+
+A loop-cluster with rest energy E₀ can be assigned an inertial measure by comparing E₀ to c.
+
+Define mass m = E₀ / c².
+
+This is not imported from physics; it is a way to normalize “how hard it is to keep this loop coherent” against the fabric’s fastest possible influence.
+
+Moving such a cluster through the structure requires extra coherence to keep all its constraints aligned in sequence → energy rises.
+
+That gives the EFD version of E = m c².
+
+9. Forces as coherence gradients
+
+Different regions of Mₗ can have different coherence costs for the same loop.
+
+A loop-cluster tends to shift toward regions where it can maintain coherence with lower cost.
+
+This preference produces effective motion.
+
+Motion toward lower coherence cost is what we call a force.
+
+So forces are not extra primitives; they are responses to coherence gradients.
+
+10. Constants from shared invariants
+
+Different observers are different loop-clusters.
+
+What looks the same to all of them are the invariants that survive all of their re-coherence procedures.
+
+Those common invariants appear as constants (c, possibly coupling strengths).
+
+Thus constants are “what every viable observer must preserve to stay coherent,” not arbitrary numbers.
+
+11. Singularity avoidance
+
+M and every Mₗ are coherence-bounded: adding more relations than allowed breaks coherence.
+
+Feedback loops also have a minimal closure size.
+
+Therefore, coherence costs and effective curvature cannot run to infinity inside the model.
+
+When pressure grows, the structure enlarges the closure or changes local resolutions, instead of diverging.
+
+That is the EFD version of “no singularities.”

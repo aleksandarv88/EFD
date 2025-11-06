@@ -1,0 +1,160 @@
+============================================================
+EFD FOUNDATIONS v3.3 — LINGUISTIC CLEANROOM UPDATE
+============================================================
+
+0)  PREMISE — POTENTIAL AS THE BASIS
+    ------------------------------------------------------------
+    Before anything definable exists, there is only POTENTIAL —
+    pure logical openness for difference.
+
+    Potential is not an entity, field, or process.
+    It has no parts, intention, or duration.
+    It neither acts nor contains structure.
+
+    It is the condition where even “permission” is meaningless,
+    for nothing yet exists to be permitted or denied.
+
+    (Parallels: Aristotle’s *dynamis* understood as pure capacity;
+    Heisenberg’s “potentia” and Bohm’s “implicate order”
+    referenced metaphorically, not ontologically.)
+
+------------------------------------------------------------
+
+1)  INFINITE POTENTIAL ⇒ INEVITABLE SOMETHING
+    ------------------------------------------------------------
+    In unbounded potential, the set of all possible differences
+    is infinite, while the configuration of no difference
+    is singular.
+
+    The null configuration has zero logical measure
+    within the unbounded total of potential distinctions.
+    Thus, the existence of difference follows
+    as logical necessity — not as event or probability.
+
+    (Formal analogies: measure-zero argument in set theory;
+    Ramsey theory inevitability; combinatorial completeness
+    within ZFC-style infinite cardinalities.)
+
+------------------------------------------------------------
+
+2)  DIFFERENCE AS LOGICAL PRIMITIVE
+    ------------------------------------------------------------
+    Difference is the minimal relational primitive:
+    the logical condition that something is not identical
+    to something else.
+
+    Difference is not derived, caused, or performed.
+    It is definitional — the ur-relation enabling
+    all further relations to exist.
+
+    Potential and difference are not separate states,
+    but complementary aspects of the same logical totality.
+
+    (Formal analogy: primitive relation ⊢ A ≠ ¬A —
+    distinction without temporal ordering.)
+
+------------------------------------------------------------
+
+3)  DIFFERENCE ⇒ DISTINCTIONS
+    ------------------------------------------------------------
+    Each difference defines at least two distinguishable aspects.
+    In infinite potential, all distinctions coexist
+    without sequence, hierarchy, or creation.
+
+    Distinctions are co-inductive:
+    endlessly defined through mutual contrast
+    without base case or external foundation.
+
+    (References: Aczel’s non-well-founded sets,
+    co-algebraic mutual definition, and Leibniz’s
+    identity of indiscernibles reformulated relationally.)
+
+------------------------------------------------------------
+
+4)  NETWORK OF DISTINCTIONS ⇒ RELATIONAL CONTEXT
+    ------------------------------------------------------------
+    All distinctions coexist within one infinite network
+    of mutual reference. Meaning arises only through relation.
+
+    The network has no central point or boundary.
+    It is non-hierarchical but contains relationally dense subsets
+    — local sub-contexts — where mutual definition is maximal.
+
+    These clusters are not enclosed regions but relational densities
+    within the whole, without external borders.
+
+    (Analogies: category-theoretic networks of morphisms,
+    graph-theoretic density metrics,
+    Rovelli’s relational ontology,
+    Wolfram’s Ruliad as total relational closure.)
+
+------------------------------------------------------------
+
+5)  RELATIONAL CONTEXT ⇒ CONSISTENCY PRESSURE
+    ------------------------------------------------------------
+    In the total web, some combinations of relations
+    contradict themselves, defining the same distinction
+    as both identical and non-identical.
+
+    Such contradictions represent relational instability.
+    They do not “disappear” in time;
+    they become logically disconnected —
+    unable to maintain mutual reference within the network.
+
+    Coherence therefore denotes connected subsets
+    of mutually consistent relations.
+
+    (References: principle of non-contradiction;
+    paraconsistent logic allowing local inconsistency;
+    Shannon information theory — redundancy as zero information.)
+
+------------------------------------------------------------
+
+6)  CONSISTENT DIFFERENCE ⇒ LOGICAL SUBSTRATE
+    ------------------------------------------------------------
+    The self-consistent portion of potential constitutes
+    a stable subset of relations — the LOGICAL SUBSTRATE.
+
+    It is not dynamic equilibrium but timeless coherence:
+    the consistent lattice of all mutually defining differences.
+
+    (Mathematical analogies: complete lattices and fixed-point
+    theorems; equilibrium sets without temporal evolution.)
+
+------------------------------------------------------------
+
+7)  SELF-REFERENCE ⇒ FEEDBACK
+    ------------------------------------------------------------
+    Within the logical substrate, relations implicitly contain
+    reference to their own configuration.
+
+    Each relation reflects upon itself via self-morphism:
+    the structure referencing its own consistency.
+
+    This implicit recursion is feedback —
+    not a temporal loop, but structural reflexivity.
+
+    (Connections: Gödelian self-reference,
+    reflexive categories, and self-similarity
+    in recursive logical forms.)
+
+------------------------------------------------------------
+
+8)  FEEDBACK ⇒ PERSISTENCE
+    ------------------------------------------------------------
+    When recursive relations remain internally coherent
+    across all self-morphic reference,
+    they form persistent configurations.
+
+    Persistence is invariant self-resolution —
+    a pattern that retains definitional integrity
+    under all internal reflections.
+
+    Persistence does not endure *in* time;
+    it simply *is* — coherence that cannot collapse
+    without contradiction.
+
+    (Parallels: fixed-point invariance,
+    cybernetic homeostasis generalized to logical form,
+    and stable self-reference in formal systems.)
+============================================================

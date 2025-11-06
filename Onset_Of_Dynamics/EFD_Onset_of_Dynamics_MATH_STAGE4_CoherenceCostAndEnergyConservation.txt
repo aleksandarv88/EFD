@@ -1,0 +1,315 @@
+============================================================
+EFD: ONSET OF DYNAMICS — STAGE 4 (v3.2)
+ENERGY & BALANCE LAWS FROM COHERENCE
+============================================================
+
+## PURPOSE
+Define energy purely from Stage 1–3 primitives (C, ε*, ∂M, R, U_X, d_X)
+and derive balance laws. Core principle: energy is the observer’s
+equilibrium coherence determined by the boundary condition. Internal
+re-coherence moves the state to that equilibrium; it neither creates nor
+destroys energy. Only boundary updates change energy.
+
+No external clocks, units, or symplectic structures are introduced.
+
+------------------------------------------------------------
+0) IMPORTS (Stage 1 v3.4; Stage 2 v3.3; Stage 3 v3.1)
+------------------------------------------------------------
+• C : coherence functional; ε* : τ-plateau threshold; Π : boundary projection
+• R : least-fixed-point re-coherence operator (level-synchronous by SCC)
+• U_X, w_{ij}, d_X : snapshot geometry; used for flows/visualization
+• Time τ : round index from Stage 2 (unit-less)
+
+Notation:
+  X          – current internal state on closure M_ℓ
+  B ⊂ M_ℓ    – finite interface (observer boundary)
+  b          – boundary condition on B (Def. 1.1)
+  X^*(b)     – least fixed point of R given b
+  C^*(b)     – shorthand for C( X^*(b) )
+
+============================================================
+1) ENERGY AS EQUILIBRIUM COHERENCE
+============================================================
+Definition 1.1 (Boundary state).
+Let Π: ∂M → B project boundary flicker onto the interface B ⊂ M_ℓ.
+The boundary condition is the finite tuple
+  b := { (p, χ_p) }_{p∈B},
+where each χ_p is the *admissible boundary constraint* inherited at site p.
+Concretely, χ_p can be: a fixed label/value, a finite allowed set of labels,
+or a local predicate over the relation at p—exactly as induced by Π.
+All equilibrium objects X^*(b), C^*(b) are defined relative to this b.
+
+Definition 1.2 (Equilibrium map and energy).
+Given b, let X^*(b) be the least fixed point of R under b (Stage 1).
+Define the **energy** of the observer at boundary b as
+  E(b) := C( X^*(b) ) =: C^*(b).
+
+Remarks.
+• E depends only on (C, R) and b; it is **independent** of any intermediate
+  internal states X on the way to X^*(b).
+• ε* is not a scale here; it already shapes R/scheduling and influences.
+
+============================================================
+2) FIRST LAW (EXACT BALANCE)
+============================================================
+Lemma 2.1 (Internal invariance).
+Fix b. For any internal trajectory X → … → X^*(b) produced by R,
+E(b) = C( X^*(b) ) is constant and independent of the path. Thus while b
+is fixed, “energy” does not change over τ.
+
+Definition 2.2 (Boundary work).
+A boundary update b → b′ (caused by Π(r) at ∂M) performs **work**
+  W(b→b′) := C( X^*(b′) ) − C( X^*(b) ) = E(b′) − E(b).
+
+Theorem 2.3 (First Law — exact).
+Let b_k be the boundary at round k, and X_k^* := X^*(b_k).
+Then
+  E(b_{k+1}) − E(b_k) = W(b_k→b_{k+1}).
+Internal re-coherence between b_k and b_{k+1} does not contribute.
+
+Corollary 2.4 (Closed observer).
+If the boundary is static (b_{k+1}=b_k), then E is **conserved**:
+E(b_{k+1}) − E(b_k) = 0.
+
+Interpretation.
+Energy is an attribute of the **equilibrium** determined by b. Internal time
+(ordered re-coherence) only resolves to that equilibrium.
+
+============================================================
+3) LOCAL ENERGY DENSITIES (CANONICAL PARTITIONS)
+============================================================
+We keep a global definition E(b) but provide emergent local partitions.
+
+3.1 Edge–half visualization (default + optional variants).
+At equilibrium X^*(b) build U := U_{X^*(b)} (Stage 3).
+
+— **Default canonical (unweighted):**
+   e_edge(i,j) := 1_{ {J_{ij} > ε*} },      e_node(i) := ½ Σ_{j∈N(i)} e_edge(i,j),
+   E_half(b) := Σ_i e_node(i) = Σ_{ {i,j}∈E(U) } e_edge(i,j).
+
+— **Optional ε*-scaled display (threshold-scale):**
+   e_edge^{(ε)}(i,j) := ε* · 1_{ {J_{ij} > ε*} }.
+
+— **Optional ΔC-weighted local response:**
+   choose a finite atomic-edit basis 𝒜_i^basis ⊂ 𝒜_i by either
+   (i) *minimal generating set* of atomic edits at i; or
+   (ii) *top–K edits by |ΔC_i(σ)|* (small K, e.g., 3–5).
+   Then
+     e_edge^{(ΔC)}(i,j) := 𝔼_{σ∈𝒜_i^basis}[ |ΔC_j( T_{i→j}(σ) )| ].
+These are **visualization densities**; they need not sum exactly to E(b).
+Use them for geometry-aware displays; use 3.2 for exact additivity.
+
+3.2 Exact fixed-point contribution partition (SCC Möbius).
+Let 𝒫 be the SCC-condensation poset (Stage 1). We seek e_i^*(b) with
+E(b) = Σ_{i∈𝒫} e_i^*(b), uniquely determined by 𝒫 and C at X^*(b).
+For each x∈𝒫 let the principal ideal ↓x = { y∈𝒫 : y ≤ x } and define
+  g(x) := C( X^*(b) |_{↓x} ),
+the coherence of the induced subproblem on ↓x with inherited boundary
+(neighbors outside ↓x clamped to X^*(b)). There exists f on 𝒫 such that
+  g(x) = Σ_{y≤x} f(y).
+The poset Möbius inversion yields
+  e_x^*(b) := f(x) = Σ_{y≤x} μ_𝒫(y,x) · g(y),
+with μ_𝒫 the Möbius function of 𝒫. Then E(b) = Σ_{x∈𝒫} e_x^*(b).
+This decomposition is **unique** and isomorphism-invariant.
+
+3.3 Computing e_i^* on the SCC poset (finite + large-case note).
+Finite 𝒫: topologically sort 𝒫. For each x in order, compute g(x) by solving
+the induced subproblem on ↓x (neighbors clamped). Compute μ_𝒫 via standard
+DP on the incidence algebra (μ(x,x)=1; μ(y,x)=−Σ_{y≤z<x} μ(y,z)).
+Then e_x^* = Σ_{y≤x} μ(y,x) g(y).
+
+Large 𝒫 (approximation): restrict to *local ideals of bounded depth* r around x
+(e.g., r=1–2) with caching; this yields e_x^{*(r)} that converges monotonically
+as r grows. Ordinal/well-founded extensions are deferred to Stage 5.
+
+Remarks.
+Use e_i^* when an exact additive match to E(b) is required; use the edge–half
+variants for cheap geometric visualization.
+
+============================================================
+4) DISCRETE CONTINUITY (EXISTENCE OF FLOWS)
+============================================================
+We express local changes between equilibria as a divergence of edge flows.
+
+Setup 4.0 (Two equilibria).
+Consider b → b′ with equilibria X^* := X^*(b), X^{*′} := X^*(b′).
+Let U₀ := U_{X^*}, U₁ := U_{X^{*′}}, and Γ be any connected component of U₀ ∪ U₁.
+Let e_i := e_i^*(b), e_i′ := e_i^*(b′), and s_i := e_i′ − e_i.
+Trivially Σ_i s_i = E(b′) − E(b) = W(b→b′).
+
+Theorem 4.1 (Flow representation on graphs).
+On any connected graph Γ, for any node vector s with finite support,
+there exists an antisymmetric edge flow J_{ij} = −J_{ji} such that
+  (div J)_i := Σ_{j∈N(i)} J_{ij} = s_i  for all i∈Γ.
+
+Proof (constructive sketch).
+Choose a spanning tree T of Γ, root r. Push s-mass from leaves to r, defining
+J on tree edges; set J=0 on chords. Antisymmetry and divergence identities hold. ∎
+
+Corollary 4.2 (Discrete continuity).
+For the boundary update b→b′, there exists (generally non-unique) J on Γ
+with  e_i′ − e_i = (div J)_i, hence Σ_i (div J)_i = W(b→b′).
+If b′=b (closed observer), s=0 and there exists J with div J=0 (pure circulation).
+
+4.3 Canonical minimal flow (unique, emergent; Thomson/Dirichlet).
+To obtain a **unique** flow with a well-posed continuum limit, minimize
+the strictly convex quadratic energy
+  𝓔(J) := Σ_{ {i,j}∈E(Γ) } ( J_{ij}^2 / c_{ij} ),   subject to   div J = s,
+with **conductances** c_{ij} := 1 / w_{ij} (Stage 3 weights).
+This is the discrete Thomson/Dirichlet principle (minimal dissipation) on the
+emergent conductance graph. The Euler–Lagrange equations give a node potential
+φ solving the weighted graph Laplacian  L_c φ = s, and the unique minimizer
+  J_{ij}^† = c_{ij} ( φ_i − φ_j ).
+All ingredients (w, hence c) are emergent from (C, ε*, X^*), so J^† is canonical.
+
+============================================================
+5) DYNAMICAL FLOWS ALONG TIME-RESPECTING PATHS
+============================================================
+When the boundary changes during a round, Stage-2 dynamics restrict actual
+propagation to time-respecting paths.
+
+Definition 5.1 (Round-k dynamic cone, recall).
+Cone_dyn(S,k) (Stage 2) is the set of blocks reachable in ≤k hops along edges
+present when predecessors resolve.
+
+Proposition 5.2 (Causal compatibility).
+For a single boundary pulse touching S at round 0 and no further changes,
+there exists a choice of edge flow J^{(k)} each round such that:
+  (i) support(J^{(k)}) ⊆ edges between Cone_dyn(S,k) and Cone_dyn(S,k+1),
+  (ii) e^{(k+1)} − e^{(k)} = div J^{(k)} on the active region,
+  (iii) Σ_i e_i^{(k)} = E(b) is constant for fixed b.
+
+Sketch.
+Restrict the (tree-push or minimal) flow construction to the active frontier
+each round; Stage-2 level-synchronous updates ensure ≤1 hop/round. ∎
+
+============================================================
+6) WHEN IS TOTAL ENERGY CONSERVED?
+============================================================
+From Theorem 2.3:
+— If b is static (closed observer), E(b) is conserved.
+— If b changes, ΔE equals boundary work W(b→b′).
+
+Definition 6.1 (Coherence-exchange symmetry).
+C has coherence-exchange symmetry on M_ℓ if for every local re-coherence
+update at fixed b the exact partition e^* (Sec. 3.2) satisfies
+  Δe_i^* + Σ_{j∈N(i)} Δe_j^* = 0.
+Equivalently: internal updates only **redistribute** e^* between i and neighbors.
+
+Theorem 6.2 (Conservation under exchange symmetry).
+If C has coherence-exchange symmetry on M_ℓ, then for fixed b and any internal
+trajectory, E(b)=Σ_i e_i^*(b) is conserved **at every τ sub-step**; moreover
+there exists an antisymmetric J with div J=0 that realizes the local changes.
+
+Remarks.
+• Exchange symmetry holds e.g. when C decomposes at equilibrium as a sum of
+pairwise symmetric edge potentials on U. When it fails, E(b) remains conserved
+over rounds at fixed b (Lemma 2.1); sub-step redistribution may look
+“dissipative” locally, but it is *exactly reabsorbed* when SCCs reach X^*(b).
+No entropy primitive is introduced or required.
+
+============================================================
+7) EMERGENCE & INVARIANCE CHECK
+============================================================
+• No new primitives: E(b)=C(X^*(b)); exact partition via SCC-poset Möbius
+  (unique on 𝒫); flows exist by graph combinatorics; minimal flow J^† uses
+  only Stage-3 weights w (hence emergent).
+• Observer invariance: Isomorphisms preserve b, C, U, hence E(b), e_i^*, and
+  any induced flows up to relabeling.
+• Plateau stability: On an ε* τ-plateau, U is stable; edge-half displays and
+  causal cones are robust to boundary-scale flicker.
+
+============================================================
+8) EXAMPLES (ASCII)
+============================================================
+(1) Closed observer (static boundary)
+  b fixed. System at X^*(b). E(b) constant; any intra-round “ringing” is
+  redistribution (div-free circulation), decaying to X^*(b) with no ΔE.
+
+(2) Single pulse on a chain (tiny numbers)
+  Nodes: A—B—C—D with weights w_AB=1, w_BC=2, w_CD=1 ⇒ conductances
+  c_AB=1, c_BC=0.5, c_CD=1. Suppose e^* shifts s = (+1 at A, −1 at D).
+  Solve L_c φ = s:
+    (A)  c_AB(φ_A−φ_B) = +1
+    (B) −c_AB(φ_A−φ_B) + c_BC(φ_B−φ_C) = 0
+    (C) −c_BC(φ_B−φ_C) + c_CD(φ_C−φ_D) = 0
+    (D) −c_CD(φ_C−φ_D) = −1
+  Yields a unique φ (up to constant); minimal flow J^†_{ij} = c_{ij}(φ_i−φ_j).
+  Support expands ≤1 hop/round; total ΔE = W(b→b′).
+
+(3) Two pulses across a 4-cycle
+  Pulses at opposite nodes of a square. s splits into two signed blobs.
+  The minimal J^† circulates around the cycle before settling; ΔE = W₁+W₂.
+
+============================================================
+9) PSEUDOCODE (E, partitions, flows)
+============================================================
+# Energy at a boundary b
+X_star = LeastFixedPoint_R(b)                  # Stage 1
+E = C(X_star)
+
+# Exact partition via SCC-poset Möbius (finite case)
+P = SCC_Condensation_Poset(X_star)             # Stage 1
+g[x] = CoherenceOfInducedSubproblem(X_star, ideal=Downset(x))
+mu = MobiusFunction(P)                         # DP on incidence algebra
+for x in TopoOrder(P):
+    e_star[x] = sum( mu[y,x] * g[y] for y<=x ) # e_x^*
+assert sum(e_star.values()) == E
+
+# Edge–half visualization (default canonical)
+U = Build_U(X_star)                            # Stage 3
+for i: e_node[i] = 0
+for each edge {i,j} in U:
+    e_edge = 1
+    e_node[i] += 0.5 * e_edge
+    e_node[j] += 0.5 * e_edge
+
+# Optional ΔC-weighted basis selection
+for i:
+    A_basis[i] = MinimalGeneratingEdits(i)      # or TopKByAbsDeltaC(i, K=3)
+
+# Minimal (unique) flow between equilibria b -> b'
+X0, X1 = LeastFixedPoint_R(b), LeastFixedPoint_R(b')
+e0, e1 = MobiusDecompose(C, X0, P), MobiusDecompose(C, X1, P)
+s[i] = e1[i] - e0[i]
+U_union = UnionGraphs(Build_U(X0), Build_U(X1))
+c_ij = {edge: 1.0 / w_ij(edge, X0 or X1)}      # conductance from Stage 3
+
+# Solve L_c phi = s  (SPD; Conjugate Gradient works well with Jacobi precond)
+phi = ConjugateGradient_Laplacian(U_union, c_ij, s)
+
+for edge {i,j} in U_union:
+    J_min[ij] = c_ij[{i,j}] * (phi[i] - phi[j])  # antisymmetric by construction
+
+# Optional: enforce causality per round using Stage-2 cones
+for k in 0..tau:
+    restrict J_min^(k) to edges between Cone_dyn(S,k) and Cone_dyn(S,k+1)
+
+# Notes:
+# • W1 (Ollivier) in Stage 3 can use EMD/Hungarian on small neighborhoods.
+# • Cache g(·) over local ideals to scale Möbius on large posets.
+
+============================================================
+10) RESULTS
+============================================================
+• Energy E(b) = C(X^*(b)) derived with no extra structure.
+• First Law (exact): ΔE equals boundary work; closed observers conserve E.
+• Canonical local partitions exist:
+  — exact via SCC-poset Möbius inversion (unique, additive),
+  — geometric displays via edge–half / ε*-scaled / ΔC-weighted (emergent).
+• Discrete continuity: any Δe between equilibria = div J on U; a **unique**
+  canonical flow J^† arises by minimal dissipation w.r.t. Stage-3 weights;
+  causal flows can be chosen round-by-round to respect Stage-2 cones.
+
+============================================================
+11) FORESHADOW (to Stage 5/6)
+============================================================
+• Stage 5 (continuum): prove Γ-convergence of E-partitions to energy densities
+  and convergence of discrete minimal flows J^† to vector fields with ∇·J = ∂_t ρ.
+• Symmetries for Noether-style results: a **C-invariance** is an automorphism
+  of the closure (graph and labels) that leaves C unchanged. Stage 6 will map
+  such invariances to conserved currents; exchange symmetry is the local case.
+
+============================================================
+End of Stage 4 (v3.2)
+============================================================

@@ -1,0 +1,155 @@
+============================================================
+EFD SIMULATION ROADMAP — NUMERICAL VALIDATION OF THE FRAMEWORK
+==============================================================
+
+## Purpose
+
+To list and order the simulations needed to demonstrate, step by step, that the mathematical claims of EFD (Emergent Feedback Dynamics) are realized in concrete discrete models. Each stage is meant to show that a specific emergent feature (time, causality, c, metric, curvature, energy, mass, forces, constants) actually appears in finite computations.
+
+This is a roadmap, not the implementations.
+
+---
+
+## 1. Substrate and Coherence Filter (Sanity Sims)
+
+**Goal:** Show that starting from a random relation set, applying feedback + coherence (Φ = κ ∘ μ) converges to persistent substructures.
+
+* Sim 1.1: Random graph of differences → iterate Φ → measure number of edges surviving.
+* Sim 1.2: Vary local rule-schema ρ → show different stable subgraphs (contexts) emerge.
+* What it validates: existence of persistent configurations (Fix(Φ) ≠ ∅) in practice.
+
+---
+
+## 2. Ordered Re-Coherence and Internal Time
+
+**Goal:** Show that incompatible boundary completions force an update order.
+
+* Sim 2.1: Coherent core + ambiguous boundary nodes → apply local resolution rule → record update order.
+* Sim 2.2: Change boundary ambiguity → show induced order changes but still stays partial, not arbitrary.
+* What it validates: time as ordered re-coherence, not as an external parameter.
+
+---
+
+## 3. Causal Structure and Propagation Speed (c)
+
+**Goal:** Show that a local change influences distant nodes only after a finite number of steps and that a maximum propagation speed exists.
+
+* Sim 3.1: Pulse (small change) at node A → run updates → measure first time node B changes → build influence-time map.
+* Sim 3.2: Repeat on different graphs (1D, 2D lattice, 3D lattice, irregular graph) → show a well-defined fastest front.
+* Sim 3.3: Extract c as slope of earliest-arrival curve.
+* What it validates: emergent causal cones and observer-dependent c.
+
+---
+
+## 4. Metric Emergence from Minimal Coherence Paths
+
+**Goal:** Show that minimal-update paths behave like shortest paths (distance).
+
+* Sim 4.1: For many node pairs, compute minimal re-coherence steps → assemble distance matrix.
+* Sim 4.2: Compare to geometric distances on the underlying lattice (when present) → show convergence as resolution increases.
+* Sim 4.3: On irregular graphs, visualize induced metric → show non-uniform “space”.
+* What it validates: space/metric can be inferred from update cost.
+
+---
+
+## 5. Curvature from Holonomy
+
+**Goal:** Show that re-cohering around small cycles does not always return the same state.
+
+* Sim 5.1: Define a 2D/3D discrete surface from the coherence graph.
+* Sim 5.2: Transport a label/state around elementary plaquettes → measure mismatch.
+* Sim 5.3: Compare mismatch to discrete curvature (angle deficit) → show correlation.
+* What it validates: curvature as path non-commutativity in EFD.
+
+---
+
+## 6. Energy as Coherence Cost
+
+**Goal:** Show that keeping a pattern stable requires a nonzero, trackable cost.
+
+* Sim 6.1: Define local energy = rule-violation penalty; run system to a stable pattern → record total energy.
+* Sim 6.2: Perturb boundary noise → show stable pattern resists change at same energy level.
+* Sim 6.3: Track energy over time to show it is conserved (up to numerical error).
+* What it validates: energy = persisted coherence cost.
+
+---
+
+## 7. Mass and E = m c² (Proto-Particles)
+
+**Goal:** Show that localized, persistent patterns have rest energy and that boosted versions scale with γ.
+
+* Sim 7.1: 1D field/lattice (sine-Gordon-like) → create static soliton → measure rest energy E₀.
+* Sim 7.2: Measure c from small-amplitude signals in the same model.
+* Sim 7.3: Create boosted soliton → measure total energy E(v) → compare to γ(v) E₀ using c from same model.
+* Sim 7.4: Repeat in 2D/3D lattice to show dimensional robustness.
+* What it validates: energy, mass, and c all emerge from the same rule.
+
+---
+
+## 8. Forces as Coherence Gradients
+
+**Goal:** Show that patterns move toward regions of lower coherence cost.
+
+* Sim 8.1: Construct a lattice with spatially varying rule penalty (coherence gets easier in one region).
+* Sim 8.2: Place a stable pattern near the gradient → observe drift toward lower-cost region.
+* Sim 8.3: Measure drift speed vs gradient magnitude.
+* What it validates: forces = coherence gradients, no extra primitive.
+
+---
+
+## 9. Multi-Observer Invariants (Constants)
+
+**Goal:** Show that when multiple loop-clusters with different interfaces observe the same substrate, certain quantities remain the same.
+
+* Sim 9.1: Run the same base rule on multiple subgraphs (observers) with slightly different boundaries.
+* Sim 9.2: Measure emergent c, local energy units, and stable pattern spectrum for each.
+* Sim 9.3: Identify quantities that match across all observers → mark as emergent constants.
+* What it validates: constants = shared invariants of re-coherence.
+
+---
+
+## 10. GR-Like Behavior and Singularity Avoidance
+
+**Goal:** Show that increasing coherence pressure increases effective curvature but does not diverge.
+
+* Sim 10.1: Discrete surface or 3D mesh with mass-like persistent pattern at center → measure induced curvature (angle deficits, holonomy).
+* Sim 10.2: Increase “mass” (coherence cost) and observe curvature growth.
+* Sim 10.3: Enforce minimal loop scale or maximal coherence → show curvature saturates, not blows up.
+* What it validates: EFD regularizes GR-style singularities.
+
+---
+
+## 11. Quantum-Like Boundary Behavior
+
+**Goal:** Show that multiple admissible boundary completions yield interference-like results.
+
+* Sim 11.1: Two-path setup in the coherence graph (two admissible internal completions).
+* Sim 11.2: Let boundary noise select completions stochastically → record outcome distribution.
+* Sim 11.3: Re-introduce coherence between paths → observe interference pattern in selection frequencies.
+* What it validates: quantum-like phenomena as boundary non-invariance.
+
+---
+
+## 12. Scaling and Continuum Limit
+
+**Goal:** Show that as graph resolution increases, discrete results approach smooth geometric/physical behavior.
+
+* Sim 12.1: Run metric and curvature sims on increasingly finer lattices.
+* Sim 12.2: Track convergence of c, energy, and holonomy.
+* Sim 12.3: Compare to known analytic solutions (sphere, Schwarzschild-like discrete metric).
+* What it validates: EFD survives refinement and matches continuum physics.
+
+---
+
+## 13. Integrated Demo
+
+**Goal:** Combine multiple features in one long-run simulation.
+
+* Sim 13.1: Base rule on 3D graph.
+* Sim 13.2: Emergent c, soliton/matter knots, curvature around them, and observer readouts.
+* Sim 13.3: Export data for external visualization (e.g. geodesics, energy density, curvature heatmaps).
+* What it validates: the whole EFD stack can coexist in one model.
+
+============================================================
+This simulation roadmap mirrors the conceptual roadmap: start from bare coherence, then add time/causality, then metric/curvature, then energy/mass, then forces/constants, then GR- and QM-like behavior. Each simulation step is meant to be small, checkable, and incrementally convincing.
+==============================================================================================================================================================================================================================================================================================

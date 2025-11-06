@@ -1,0 +1,94 @@
+============================================================
+EFD DEVELOPMENT ROADMAP — FROM SUBSTRATE TO FULL PHYSICS
+========================================================
+
+## 1. EFD FOUNDATIONS
+
+* Core ontology: Ω (possibility) → Difference → Coherence (M) → Boundary (∂M) → Noise.
+* Feedback loops form persistent configurations — the basis of identity, information, and observers.
+* No time, space, or energy yet — only structure and logical consistency.
+
+---
+
+## 2. EFD: ONSET OF DYNAMICS
+
+* Ordered re-coherence gives rise to **time** (internal to persistent loops).
+* Coherence dependencies define **causality**.
+* The maximum re-coherence rate defines **speed limit (c)**.
+* Minimal coherence paths define **metric (space)**.
+* Holonomy of coherence defines **curvature**.
+  → Result: The relational skeleton of spacetime (pre-geometry).
+
+---
+
+## 3. EFD → EMERGENT MATTER AND GR CONSTRAINTS
+
+* Persistence cost defines **energy**.
+* Normalized rest cost defines **mass** (E = m c²).
+* Coherence gradients define **forces**.
+* Coupled feedback loops form **fields**.
+* Coherence-bounded curvature prevents **singularities**.
+* Large-scale coherence dynamics yield **Einstein-like equations**.
+  → Result: General Relativity emerges as the macroscopic limit of coherence.
+
+---
+
+## 4. EFD → QUANTUM AND INFORMATION LAYER
+
+* Boundary noise produces **superposition** of possible completions.
+* Re-coherence events correspond to **measurements**.
+* Overlaps of persistent configurations yield **interference**.
+* Probabilities emerge from stability weighting of compatible closures.
+  → Result: Quantum mechanics arises as the statistical behavior of boundary coherence.
+
+---
+
+## 5. EFD → STANDARD MODEL LAYER
+
+* Stable feedback knot symmetries generate **particle families**.
+* Loop coupling topology corresponds to **gauge interactions** (SU(3)×SU(2)×U(1)).
+* Coherence exchange across clusters produces **boson-like mediation**.
+  → Result: The Standard Model emerges from relational symmetries in persistent feedback loops.
+
+---
+
+## 6. EFD → CONSTANTS AND REGULARITIES
+
+* Shared invariants across all observers become **physical constants** (c, ℏ, G, α, etc.).
+* Constants are fixed relational ratios stable under all re-coherence processes.
+  → Result: Constants are not imposed but are self-consistent invariants of coherence.
+
+---
+
+## 7. EFD → CLASSICAL AND EFFECTIVE THEORIES
+
+* Large stable averages of feedback loops yield **classical mechanics** (Newtonian limit).
+* Small perturbations yield **wave equations**, **thermodynamics**, and **chaos**.
+  → Result: Classical physics arises as an approximation of collective coherence behavior.
+
+---
+
+## 8. EFD → COSMOLOGY AND LARGE-SCALE STRUCTURE
+
+* Global coherence cycles produce **expansion and curvature** of the universe.
+* Observer constraints yield the **arrow of time**.
+* Boundary fluctuations explain **cosmic background noise**.
+  → Result: Cosmology is a large-scale manifestation of coherence rules.
+
+---
+
+## 9. EFD → META-LAYERS AND FEEDBACK CLOSURE
+
+* Laws emerge as stabilized feedback invariants across observers.
+* The universe recursively checks coherence at all scales.
+  → Result: A finite, self-consistent, and recursive cosmos with no external parameters.
+
+---
+
+## SUMMARY CHAIN
+
+Ω → Difference → Coherence (M) → Ordered Re-Coherence → Time & Causality → Propagation Limit (c) → Metric (Space) → Curvature → Energy & Mass → Forces → Constants → Quantum & Classical Physics → GR → Cosmology → Recursive Law Closure.
+
+============================================================
+This roadmap outlines the logical expansion of EFD from pure difference to a full physical framework unifying relativity, quantum theory, and cosmology under one coherent logic of feedback and persistence.
+=============================================================================================================================================================================================================

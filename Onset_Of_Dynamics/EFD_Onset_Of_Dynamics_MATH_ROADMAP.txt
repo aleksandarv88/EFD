@@ -1,0 +1,174 @@
+============================================================
+EFD: ONSET OF DYNAMICS — RIGOROUS MATH ROADMAP (v2)
+===================================================
+
+## PURPOSE
+
+This roadmap defines the mathematical steps required to rigorously derive, formalize, and test the principles in **EFD: Onset of Dynamics**. It refines previous versions by addressing feedback-loop cycles (Stage 3) and discrete-to-continuum curvature transitions (Stage 5).
+
+---
+
+## STAGE 1 — FORMAL SUBSTRATE DEFINITIONS
+
+### Goal
+
+Define Ω, M, and ∂M rigorously in mathematical terms.
+
+### Tasks
+
+1. **Define Ω (Substrate):**
+   Represent Ω as a set of admissible relations/differences:
+   Ω ⊂ P(V × V), where V is a vertex set.
+   Each element (a,b,Δ) encodes a primitive difference relation.
+
+2. **Define Consistency Pressure:**
+   Introduce a coherence functional C(R): Ω → ℝ that measures logical consistency.
+   M = argmax_R C(R).
+   Prove existence, boundedness, and local uniqueness of M.
+
+3. **Define Boundary (∂M):**
+   ∂M = { r ∈ Ω | r ∉ M but coherent with some subgraph of M }.
+   Show that boundary elements correspond to admissible but incompatible extensions (noise sources).
+
+---
+
+## STAGE 2 — LOOP STRUCTURE AND CLOSURE
+
+### Goal
+
+Formally construct feedback loops and their coherence closures.
+
+### Tasks
+
+1. **Define Feedback Loop L:**
+   L = (x₁ → x₂ → ... → x₁), a closed sequence of relations preserving internal consistency.
+
+2. **Define Minimal Coherence Closure (Mₗ):**
+   Mₗ = smallest subset of M that ensures L remains self-consistent.
+   Prove Mₗ ⊂ M and ∂Mₗ ⊂ ∂M.
+
+3. **Define Coupling Between Loops:**
+   For loops Lᵢ, Lⱼ define joint closure M_{ij} = Mₗᵢ ∪ Mₗⱼ if coherent.
+   Prove that transitive coupling preserves coherence (closure of closures property).
+
+---
+
+## STAGE 3 — RE-COHERENCE ORDER AND INTERNAL TIME
+
+### Goal
+
+Define ordered re-coherence and show that a causal sequence (time) emerges without paradoxes.
+
+### Tasks
+
+1. **Define Re-Coherence Operator R:**
+   R: M → M updates local assignments to restore coherence.
+
+2. **Address Feedback Loops (Cycles):**
+   The coherence graph G = (V,E) may contain cycles. Decompose G into **strongly connected components (SCCs)**.
+   Each SCC represents a simultaneous feedback block (loop cluster).
+
+3. **Define Partial Order of SCCs:**
+   Construct the condensation graph G′ = SCC(G).
+   G′ is acyclic; define A < B if SCC_A must re-cohere before SCC_B.
+   This ensures time order emerges over an acyclic projection.
+
+4. **Define Observer Time:**
+   τ = sequence length of ordered re-coherences over G′.
+   Prove τ is invariant under internal relabeling of the observer’s closure Mₗ.
+
+---
+
+## STAGE 4 — PROPAGATION AND SPEED LIMIT (c)
+
+### Goal
+
+Quantify propagation of coherence and derive the invariant speed limit c.
+
+### Tasks
+
+1. **Define Propagation Cost:**
+   c(A,B) = minimal number of re-coherence steps needed for change at A to affect B.
+
+2. **Define Minimum Update Interval:**
+   There exists Δt_min such that no re-coherence can occur faster than Δt_min.
+
+3. **Derive c:**
+   c = 1 / Δt_min.
+   Prove invariance of c under isomorphic remapping of Mₗ.
+
+---
+
+## STAGE 5 — METRIC AND CURVATURE FROM COHERENCE
+
+### Goal
+
+Define effective metric and curvature in discrete and continuous formulations.
+
+### Tasks
+
+1. **Discrete Metric Definition:**
+   Define d(A,B) = min_{paths γ} ∑_{e∈γ} w(e), where w(e) = local coherence cost.
+   Show that d(A,B) satisfies metric properties (positivity, symmetry, triangle inequality).
+
+2. **Discrete Curvature Definition:**
+   Define holonomy around loop γ:
+   𝓗(γ) = 1 - ∏_{e∈γ} R(e), where R(e) is local re-coherence rotation.
+   Alternatively, apply **Ollivier-Ricci** or **Forman curvature** as discrete analogues.
+
+3. **Continuum Limit:**
+   In large-graph limit |V| → ∞, define smooth field approximation:
+   g_{ij} = f(∂²C/∂x_i∂x_j).
+   Show that local curvature from 𝓗(γ) converges to Riemann curvature tensor form.
+
+---
+
+## STAGE 6 — COHERENCE COST AND ENERGY CONSERVATION
+
+### Goal
+
+Define energy as coherence cost and prove its conservation under re-coherence.
+
+### Tasks
+
+1. **Local Coherence Cost Functional:**
+   E(x) = ∑ |ΔC(x)|² over updates.
+
+2. **Conservation Law:**
+   Show that ∂E/∂τ = 0 under valid re-coherence.
+   Interpret as internal energy conservation.
+
+3. **Observer Invariance:**
+   Prove that E_total = const within each Mₗ, independent of observer position.
+
+---
+
+## STAGE 7 — NUMERICAL VALIDATION
+
+### Goal
+
+Simulate discrete coherence graphs to confirm theoretical behavior.
+
+### Tasks
+
+1. Build graph model of distinctions (nodes) and coherence dependencies (edges).
+2. Implement iterative re-coherence dynamics respecting SCC-based update order.
+3. Measure emergent c, distances, curvature, and verify ∂E/∂τ = 0 numerically.
+
+---
+
+## OUTCOME
+
+Upon completion, this roadmap will yield:
+
+* Formal definitions of Ω, M, ∂M, and Mₗ.
+* Rigorous proofs of order emergence and causal acyclicity.
+* Discrete-to-continuum mapping for metric and curvature.
+* Conservation of coherence cost as the foundation for energy.
+* Simulation confirmation of emergent dynamics.
+
+Next step: **EFD: Emergent Physical Structures — Mathematical Layer**.
+
+============================================================
+End of Document
+===============

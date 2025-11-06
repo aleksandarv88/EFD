@@ -1,0 +1,192 @@
+============================================================
+EFD: ONSET OF DYNAMICS — STAGE 2 (v3.3)
+PROPAGATION AND THE INVARIANT SPEED LIMIT
+============================================================
+
+## PURPOSE
+Derive propagation and an internal, unit-less speed limit c_τ = 1 hop/round
+purely from Stage 1 (v3.4): ε*–stable influence, SCC fixed points (Tarski),
+and τ-level scheduling. No external clock, metric, or ad hoc parameters.
+
+------------------------------------------------------------
+0) IMPORTS FROM STAGE 1 (v3.4)
+------------------------------------------------------------
+• ε* : smallest maximizer of the τ-stability plateau (boundary scale σ_∂)
+• Influence graph G_X(ε*) on loop-closures {M_ℓ}; SCC condensation G′ is a DAG
+• Rank ρ : V′ → ℕ (or ordinal) with τ = height(G′) and layers L_k := {ρ=k}
+• Level-synchronous re-coherence per round: each SCC reaches its least fixed
+  point in that round by monotone (Tarski) iteration on a finite lattice
+
+Notation:
+  X^{k,t} — global state after round k and intra-round SCC iteration t.
+  “unresolved” — SCC has not yet reached its least fixed point in any prior round.
+
+------------------------------------------------------------
+1) SIGNALS, “TOUCHED” BLOCKS, AND DYNAMIC INFLUENCE
+------------------------------------------------------------
+Boundary signal at state X:
+  r ∈ ∂M  →  Π(r) ∈ M  →  δC_X(r) := C(Π(r)·X) − C(X).
+
+A block (SCC) B is **touched** by Π(r) iff Π(r) performs atomic edits on
+any relation contained in B’s closure (i.e., within the relations that define B).
+
+Dynamic influence graphs along the trajectory:
+  G_{k,t} := G_{X^{k,t}}(ε*), condensations G′_{k,t}.
+Define trajectory-wise sets:
+  E^★ := ⋂_{k,t} E(G_{k,t})          (edges that persist for the whole run)
+  E^⋃ := ⋃_{k,t} E(G_{k,t})          (edges that appear at least once)
+and G^★, G^⋃ with condensations G^★′, G^⋃′.
+
+E^★ is definitional w.r.t. the actual R-trajectory; theorems do not
+assume precomputation.
+
+------------------------------------------------------------
+2) HOP DISTANCE, CONES, AND TIME-RESPECTING PATHS
+------------------------------------------------------------
+For any DAG H′, let D_H′(A,B) be shortest A→…→B path length.
+
+Dynamic arrival cones from a source set S⊆V′:
+  Cone_dyn(S,k) := { B : there exists a time-respecting path
+                     A_0→…→A_k with A_0∈S and each edge A_i→A_{i+1}
+                     present at or before the round when A_i resolves }.
+
+Robust cone:
+  Cone_★(S,k) := { B : ∃ path length ≤k from S to B in G^★′ }.
+
+Always: Cone_★(S,k) ⊆ Cone_dyn(S,k).
+
+------------------------------------------------------------
+3) LEMMAS (DYNAMIC SCHEDULING; INTRA-ROUND BOUNDS)
+------------------------------------------------------------
+LEMMA 2.1 (One hop per round, dynamic).
+If B becomes newly eligible after round k, then ∃ predecessor A resolved in
+round k and an edge A→B present no later than B’s eligibility. Hence ≤1 hop/round.
+
+LEMMA 2.2 (Dynamic lower bound).
+For any sources S and block B,
+  earliest arrival k*(B) ≥ D_G^★′(S,B).
+
+LEMMA 2.3 (Robust achievability).
+If S=A_0→…→A_L=B is a robust path in G^★′, then there exists a level-
+synchronous schedule with k*(B)=L.
+
+INTRA-ROUND ITERATION IS FINITE (with an explicit bound).
+Within any SCC S, Stage-1 progress measure (violations ↓, −∑ΔC ↑) is
+well-founded and strictly increases per accepted local update; thus the
+least fixed point is reached in finitely many intra-round steps, bounded
+by the height of S’s assignment lattice (finite by the finite label sets).
+
+------------------------------------------------------------
+4) THEOREM (NO-SUPERLUMINAL + ROBUST ARRIVAL)
+------------------------------------------------------------
+THEOREM 2.1′.
+(i) (No-superluminal)  k*(B) ≥ D_G^★′(S,B).
+(ii) (Exact arrival on robust paths) If a robust path of length L exists,
+     then k*(B)=L under level-synchronous scheduling.
+
+Interpretation: ≤1 hop each τ-round unconditionally; equality when the path
+survives the R-trajectory (robustness).
+
+------------------------------------------------------------
+5) OBSERVER INVARIANCE AND ε*-PLATEAU STABILITY
+------------------------------------------------------------
+THEOREM 2.2.
+DAG isomorphisms preserve path lengths, ranks, and time-respecting cones;
+thus k*(·) is observer-invariant.
+
+Stability: ε* was chosen on a τ-plateau; perturbations at boundary scale σ_∂
+do not alter τ or layering. Internal updates may remove non-robust edges but
+cannot create >1 hop/round. Hence c_τ is stable.
+
+------------------------------------------------------------
+6) INTERNAL SPEED LIMIT (NO CALIBRATION HERE)
+------------------------------------------------------------
+Define the internal causal limit:
+  c_τ := 1 hop per round.
+
+This is exact and fully emergent from τ-level scheduling and Lemma 2.1.
+(Physical units appear only after a spatial metric in Stage 3 and a continuous
+clock/energy mapping in Stage 4. No Δt_min or external time introduced here.)
+
+------------------------------------------------------------
+7) SUB-ε* EFFECTS (NO UNTHRESHOLDED LEAKS)
+------------------------------------------------------------
+Scheduling triggers require violations above ε*. **No unthresholded leaks**:
+cumulative sub-ε* effects cannot schedule a successor before a threshold-
+crossing violation occurs; the earliest such enablement still requires ≥1 hop
+and thus ≥1 round (by Lemma 2.1). The ε* τ-plateau selection ensures that
+ignoring sub-ε* chains does not change τ or the layer structure.
+
+------------------------------------------------------------
+8) MULTI-SOURCE PARALLELISM
+------------------------------------------------------------
+For disjoint source sets S_m:
+  k*(B) = min_m k*_m(B),      Cone_dyn(⋃S_m,k) = ⋃_m Cone_dyn(S_m,k).
+
+Blocks at the same layer commute (Stage-1 least-fixed-point semantics), so
+within-level resolution is order-independent.
+
+------------------------------------------------------------
+9) INFINITE / ORDINAL GENERALIZATION
+------------------------------------------------------------
+With well-founded rank ρ(v) = sup{ρ(u)+1 : u→v}, rebase sources to ρ=0:
+  k*(B) ≥ ρ(B) − inf_{A∈S} ρ(A).
+
+Robust ordinal path: a path whose every finite prefix uses edges that persist
+along the R-trajectory up to the round when that prefix endpoint resolves.
+Equality holds for robust ordinal paths. Well-founded progress prevents
+infinite descent and rules out instantaneous ordinal jumps.
+
+------------------------------------------------------------
+10) EXAMPLES (ASCII)
+------------------------------------------------------------
+(1) Robust chain:
+  A → B → C → D   (all robust)
+  Rounds: 0:A, 1:B, 2:C, 3:D.  k*(D)=3 = D_G^★′(A,D).
+
+(2) Edge drop mid-run:
+  A → B → C with A→B robust, B→C transient (drops after round 1 as C’s local
+  resolution reduces I_X(B→C) below ε*). Then k*(C) ≥ 2; if no robust alternative
+  path exists, arrival can be later or fail.
+
+(3) SCC then hop:
+  (A ↔ B ↔ C) → D  (triad robust)
+  Round 0: {A,B,C} → least fixed point; Round 1: D eligible.
+
+------------------------------------------------------------
+11) PSEUDOCODE (DYNAMIC, LEVEL-SYNCHRONOUS)
+------------------------------------------------------------
+INPUT: initial state X, closures {Mℓ}, ε*
+1:  k ← 0;  F_0 ← initial source blocks S
+2:  while F_k ≠ ∅:
+3:     for v in F_k:   X_v ← LeastFixedPoint(R_v, X_v)   # Tarski; finite steps ≤ lattice height
+4:     G_{k+1,0} ← BuildInfluenceGraph(X, ε*)            # dynamic edges from C and ε*
+5:     F_{k+1} ← { w : ∃ v∈F_k with (v→w) ∈ E(G_{k+1,0}) and w unresolved }
+6:     k ← k+1
+7:  return arrival rounds k*(·)
+
+Note (observability): maintain a **running intersection** of observed edges
+to obtain an online lower bound on robustness (E^★_online). Theorems use the
+trajectory-defined E^★ but do not require precomputation.
+
+------------------------------------------------------------
+12) RESULTS
+------------------------------------------------------------
+• Dynamic no-superluminal bound and robust achievability (Theorem 2.1′)
+• c_τ = 1 hop/round: exact internal causal limit
+• Observer invariance and ε*-plateau stability
+• Ordinal extension with well-founded progress
+• All statements derived solely from Stage-1 primitives
+
+------------------------------------------------------------
+13) REFERENCES
+------------------------------------------------------------
+Lamport (1978) — Time, Clocks, and the Ordering of Events (happens-before).
+Harary (1969) — Graph Theory, §9.2 (DAG ranks/height).
+Kahn (1962) — Topological sorting of large networks.
+Kosaraju (1978) — Linear-time SCC decomposition.
+Tarski (1955) — Lattice-theoretic fixed points.
+
+============================================================
+End of Stage 2 (v3.3)
+============================================================

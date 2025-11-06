@@ -1,0 +1,539 @@
+# efd_purist_minimal_v8_edgeSCC_batch.py
+# Purist EFD testbed with:
+# - Finite-group local rule (D3/S3, D4)
+# - Core-by-closure, boundary-only edits, deterministic scheduling
+# - Two update modes: "sequential" (Gauss-Seidel-like) or "batch" (Jacobi-like)
+# - Edge-graph SCCs: nodes = directed edges; causality from co-inconsistent tri → chosen-fix edge
+# - Diagnostics: holonomy histograms, flip hotspots, edge-SCCs, per-run summary table
+
+import itertools
+from collections import defaultdict
+
+# ---------------- Groups ----------------
+class FiniteGroup:
+    def __init__(self, elements, table, invmap):
+        self.E = elements[0]
+        self.elems = tuple(elements)
+        self._mul = table
+        self._inv = invmap
+    def compose(self, a, b): return self._mul[(a,b)]
+    def inv(self, a): return self._inv[a]
+
+def make_D3():
+    elems = ('e','r','r2','s','sr','sr2')
+    def to_pair(x):
+        if x=='e': return ('r',0)
+        if x=='r': return ('r',1)
+        if x=='r2':return ('r',2)
+        if x=='s': return ('s',0)
+        if x=='sr':return ('s',1)
+        if x=='sr2':return ('s',2)
+        raise KeyError(x)
+    def from_pair(tk):
+        t,k = tk
+        return {('r',0):'e',('r',1):'r',('r',2):'r2',('s',0):'s',('s',1):'sr',('s',2):'sr2'}[(t,k)]
+    def mul(a,b):
+        (ta,ka),(tb,kb) = to_pair(a), to_pair(b)
+        if ta=='r' and tb=='r':  return from_pair(('r',(ka+kb)%3))
+        if ta=='r' and tb=='s':  return from_pair(('s',(kb-ka)%3))
+        if ta=='s' and tb=='r':  return from_pair(('s',(ka+kb)%3))
+        if ta=='s' and tb=='s':  return from_pair(('r',(kb-ka)%3))
+    def inv(x):
+        t,k = to_pair(x)
+        return from_pair(('r',(-k)%3) if t=='r' else ('s',k))
+    table = {(a,b): mul(a,b) for a in elems for b in elems}
+    invmap= {a: inv(a) for a in elems}
+    return FiniteGroup(elems, table, invmap)
+
+def make_S3(): return make_D3()
+
+def make_D4():
+    elems = ('e','r','r2','r3','s','sr','sr2','sr3')
+    def to_pair(x):
+        if x=='e': return ('r',0)
+        if x=='r': return ('r',1)
+        if x=='r2':return ('r',2)
+        if x=='r3':return ('r',3)
+        if x=='s': return ('s',0)
+        if x=='sr':return ('s',1)
+        if x=='sr2':return ('s',2)
+        if x=='sr3':return ('s',3)
+        raise KeyError(x)
+    def from_pair(tk):
+        t,k = tk; k%=4
+        return {('r',0):'e',('r',1):'r',('r',2):'r2',('r',3):'r3',
+                ('s',0):'s',('s',1):'sr',('s',2):'sr2',('s',3):'sr3'}[(t,k)]
+    def mul(a,b):
+        (ta,ka),(tb,kb) = to_pair(a), to_pair(b)
+        if ta=='r' and tb=='r':  return from_pair(('r',(ka+kb)%4))
+        if ta=='r' and tb=='s':  return from_pair(('s',(kb-ka)%4))
+        if ta=='s' and tb=='r':  return from_pair(('s',(ka+kb)%4))
+        if ta=='s' and tb=='s':  return from_pair(('r',(kb-ka)%4))
+    def inv(x):
+        t,k = to_pair(x)
+        return from_pair(('r',(-k)%4) if t=='r' else ('s',k))
+    table = {(a,b): mul(a,b) for a in elems for b in elems}
+    invmap= {a: inv(a) for a in elems}
+    return FiniteGroup(elems, table, invmap)
+
+# ---------------- Scaffolding ----------------
+def empty_L(n): return [[None for _ in range(n)] for __ in range(n)]
+
+def set_edge(L, i, j, lab, G, DIRECTED):
+    L[i][j] = lab
+    if not DIRECTED and i!=j:
+        L[j][i] = G.inv(lab)
+
+def triangles(nodes): return list(itertools.combinations(nodes, 3))
+
+def tri_consistent(L, a, b, c, G):
+    try:
+        ok1 = (L[a][c] == G.compose(L[a][b], L[b][c]))
+        ok2 = (L[b][a] == G.compose(L[b][c], L[c][a]))
+        ok3 = (L[c][b] == G.compose(L[c][a], L[a][b]))
+        return ok1 and ok2 and ok3
+    except Exception:
+        return False
+
+def build_core_by_closure(n_core, G, DIRECTED):
+    L = empty_L(n_core)
+    for i in range(n_core): set_edge(L, i, i, G.E, G, DIRECTED)
+    base = []
+    for name in ('r','r2','s','sr','sr2','r3','sr3'):
+        if name in G.elems: base.append(name)
+    if not base: base = [G.elems[1]]
+    for i in range(1, n_core):
+        h = base[(i-1) % len(base)]
+        set_edge(L, 0, i, h, G, DIRECTED)
+        set_edge(L, i, 0, G.inv(h), G, DIRECTED)
+    for i in range(n_core):
+        for j in range(n_core):
+            if i == j: continue
+            set_edge(L, i, j, G.compose(L[i][0], L[0][j]), G, DIRECTED)
+    incoh = sum(0 if tri_consistent(L,a,b,c,G) else 1 for a,b,c in triangles(range(n_core)))
+    if incoh != 0:
+        raise RuntimeError(f"Core closure failed, incoherent triangles: {incoh}")
+    return L
+
+def extend_with_boundary(L_core, n_boundary, seed, G, DIRECTED):
+    n_core = len(L_core); N = n_core + n_boundary
+    L = empty_L(N)
+    # copy core
+    for i in range(n_core):
+        for j in range(n_core):
+            set_edge(L, i, j, L_core[i][j], G, DIRECTED)
+    # patterned Ω-press (deterministic)
+    phase = seed % max(3, len(G.elems))
+    rot_list = [x for x in G.elems if x.startswith('r')] or [G.elems[1]]
+    refl_list= [x for x in G.elems if x.startswith('s')] or [G.elems[min(2,len(G.elems)-1)]]
+    for k in range(n_core, N):
+        for i in range(n_core):
+            rot = rot_list[(i + phase) % len(rot_list)]
+            if rot == G.E and len(rot_list)>1: rot = rot_list[1]
+            set_edge(L, i, k, rot, G, DIRECTED)
+            refl = refl_list[(i + 2*phase) % len(refl_list)]
+            set_edge(L, k, i, refl, G, DIRECTED)
+    for u in range(n_core, N):
+        for v in range(n_core, N):
+            if u == v:
+                set_edge(L, u, v, G.E, G, DIRECTED)
+            elif u < v:
+                set_edge(L, u, v, rot_list[0], G, DIRECTED)
+            else:
+                set_edge(L, u, v, refl_list[0], G, DIRECTED)
+    return L
+
+# ---------------- Diagnostics helpers ----------------
+def disagree_rate(L1, L2, region_nodes):
+    pairs = [(i,j) for i in region_nodes for j in region_nodes if i < j]
+    if not pairs: return 0.0
+    diff = sum(1 for (i,j) in pairs if L1[i][j] != L2[i][j] or L1[j][i] != L2[j][i])
+    return diff / len(pairs)
+
+def loop_product(G, L, loop):
+    g = G.E
+    for i in range(len(loop)-1):
+        g = G.compose(g, L[loop[i]][loop[i+1]])
+    return g
+
+def holonomy_histogram(G, L, boundary_nodes, max_per_len=400):
+    hist = {k: defaultdict(int) for k in range(3,7)}
+    b = list(boundary_nodes)
+    n = len(b)
+    # len 3
+    cnt = 0
+    for a_idx in range(n):
+        for b_idx in range(a_idx+1, n):
+            for c_idx in range(b_idx+1, n):
+                a,bn,cn = b[a_idx], b[b_idx], b[c_idx]
+                g = loop_product(G, L, [a,bn,cn,a])
+                hist[3][g] += 1
+                cnt += 1
+                if cnt >= max_per_len: break
+            if cnt >= max_per_len: break
+        if cnt >= max_per_len: break
+    # len 4..6
+    for k in (4,5,6):
+        cnt = 0
+        for combo in itertools.combinations(b, k):
+            cyc = list(combo) + [combo[0]]
+            g = loop_product(G, L, cyc)
+            hist[k][g] += 1
+            cnt += 1
+            if cnt >= max_per_len: break
+    return hist
+
+def topk_flip_hotspots(flip_count, k=10):
+    items = sorted(flip_count.items(), key=lambda kv: kv[1], reverse=True)
+    return items[:k]
+
+# ------ SCC on edge-graph (edges are nodes) ------
+def scc_kosaraju(adj, nodes):
+    order, seen = [], set()
+    def dfs1(u):
+        seen.add(u)
+        for v in adj.get(u, ()):
+            if v not in seen: dfs1(v)
+        order.append(u)
+    for u in nodes:
+        if u not in seen: dfs1(u)
+    # reverse
+    radj = defaultdict(set)
+    for u in adj:
+        for v in adj[u]:
+            radj[v].add(u)
+    comps, seen2 = [], set()
+    def dfs2(u, comp):
+        seen2.add(u); comp.append(u)
+        for v in radj.get(u, ()):
+            if v not in seen2: dfs2(v, comp)
+    for u in reversed(order):
+        if u not in seen2:
+            comp=[]; dfs2(u, comp)
+            comps.append(comp)
+    return comps
+
+# ---------------- Local inconsistency probing ----------------
+def tri_inconsistent_edges(L, a, b, c, G):
+    """Return list of directed edges (u,v) among (a,b),(b,c),(a,c) that violate rule."""
+    res = []
+    for (u,v) in ((a,b),(b,c),(a,c)):
+        w = ({a,b,c} - {u,v}).pop()
+        need = G.compose(L[u][w], L[w][v])
+        if L[u][v] != need:
+            res.append((u,v,need))
+    return res  # tuples with needed label
+
+# ---------------- Resolver (sequential/batch) with edge-causality ----------------
+def resolve_locally(L, core_size, G, DIRECTED, max_events, cycle_stop_factor=6, order_seed=0,
+                    allow_reflip=True, update_mode="sequential"):
+    """
+    update_mode: "sequential" (Gauss-Seidel-like) or "batch" (Jacobi-like)
+    Returns dict with flip_count, edge_causal_adj (edge->edge), and usual metrics.
+    """
+    N = len(L)
+    core_nodes = list(range(core_size))
+    boundary_nodes = list(range(core_size, N))
+    cand = [t for t in triangles(range(N)) if any(x in boundary_nodes for x in t)]
+
+    if cand:
+        rot = order_seed % len(cand)
+        cand = cand[rot:] + cand[:rot]
+
+    def boundary_incoh():
+        return sum(1 for (a,b,c) in cand if not tri_consistent(L,a,b,c,G))
+
+    E_start = boundary_incoh()
+
+    flip_count = defaultdict(int)
+    edge_causal_adj = defaultdict(set)  # (u,v) -> set of (x,y) it "causes"
+
+    # deterministic per-triangle base offset (restores non-invariance across runs)
+    def tri_base_offset(tri, run):
+        a,b,c = tri
+        return ( (a*73856093) ^ (b*19349663) ^ (c*83492791) ^ (run*2654435761 % (1<<31)) ) % 3
+
+    order_state = {}
+    consistent_streak = 0
+    events = 0
+    i = 0
+
+    last_total_flips = 0
+    nochange_passes = 0
+    passes = 0
+    last_E = E_start
+    E_flat_passes = 0
+    edits_this_pass = 0
+    stalled_flag = False
+
+    def apply_edge(u,v,label):
+        nonlocal events, edits_this_pass
+        if L[u][v] != label:
+            L[u][v] = label
+            if not DIRECTED and u!=v:
+                L[v][u] = G.inv(label)
+            flip_count[(u,v)] += 1
+            events += 1
+            edits_this_pass += 1
+            return True
+        return False
+
+    while events < max_events:
+        if not cand: break
+
+        if update_mode == "sequential":
+            if i >= len(cand):
+                # pass boundary
+                i = 0; passes += 1
+                total_flips = sum(flip_count.values())
+                if total_flips == last_total_flips: nochange_passes += 1
+                else:
+                    nochange_passes = 0
+                    last_total_flips = total_flips
+                E_now = boundary_incoh()
+                if E_now < last_E: E_flat_passes = 0; last_E = E_now
+                else: E_flat_passes += 1
+                if not allow_reflip and edits_this_pass == 0 and E_now > 0:
+                    stalled_flag = True; break
+                edits_this_pass = 0
+                if nochange_passes >= 2 or E_flat_passes >= 5: break
+
+            a,b,c = cand[i]; i += 1
+            if tri_consistent(L,a,b,c,G):
+                consistent_streak += 1
+                if consistent_streak > cycle_stop_factor * len(cand): break
+                continue
+            consistent_streak = 0
+
+            # choose one boundary-touching edge to fix (run-dependent offset)
+            tri = tuple(sorted((a,b,c)))
+            base = tri_base_offset(tri, order_seed)
+            tri_edges = [(a,b),(b,c),(a,c)]
+            tri_edges = tri_edges[base:] + tri_edges[:base]
+
+            inc_list = tri_inconsistent_edges(L, a, b, c, G)
+            inc_edges = [(u,v) for (u,v,_) in inc_list]
+            # pick first allowed edge touching boundary, respecting lockout if set
+            chosen = None
+            for (u,v) in tri_edges:
+                if u < core_size and v < core_size:  # protect core
+                    continue
+                # find its needed label
+                need_lab = None
+                for (x,y,lab) in inc_list:
+                    if x==u and y==v:
+                        need_lab = lab; break
+                if need_lab is None:  # this edge OK; try next
+                    continue
+                if not allow_reflip and flip_count[(u,v)]>0:
+                    continue
+                # record causality: other inc edges -> chosen edge
+                for (x,y) in inc_edges:
+                    if (x,y)!=(u,v):
+                        edge_causal_adj[(x,y)].add((u,v))
+                if apply_edge(u,v,need_lab):
+                    chosen = (u,v)
+                break
+            # if none chosen, continue to next triangle
+
+        else:  # "batch" mode
+            # one full pass planning + applying
+            planned = {}  # edge -> label
+            tri_cause = []  # (others_list, chosen_edge)
+            any_inconsistent = False
+            for tri_idx, (a,b,c) in enumerate(cand):
+                if tri_consistent(L,a,b,c,G):
+                    continue
+                any_inconsistent = True
+                tri_sorted = tuple(sorted((a,b,c)))
+                base = tri_base_offset(tri_sorted, order_seed)
+                tri_edges = [(a,b),(b,c),(a,c)]
+                tri_edges = tri_edges[base:] + tri_edges[:base]
+                inc_list = tri_inconsistent_edges(L, a, b, c, G)
+                inc_edges = [(u,v) for (u,v,_) in inc_list]
+
+                chosen_edge = None; chosen_lab = None
+                for (u,v) in tri_edges:
+                    if u < core_size and v < core_size:
+                        continue
+                    # find needed label
+                    need_lab = None
+                    for (x,y,lab) in inc_list:
+                        if x==u and y==v:
+                            need_lab = lab; break
+                    if need_lab is None:
+                        continue
+                    if not allow_reflip and ((u,v) in planned or flip_count[(u,v)]>0):
+                        continue
+                    if (u,v) not in planned:
+                        planned[(u,v)] = need_lab
+                        chosen_edge = (u,v); chosen_lab = need_lab
+                        break
+                if chosen_edge:
+                    tri_cause.append(([(x,y) for (x,y) in inc_edges if (x,y)!=chosen_edge], chosen_edge))
+            # stop if nothing to do
+            if not planned:
+                passes += 1
+                # pass boundary checks (similar to sequential)
+                total_flips = sum(flip_count.values())
+                if total_flips == last_total_flips: nochange_passes += 1
+                else:
+                    nochange_passes = 0
+                    last_total_flips = total_flips
+                E_now = boundary_incoh()
+                if E_now < last_E: E_flat_passes = 0; last_E = E_now
+                else: E_flat_passes += 1
+                if not allow_reflip and edits_this_pass == 0 and E_now > 0:
+                    stalled_flag = True; break
+                edits_this_pass = 0
+                if nochange_passes >= 2 or E_flat_passes >= 5 or (not any_inconsistent):
+                    break
+                # continue next pass
+                continue
+
+            # apply all planned edits
+            for (u,v), lab in planned.items():
+                apply_edge(u,v, lab)
+            # causality links
+            for (others, chosen) in tri_cause:
+                for e in others:
+                    edge_causal_adj[e].add(chosen)
+
+            passes += 1
+            # adaptive stop bookkeeping
+            total_flips = sum(flip_count.values())
+            if total_flips == last_total_flips: nochange_passes += 1
+            else:
+                nochange_passes = 0
+                last_total_flips = total_flips
+            E_now = boundary_incoh()
+            if E_now < last_E: E_flat_passes = 0; last_E = E_now
+            else: E_flat_passes += 1
+            if not allow_reflip and edits_this_pass == 0 and E_now > 0:
+                stalled_flag = True; break
+            edits_this_pass = 0
+            if nochange_passes >= 2 or E_flat_passes >= 5:
+                break
+
+    E_end = boundary_incoh()
+    interior_bad = sum(0 if tri_consistent(L,a,b,c,G) else 1 for a,b,c in triangles(core_nodes))
+    total_flips = sum(flip_count.values())
+    multi_flip = sum(1 for _,v in flip_count.items() if v > 1)
+    max_edge_flips = max(flip_count.values() or [0])
+
+    # edge-SCCs over edges that actually appeared
+    edge_nodes = set(flip_count.keys()) | set(edge_causal_adj.keys())
+    comps = scc_kosaraju(edge_causal_adj, edge_nodes)
+    edge_sccs = [c for c in comps if len(c)>1]
+
+    return {
+        "interior_incoherence": interior_bad,
+        "total_flips": total_flips,
+        "multi_flip_edges": multi_flip,
+        "max_edge_flips": max_edge_flips,
+        "passes": passes,
+        "E_start": E_start,
+        "E_end": E_end,
+        "flip_count": dict(flip_count),
+        "edge_causal_adj": {k: set(v) for k,v in edge_causal_adj.items()},
+        "edge_sccs": edge_sccs,
+        "L_final": L,
+        "stalled": (not allow_reflip) and stalled_flag,
+        "triangles_count": len(cand),
+    }
+
+# ---------------- Experiment ----------------
+def run_once(GROUP_NAME="D3", DIRECTED=True, n_core=12, n_boundary=5, runs=5,
+             effort_per_triangle=120, seed=2025, HOL_MAX=400,
+             UPDATE_MODE="sequential"):
+    # choose group
+    G = make_D3() if GROUP_NAME.upper() in ("D3","S3") else (make_D4() if GROUP_NAME.upper()=="D4" else make_D3())
+    gname = GROUP_NAME.upper() if GROUP_NAME.upper() in ("D3","S3","D4") else "D3"
+
+    L_core = build_core_by_closure(n_core, G, DIRECTED)
+    L0 = extend_with_boundary(L_core, n_boundary, seed=seed, G=G, DIRECTED=DIRECTED)
+    core_size = n_core; N = core_size + n_boundary
+
+    all_tris = [t for t in triangles(range(N)) if any(x >= core_size for x in t)]
+    scaled_max_events = max(1, effort_per_triangle * len(all_tris))
+
+    results = []
+    for r in range(runs):
+        L = [row[:] for row in L0]
+        out = resolve_locally(
+            L, core_size, G, DIRECTED,
+            max_events=scaled_max_events, order_seed=r,
+            allow_reflip=True, update_mode=UPDATE_MODE
+        )
+        results.append(out)
+
+    print(f"== Purist EFD v8 (edge-SCC + batch) ==  Group={gname}  Directed={DIRECTED}  Mode={UPDATE_MODE}")
+    print(f"core size M = {n_core}, boundary nodes = {n_boundary}, runs = {runs}")
+
+    # Summary table header
+    print("\nRUN  flips  passes   Estart->Eend   disagree(∂M)   minHol3  #edgeSCC  maxSCC")
+    ref = results[0]["L_final"]
+    region = list(range(core_size-3 if core_size>=3 else 0, N))
+    bnodes = list(range(core_size, N))
+
+    # For minHol3 (smallest non-identity freq? we'll print holonomy on a canonical 3-loop)
+    def hol3(Lmat):
+        if len(bnodes) < 3: return G.E
+        a,bn,cn = bnodes[0], bnodes[1], bnodes[2]
+        return loop_product(G, Lmat, [a,bn,cn,a])
+
+    for i,out in enumerate(results):
+        rate = disagree_rate(ref, out["L_final"], region) if i>0 else 0.0
+        h3 = hol3(out["L_final"])
+        sccs = out["edge_sccs"]
+        max_scc = max((len(c) for c in sccs), default=0)
+        print(f"{i:>3}  {out['total_flips']:>5}   {out['passes']:>3}     {out['E_start']:>3}->{out['E_end']:<3}      "
+              f"{rate:>7.3f}         {h3:<4}    {len(sccs):>6}    {max_scc:>6}")
+
+    # Holonomy histogram on boundary (run 0)
+    print("\n-- Holonomy histogram on boundary (run 0) --")
+    hist = holonomy_histogram(G, results[0]["L_final"], bnodes, max_per_len=HOL_MAX)
+    for k in (3,4,5,6):
+        counts = hist[k]; total = sum(counts.values())
+        if total == 0:
+            print(f"L={k}: (none)"); continue
+        show = ", ".join(f"{g}:{counts[g]}" for g in G.elems if counts.get(g,0)>0)
+        print(f"L={k}: total={total}  [{show}]")
+
+    # Flip hotspots + edge-SCCs (run 0)
+    print("\n-- Flip hotspots (run 0) --")
+    hk = topk_flip_hotspots(results[0]["flip_count"], k=min(12, len(results[0]["flip_count"])))
+    for (u,v),c in hk:
+        print(f"({u}->{v}): flips={c}")
+    sccs = results[0]["edge_sccs"]
+    print(f"\n-- Edge-graph SCCs (run 0) --  count={len(sccs)}")
+    for idx,comp in enumerate(sccs[:10]):
+        print(f"SCC {idx}: size={len(comp)}  sample={comp[:8]}{'...' if len(comp)>8 else ''}")
+
+    # Lockout test (optional; demonstrates necessity of re-flips)
+    results_lock = []
+    for r in range(runs):
+        L = [row[:] for row in L0]
+        out = resolve_locally(
+            L, core_size, G, DIRECTED,
+            max_events=scaled_max_events, order_seed=r,
+            allow_reflip=False, update_mode=UPDATE_MODE
+        )
+        results_lock.append(out)
+    stalled_any = any(out["stalled"] for out in results_lock)
+    print("\n== Lockout Summary ==")
+    print(f"Feedback required (stalls observed?): {stalled_any}")
+
+if __name__ == "__main__":
+    GROUP_NAME = "D4"          # "D3","S3","D4"
+    DIRECTED   = False          # True asymmetric; False symmetric pairing
+    n_core     = 12
+    n_boundary = 5
+    runs       = 5
+    effort_per_triangle = 120
+    seed = 2025
+    HOL_MAX = 400
+    UPDATE_MODE = "batch"  # "sequential" or "batch"
+
+    run_once(GROUP_NAME, DIRECTED, n_core, n_boundary, runs,
+             effort_per_triangle, seed, HOL_MAX, UPDATE_MODE)
