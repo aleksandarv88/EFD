@@ -1,0 +1,27 @@
+=== RUN 2025-11-07T10:40:43Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s00_common/images/v001 | seed=12345 | commit=unknown | code_sha=n/a ===
+STAGES: S1 v3.4 | S2 v3.3 | S3 v3.1 | S4 v3.2 | S5 v5.0
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  smoke:
+    grid: {nx:32, ny:32, diag:true}
+    sphere:{Nu:24,Nv:12}
+    cylinder:{Nu:32,Nv:12}
+    saddle:{Nx:30,Ny:30}
+METRICS:
+  - grid_nodes = 1024
+  - grid_edges = 3906
+  - pairs_sampled = 20
+  - sphere_nodes = 288
+  - cylinder_nodes = 384
+  - saddle_nodes = 900
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s00_common/images/v001/fig_grid_pairs_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s00_common/images/v001/fig_cycles_areas_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s00_common/images/v001/fig_mesh_sphere_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s00_common/images/v001/fig_mesh_cylinder_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s00_common/images/v001/fig_mesh_saddle_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
