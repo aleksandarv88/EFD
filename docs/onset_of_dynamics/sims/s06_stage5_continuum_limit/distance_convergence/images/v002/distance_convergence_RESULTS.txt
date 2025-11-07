@@ -1,0 +1,60 @@
+=== RUN 2025-11-07T12:52:13Z | c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v002 | seed=12345 | commit=unknown | code_sha=n/a ===
+STAGES: S1 v3.4 | S2 v3.3 | S3 v3.1 | S4 v3.2 | S5 v5.0
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "distance_convergence_grid": {
+      "refinements": [
+        [
+          16,
+          16
+        ],
+        [
+          32,
+          32
+        ],
+        [
+          64,
+          64
+        ],
+        [
+          128,
+          128
+        ],
+        [
+          200,
+          200
+        ]
+      ],
+      "pairs_per_level": 256,
+      "band": [
+        0.6,
+        0.8
+      ],
+      "radius_phys": 0.05,
+      "radius_h_factor": 0.0,
+      "min_hops": 2,
+      "diag_8nbr": true
+    }
+  }
+METRICS:
+  - levels = 5
+  - pairs_total = 1280
+  - h = [0.066667, 0.032258, 0.015873, 0.007874, 0.005025]
+  - L1 = [nan, 0.05521290358641008, 0.01391099994137675, 0.0010558901757508818, 0.00024241233478127156]
+  - L2 = [nan, 0.06023085115893703, 0.01605379523300424, 0.001490199013631095, 0.0004355248134450679]
+  - Linf = [nan, 0.08238181606302906, 0.027484404113937468, 0.003418812287404776, 0.0015323942106239847]
+  - L2_fit_slope = 2.723
+  - band = [0.6, 0.8]
+  - radius_used = [0.05, 0.05, 0.05, 0.05, 0.05]
+  - diag_8nbr = True
+  - images = ['c:\\Users\\Asus\\Desktop\\MATH\\EFD\\docs\\onset_of_dynamics\\sims\\s06_stage5_continuum_limit\\distance_convergence\\images\\v002\\fig_dist_scatter_001.png', 'c:\\Users\\Asus\\Desktop\\MATH\\EFD\\docs\\onset_of_dynamics\\sims\\s06_stage5_continuum_limit\\distance_convergence\\images\\v002\\fig_convergence_001.png']
+IMAGES:
+  c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v002\fig_dist_scatter_001.png
+  c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v002\fig_convergence_001.png
+ENV:
+  python=3.10.11
+  numpy=2.2.6 | networkx=yes | matplotlib=3.10.7
+  scipy=yes
+  os=nt
+=== END RUN ===

@@ -1,53 +1,85 @@
+# docs/onset_of_dynamics/sims/s00_common/parallel.py
 from __future__ import annotations
-import os, pickle
+import os, sys
 from concurrent.futures import ProcessPoolExecutor, as_completed
-from typing import Any, Callable, Sequence
 
+# --- robust import: works when run as package OR as plain script ---
 try:
-    from progress import pbar
+    # package-style
+    from .progress import pbar
 except Exception:
-    from contextlib import contextmanager
-    @contextmanager
-    def pbar(total=None, desc=""):
-        class _N:
-            def update(self, n=1): pass
-        yield _N()
+    # script-style fallback
+    HERE = os.path.dirname(__file__)
+    if HERE and HERE not in sys.path:
+        sys.path.append(HERE)
+    from progress import pbar  # type: ignore
 
-_GLOB: dict[str, Any] = {}
+# tiny in-proc object store for workers
+_GLOBAL_STORE = {}
 
-def _init_worker(seed_offset: int = 0, graph_bytes: bytes | None = None,
-                 graph_path: str | None = None, key: str = "_G") -> None:
-    if graph_bytes is not None:
-        _GLOB[key] = pickle.loads(graph_bytes)
-    elif graph_path is not None:
-        with open(graph_path, "rb") as f:
-            _GLOB[key] = pickle.load(f)
-    try:
-        import random
-        random.seed((os.getpid() ^ seed_offset) & 0xFFFFFFFF)
-    except Exception:
-        pass
+def _init_worker(
+    seed_offset: int = 0,
+    np_seed: int | None = None,
+    graph_path: str | None = None,
+    graph_key: str | None = None,
+    matrix_key: str | None = None,
+    matrix_path: str | None = None,
+):
+    """
+    Initializer for ProcessPool workers.
+    - Optionally seeds NumPy RNG (np_seed + seed_offset).
+    - Optionally loads a pickled NetworkX graph into _GLOBAL_STORE[graph_key].
+    - Optionally loads a SciPy sparse CSR matrix into _GLOBAL_STORE[matrix_key].
+    """
+    if np_seed is not None:
+        try:
+            import numpy as _np
+            _np.random.seed(np_seed + seed_offset)
+        except Exception:
+            pass
 
-def get_global(key: str) -> Any:
-    return _GLOB[key]
+    if graph_path and graph_key:
+        try:
+            import pickle as _pkl
+            with open(graph_path, "rb") as f:
+                G = _pkl.load(f)
+            _GLOBAL_STORE[graph_key] = G
+        except Exception:
+            _GLOBAL_STORE[graph_key] = None
+
+    if matrix_path and matrix_key:
+        try:
+            from scipy.sparse import load_npz as _load_npz
+            A = _load_npz(matrix_path)
+            _GLOBAL_STORE[matrix_key] = A
+        except Exception:
+            _GLOBAL_STORE[matrix_key] = None
+
+def get_global(key: str):
+    return _GLOBAL_STORE.get(key, None)
 
 def map_process(
-    fn: Callable[[Any], Any],
-    tasks: Sequence[Any],
-    *,
+    fn,
+    tasks,
     max_workers: int | None = None,
-    desc: str = "work",
+    desc: str | None = None,
     initializer=None,
-    initargs: tuple[Any, ...] = (),
-) -> list[Any]:
-    if max_workers is None:
-        cpu = os.cpu_count() or 2
-        max_workers = max(1, cpu - 1)
+    initargs: tuple = (),
+):
+    """
+    Submit tasks (iterable) to a ProcessPool and preserve input order.
+    Returns a list with the same length as 'tasks', where each element
+    is either the result or an Exception (caller can raise if desired).
+    """
+    tasks = list(tasks)
+    n = len(tasks)
+    results = [None] * n
+    if n == 0:
+        return results
 
-    results: list[Any] = [None] * len(tasks)
     with ProcessPoolExecutor(max_workers=max_workers, initializer=initializer, initargs=initargs) as ex:
-        fut_to_idx = {ex.submit(fn, tasks[i]): i for i in range(len(tasks))}
-        with pbar(total=len(fut_to_idx), desc=desc) as bar:
+        fut_to_idx = {ex.submit(fn, tasks[i]): i for i in range(n)}
+        with pbar(total=n, desc=(desc or "process")) as bar:
             for fut in as_completed(fut_to_idx):
                 i = fut_to_idx[fut]
                 try:
