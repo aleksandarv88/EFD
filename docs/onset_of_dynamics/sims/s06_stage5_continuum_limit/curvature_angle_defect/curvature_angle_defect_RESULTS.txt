@@ -1,0 +1,20 @@
+=== RUN 2025-11-07T14:18:46Z | C:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\curvature_angle_defect\images\v003 | seed=12345 | commit=None | code_sha=4818f5c44f5e ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {"plane": {"Nx": 40, "Ny": 40, "extent": 1.0}, "sphere": {"R": 1.0, "Nu": 64, "Nv": 32, "K_target": 1.0}, "saddle": {"Nx": 40, "Ny": 40, "extent": 0.6, "alpha": 0.6}, "sphere_refine": [{"Nu": 16, "Nv": 8}, {"Nu": 32, "Nv": 16}, {"Nu": 64, "Nv": 32}, {"Nu": 128, "Nv": 64}]}
+METRICS:
+  - plane: L1=2.03263e-14, L2=8.28541e-14, Linf=3.3773e-13, n=1296
+  - sphere: L1=0.00214843, L2=0.00215508, Linf=0.00236334, n=1680
+  - saddle: frac_negative=1.000, n=1296
+  - sphere_refine_h=[0.19634954084936207, 0.09817477042468103, 0.04908738521234052, 0.02454369260617026]
+  - sphere_refine_L2=[0.038876804872047595, 0.008905775503904246, 0.0021550821563574353, 0.0005323496586076829]
+  - sphere_refine_slope=2.062
+IMAGES:
+  C:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\curvature_angle_defect\images\v003\fig_curvature_hist_001.png
+  C:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\curvature_angle_defect\images\v003\fig_curvature_convergence_001.png
+ENV:
+  python=3.10.11
+  numpy=2.2.6 | matplotlib=3.10.7
+  os=nt
+=== END RUN ===
