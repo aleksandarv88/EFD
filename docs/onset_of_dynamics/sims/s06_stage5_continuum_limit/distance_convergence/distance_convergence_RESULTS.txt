@@ -1,215 +1,3 @@
-=== RUN 2025-11-07T12:19:18Z | c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v010 | seed=12345 | commit=unknown | code_sha=n/a ===
-STAGES: S1 v3.4 | S2 v3.3 | S3 v3.1 | S4 v3.2 | S5 v5.0
-DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
-CONFIG:
-  distance_convergence_grid:
-    refinements: [(16, 16), (32, 32), (64, 64), (128, 128)]
-    pairs_per_level: 256
-    band: [0.600, 0.800]
-    radius_phys: 0.05
-    diag_8nbr: true
-    workers: 31
-    chunk_size: 64
-METRICS:
-  - levels = 4
-  - pairs_total = 584
-  - h = [0.066667, 0.032258, 0.015873, 0.007874]
-  - L1 = [0.0, 0.0, 0.0018655, 0.0021372]
-  - L2 = [0.0, 0.0, 0.0026524, 0.0025771]
-  - Linf = [0.0, 0.0, 0.003999, 0.0042082]
-  - L2_fit_slope = -18.569
-  - band = [0.6, 0.8]
-  - radius_phys = 0.05
-  - diag_8nbr = true
-  - workers = 31
-  - chunk_size = 64
-  - scipy_path = csr
-IMAGES:
-  c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v010\fig_dist_scatter_001.png
-  c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v010\fig_convergence_001.png
-ENV:
-  python=3.10.11
-  numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
-  scipy=yes
-  os=nt
-=== END RUN ===
-
-=== RUN 2025-11-07T12:24:42Z | c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v011 | seed=12345 | commit=unknown | code_sha=n/a ===
-STAGES: S1 v3.4 | S2 v3.3 | S3 v3.1 | S4 v3.2 | S5 v5.0
-DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
-CONFIG:
-  {
-    "distance_convergence_grid": {
-      "refinements": [
-        [
-          16,
-          16
-        ],
-        [
-          32,
-          32
-        ],
-        [
-          64,
-          64
-        ],
-        [
-          128,
-          128
-        ]
-      ],
-      "pairs_per_level": 256,
-      "band": [
-        0.6,
-        0.8
-      ],
-      "radius_phys": 0.05,
-      "radius_h_factor": 3.0,
-      "min_hops": 2,
-      "diag_8nbr": true
-    }
-  }
-METRICS:
-  - levels = 4
-  - pairs_total = 1024
-  - h = [0.066667, 0.032258, 0.015873, 0.007874]
-  - L1 = [0.007747477, 0.003614093, 0.001957644, 0.00143355]
-  - L2 = [0.009592285, 0.004557286, 0.002352795, 0.001870983]
-  - Linf = [0.01187637, 0.005746632, 0.002827708, 0.002805442]
-  - L2_fit_slope = 0.783
-  - band = [0.6, 0.8]
-  - radius_used = [np.float64(0.2), np.float64(0.096774), 0.05, 0.05]
-  - diag_8nbr = True
-  - images = ['c:\\Users\\Asus\\Desktop\\MATH\\EFD\\docs\\onset_of_dynamics\\sims\\s06_stage5_continuum_limit\\distance_convergence\\images\\v011\\fig_dist_scatter_001.png', 'c:\\Users\\Asus\\Desktop\\MATH\\EFD\\docs\\onset_of_dynamics\\sims\\s06_stage5_continuum_limit\\distance_convergence\\images\\v011\\fig_convergence_001.png']
-IMAGES:
-  c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v011\fig_dist_scatter_001.png
-  c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v011\fig_convergence_001.png
-ENV:
-  python=3.10.11
-  numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
-  scipy=yes
-  os=nt
-=== END RUN ===
-=== RUN 2025-11-07T12:29:05Z | c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v012 | seed=12345 | commit=unknown | code_sha=n/a ===
-STAGES: S1 v3.4 | S2 v3.3 | S3 v3.1 | S4 v3.2 | S5 v5.0
-DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
-CONFIG:
-  {
-    "distance_convergence_grid": {
-      "refinements": [
-        [
-          16,
-          16
-        ],
-        [
-          32,
-          32
-        ],
-        [
-          64,
-          64
-        ],
-        [
-          128,
-          128
-        ],
-        [
-          256,
-          256
-        ]
-      ],
-      "pairs_per_level": 256,
-      "band": [
-        0.6,
-        0.8
-      ],
-      "radius_phys": 0.05,
-      "radius_h_factor": 2.0,
-      "min_hops": 2,
-      "diag_8nbr": true
-    }
-  }
-METRICS:
-  - levels = 5
-  - pairs_total = 1280
-  - h = [0.066667, 0.032258, 0.015873, 0.007874, 0.003922]
-  - L1 = [nan, nan, 0.002019791, 0.001603081, 0.001790918]
-  - L2 = [nan, nan, 0.002389849, 0.001960862, 0.002024355]
-  - Linf = [nan, nan, 0.002827708, 0.002805442, 0.003168614]
-  - L2_fit_slope = 0.119
-  - band = [0.6, 0.8]
-  - radius_used = [np.float64(0.133333), np.float64(0.064516), 0.05, 0.05, 0.05]
-  - diag_8nbr = True
-  - images = ['c:\\Users\\Asus\\Desktop\\MATH\\EFD\\docs\\onset_of_dynamics\\sims\\s06_stage5_continuum_limit\\distance_convergence\\images\\v012\\fig_dist_scatter_001.png', 'c:\\Users\\Asus\\Desktop\\MATH\\EFD\\docs\\onset_of_dynamics\\sims\\s06_stage5_continuum_limit\\distance_convergence\\images\\v012\\fig_convergence_001.png']
-IMAGES:
-  c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v012\fig_dist_scatter_001.png
-  c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v012\fig_convergence_001.png
-ENV:
-  python=3.10.11
-  numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
-  scipy=yes
-  os=nt
-=== END RUN ===
-=== RUN 2025-11-07T12:32:25Z | c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v013 | seed=12345 | commit=unknown | code_sha=n/a ===
-STAGES: S1 v3.4 | S2 v3.3 | S3 v3.1 | S4 v3.2 | S5 v5.0
-DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
-CONFIG:
-  {
-    "distance_convergence_grid": {
-      "refinements": [
-        [
-          16,
-          16
-        ],
-        [
-          32,
-          32
-        ],
-        [
-          64,
-          64
-        ],
-        [
-          128,
-          128
-        ],
-        [
-          200,
-          200
-        ]
-      ],
-      "pairs_per_level": 256,
-      "band": [
-        0.5,
-        0.9
-      ],
-      "radius_phys": 0.05,
-      "radius_h_factor": 3.0,
-      "min_hops": 2,
-      "diag_8nbr": true
-    }
-  }
-METRICS:
-  - levels = 5
-  - pairs_total = 1280
-  - h = [0.066667, 0.032258, 0.015873, 0.007874, 0.005025]
-  - L1 = [0.007747477, 0.003614093, 0.001513206, 0.001768741, 0.001818156]
-  - L2 = [0.009592285, 0.004557286, 0.002068551, 0.002116852, 0.002132401]
-  - Linf = [0.01187637, 0.005746632, 0.002827708, 0.003490254, 0.003580816]
-  - L2_fit_slope = 0.59
-  - band = [0.5, 0.9]
-  - radius_used = [np.float64(0.2), np.float64(0.096774), 0.05, 0.05, 0.05]
-  - diag_8nbr = True
-  - images = ['c:\\Users\\Asus\\Desktop\\MATH\\EFD\\docs\\onset_of_dynamics\\sims\\s06_stage5_continuum_limit\\distance_convergence\\images\\v013\\fig_dist_scatter_001.png', 'c:\\Users\\Asus\\Desktop\\MATH\\EFD\\docs\\onset_of_dynamics\\sims\\s06_stage5_continuum_limit\\distance_convergence\\images\\v013\\fig_convergence_001.png']
-IMAGES:
-  c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v013\fig_dist_scatter_001.png
-  c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v013\fig_convergence_001.png
-ENV:
-  python=3.10.11
-  numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
-  scipy=yes
-  os=nt
-=== END RUN ===
 === RUN 2025-11-07T12:39:52Z | c:\Users\Asus\Desktop\MATH\EFD\docs\onset_of_dynamics\sims\s06_stage5_continuum_limit\distance_convergence\images\v014 | seed=12345 | commit=unknown | code_sha=n/a ===
 STAGES: S1 v3.4 | S2 v3.3 | S3 v3.1 | S4 v3.2 | S5 v5.0
 DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
@@ -337,5 +125,253 @@ ENV:
   matplotlib=3.10.7
   scipy=yes
   os=nt
+=== END RUN ===
+
+=== RUN 2025-11-07T13:24:20Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/images/v019 | seed=12345 | commit=None | code_sha=7ef0943eac940ac355aa76abac9f27441068ece8ccffb7e8b2293613f9099c63 ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/configs/default.yaml",
+    "run": {
+      "refinements": [
+        [
+          16,
+          16
+        ],
+        [
+          32,
+          32
+        ],
+        [
+          64,
+          64
+        ],
+        [
+          128,
+          128
+        ],
+        [
+          200,
+          200
+        ]
+      ],
+      "pairs_per_level": 256,
+      "band": [
+        0.6,
+        0.8
+      ],
+      "radius_phys": 0.05,
+      "radius_h_factor": 0.0,
+      "min_hops": 2,
+      "seed": 12345,
+      "max_workers": 0,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - levels=[(16, 16), (32, 32), (64, 64), (128, 128), (200, 200)]
+  - h=[0.06666666666666667, 0.03225806451612903, 0.015873015873015872, 0.007874015748031496, 0.005025125628140704]
+  - L1=[0.17237167145746446, 0.03855286658702149, 0.010389194375401263, 0.0007795010624177265, 0.00019415852927010717]
+  - L2=[0.1997519878255587, 0.0422635831711575, 0.011882808469722025, 0.001086353684868692, 0.0003312382851223826]
+  - Linf=[0.3124194780985514, 0.06547559587141372, 0.021467609009257593, 0.002682548633559212, 0.0012096489588482306]
+  - slope=2.489832662331696
+  - band=[0.6, 0.8]
+  - band_levels=[[0.6, 0.8], [0.6, 0.8], [0.6, 0.8], [0.6, 0.8], [0.6, 0.8]]
+  - radius=[0.07, 0.05, 0.05, 0.05, 0.05]
+  - pairs_total=1280
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/images/v019/scatter_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/images/v019/convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
+=== RUN 2025-11-07T13:29:42Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/images/v020 | seed=12345 | commit=None | code_sha=4258e698bc01c05acf05afaffa6e9245fbe13a602fc8c51682eee0067cb05cec ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/configs/default.yaml",
+    "run": {
+      "refinements": [
+        [
+          32,
+          32
+        ],
+        [
+          64,
+          64
+        ],
+        [
+          128,
+          128
+        ],
+        [
+          200,
+          200
+        ]
+      ],
+      "pairs_per_level": 256,
+      "band": [
+        0.6,
+        0.8
+      ],
+      "radius_phys": 0.03,
+      "radius_h_factor": 0.0,
+      "min_hops": 2,
+      "seed": 12345,
+      "max_workers": 0,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - levels=[(32, 32), (64, 64), (128, 128), (200, 200)]
+  - h=[0.03225806451612903, 0.015873015873015872, 0.007874015748031496, 0.005025125628140704]
+  - L1=[0.18258293187846553, 0.03781035655732976, 0.003394184077475149, 0.0008945316277792106]
+  - L2=[0.20402610995934115, 0.041315474019362024, 0.0044905168660071305, 0.0013535947736886115]
+  - Linf=[0.330360118419893, 0.06546865202250585, 0.009807467522766067, 0.0038481898392900282]
+  - slope=2.7453485550701413
+  - band=[0.6, 0.8]
+  - band_levels=[[0.6, 0.8], [0.6, 0.8], [0.6, 0.8], [0.6, 0.8]]
+  - radius=[0.03387096774193549, 0.03, 0.03, 0.03]
+  - pairs_total=1024
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/images/v020/scatter_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/images/v020/convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
+=== RUN 2025-11-07T13:34:22Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/images/v021 | seed=12345 | commit=None | code_sha=4258e698bc01c05acf05afaffa6e9245fbe13a602fc8c51682eee0067cb05cec ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/configs/default.yaml",
+    "run": {
+      "refinements": [
+        [
+          32,
+          32
+        ],
+        [
+          64,
+          64
+        ],
+        [
+          128,
+          128
+        ],
+        [
+          200,
+          200
+        ]
+      ],
+      "pairs_per_level": 256,
+      "band": [
+        0.6,
+        0.8
+      ],
+      "radius_phys": 0.03,
+      "radius_h_factor": 0.0,
+      "min_hops": 2,
+      "seed": 12345,
+      "max_workers": 0,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - levels=[(32, 32), (64, 64), (128, 128), (200, 200)]
+  - h=[0.03225806451612903, 0.015873015873015872, 0.007874015748031496, 0.005025125628140704]
+  - L1=[0.18258293187846553, 0.03781035655732976, 0.003394184077475149, 0.0008945316277792106]
+  - L2=[0.20402610995934115, 0.041315474019362024, 0.0044905168660071305, 0.0013535947736886115]
+  - Linf=[0.330360118419893, 0.06546865202250585, 0.009807467522766067, 0.0038481898392900282]
+  - slope=2.7453485550701413
+  - band=[0.6, 0.8]
+  - band_levels=[[0.6, 0.8], [0.6, 0.8], [0.6, 0.8], [0.6, 0.8]]
+  - radius=[0.03387096774193549, 0.03, 0.03, 0.03]
+  - pairs_total=1024
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/images/v021/scatter_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/images/v021/convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
+=== RUN 2025-11-07T13:38:10Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/images/v022 | seed=12345 | commit=None | code_sha=4258e698bc01c05acf05afaffa6e9245fbe13a602fc8c51682eee0067cb05cec ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/configs/default.yaml",
+    "run": {
+      "refinements": [
+        [
+          32,
+          32
+        ],
+        [
+          64,
+          64
+        ],
+        [
+          128,
+          128
+        ],
+        [
+          200,
+          200
+        ],
+        [
+          256,
+          256
+        ]
+      ],
+      "pairs_per_level": 256,
+      "band": [
+        0.6,
+        0.8
+      ],
+      "radius_phys": 0.03,
+      "radius_h_factor": 0.0,
+      "min_hops": 2,
+      "seed": 12345,
+      "max_workers": 0,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - levels=[(32, 32), (64, 64), (128, 128), (200, 200), (256, 256)]
+  - h=[0.03225806451612903, 0.015873015873015872, 0.007874015748031496, 0.005025125628140704, 0.00392156862745098]
+  - L1=[0.18258293187846553, 0.03781035655732976, 0.003394184077475149, 0.0008945316277792106, 0.00043078790307238615]
+  - L2=[0.20402610995934115, 0.041315474019362024, 0.0044905168660071305, 0.0013535947736886115, 0.0006592064827265323]
+  - Linf=[0.330360118419893, 0.06546865202250585, 0.009807467522766067, 0.0038481898392900282, 0.0019096008738679338]
+  - slope=2.7672224606386657
+  - band=[0.6, 0.8]
+  - band_levels=[[0.6, 0.8], [0.6, 0.8], [0.6, 0.8], [0.6, 0.8], [0.6, 0.8]]
+  - radius=[0.03387096774193549, 0.03, 0.03, 0.03, 0.03]
+  - pairs_total=1280
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/images/v022/scatter_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/distance_convergence/images/v022/convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
 === END RUN ===
 

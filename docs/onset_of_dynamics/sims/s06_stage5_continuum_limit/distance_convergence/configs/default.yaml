@@ -1,0 +1,11 @@
+run:
+  refinements: [[32,32], [64,64], [128,128], [200,200], [256,256]]
+  pairs_per_level: 256
+  band: [0.6, 0.8]
+  radius_phys: 0.03
+  radius_h_factor: 0.0
+  min_hops: 2
+  seed: 12345
+  max_workers: 0
+  figsize: [6.5, 4.2]
+  dpi: 140
