@@ -1,0 +1,16 @@
+run:
+  # sphere meshes to test (refinement sweep)
+  sphere_refine:
+    - {Nu: 32,  Nv: 16}
+    - {Nu: 64,  Nv: 32}
+    - {Nu: 128, Nv: 64}
+    - {Nu: 256, Nv: 128}
+  # loop sizes: 1-ring and 2-ring neighborhoods around random seeds
+  k_rings: [1, 2]
+  seeds_per_level: 64
+  R: 1.0                  # sphere radius; K_target = 1/R^2
+  seed: 12345
+
+  # I/O & viz
+  figsize: [6.5, 4.2]
+  dpi: 140

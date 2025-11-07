@@ -1,0 +1,14 @@
+run:
+  sphere_refine:
+    - {Nu: 32,  Nv: 16}
+    - {Nu: 64,  Nv: 32}
+    - {Nu: 128, Nv: 64}
+    - {Nu: 256, Nv: 128}
+  R: 1.0
+  radius_factor: 1.8
+  radius_phys: 0.05
+  edges_per_level: 512
+  lazy_alpha: 0.5
+  seed: 12345
+  figsize: [6.5, 4.2]
+  dpi: 140

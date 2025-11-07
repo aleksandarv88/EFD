@@ -18,3 +18,66 @@ ENV:
   numpy=2.2.6 | matplotlib=3.10.7
   os=nt
 === END RUN ===
+=== RUN 2025-11-07T14:32:58Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/curvature_angle_defect/images/v004 | seed=12345 | commit=None | code_sha=217dcf3ddfab11457c3d3f5c64363a2cb42a6e755cae16c7651c78ebb4c40db8 ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/curvature_angle_defect/configs/default.yaml",
+    "run": {
+      "seed": 12345,
+      "plane": {
+        "Nx": 40,
+        "Ny": 40,
+        "extent": 1.0
+      },
+      "sphere": {
+        "R": 1.0,
+        "Nu": 64,
+        "Nv": 32
+      },
+      "saddle": {
+        "Nx": 40,
+        "Ny": 40,
+        "extent": 0.6,
+        "alpha": 0.6
+      },
+      "sphere_refine": [
+        {
+          "Nu": 16,
+          "Nv": 8
+        },
+        {
+          "Nu": 32,
+          "Nv": 16
+        },
+        {
+          "Nu": 64,
+          "Nv": 32
+        },
+        {
+          "Nu": 128,
+          "Nv": 64
+        }
+      ],
+      "figsize": [
+        6.6,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - plane={'L1': 2.032633320917893e-14, 'L2': 8.285414501204612e-14, 'Linf': 3.377298440909735e-13, 'mean': 2.032633320917893e-14, 'std': 8.032216085207491e-14, 'n_used': 1296}
+  - sphere={'L1': 0.0021484313797552165, 'L2': 0.0021550821563549576, 'Linf': 0.00236334423572071, 'mean': 1.0021484313797553, 'std': 0.00016917951153325536, 'n_used': 1792}
+  - saddle_frac_negative=1.0
+  - sphere_refine_h=[0.19634954084936207, 0.09817477042468103, 0.04908738521234052, 0.02454369260617026]
+  - sphere_refine_L2=[0.03887680487204743, 0.008905775503903457, 0.0021550821563549576, 0.0005323496586152022]
+  - sphere_refine_slope=2.0618173458946205
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/curvature_angle_defect/images/v004/curvature_hist_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/curvature_angle_defect/images/v004/curvature_convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+

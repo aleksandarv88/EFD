@@ -1,0 +1,470 @@
+=== RUN 2025-11-07T14:50:08Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v001 | seed=12345 | commit=None | code_sha=11a04f30b70ee414cde79a917ec70d9cd84449174223f6f70067d67378bc07fb ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/config/default.yaml",
+    "run": {
+      "sphere_refine": [
+        {
+          "Nu": 32,
+          "Nv": 16
+        },
+        {
+          "Nu": 64,
+          "Nv": 32
+        },
+        {
+          "Nu": 128,
+          "Nv": 64
+        },
+        {
+          "Nu": 256,
+          "Nv": 128
+        }
+      ],
+      "R": 1.0,
+      "radius_factor": 2.2,
+      "edges_per_level": 512,
+      "lazy_alpha": 0.5,
+      "seed": 12345,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - levels=[(32, 16), (64, 32), (128, 64), (256, 128)]
+  - h=[0.09817477042468103, 0.04908738521234052, 0.02454369260617026, 0.01227184630308513]
+  - radius=[0.2159844949342983, 0.10799224746714915, 0.053996123733574576, 0.026998061866787288]
+  - mean_kappa=[-27646659992716.973, -6612876260290.351, -1076268487747.6056, -319846691338.8142]
+  - std_kappa=[108664319089954.9, 37757167036166.13, 10805650100739.344, 4158007001171.596]
+  - count=[512, 512, 512, 512]
+  - scipy_available=True
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v001/ollivier_hist_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v001/ollivier_convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
+=== RUN 2025-11-07T14:55:06Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v002 | seed=12345 | commit=None | code_sha=0607e92a7f7f649fcb6add8208738c0892fa3aa11f0f3fc8f6250dbd4957b56b ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/config/default.yaml",
+    "run": {
+      "sphere_refine": [
+        {
+          "Nu": 32,
+          "Nv": 16
+        },
+        {
+          "Nu": 64,
+          "Nv": 32
+        },
+        {
+          "Nu": 128,
+          "Nv": 64
+        },
+        {
+          "Nu": 256,
+          "Nv": 128
+        }
+      ],
+      "R": 1.0,
+      "radius_factor": 2.5,
+      "edges_per_level": 512,
+      "lazy_alpha": 0.5,
+      "seed": 12345,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - levels=[(32, 16), (64, 32), (128, 64), (256, 128)]
+  - h=[0.09817477042468103, 0.04908738521234052, 0.02454369260617026, 0.01227184630308513]
+  - radius=[0.2454369260617026, 0.1227184630308513, 0.06135923151542565, 0.030679615757712823]
+  - mean_kappa=[-19130999977971.77, -4770649432007.334, -2159517594635.3577, -106077279961.29335]
+  - std_kappa=[87858810887624.45, 31905364657959.664, 15193553039240.611, 2397909703170.189]
+  - count=[512, 512, 512, 512]
+  - scipy_available=True
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v002/ollivier_hist_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v002/ollivier_convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
+=== RUN 2025-11-07T14:59:52Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v003 | seed=12345 | commit=None | code_sha=0607e92a7f7f649fcb6add8208738c0892fa3aa11f0f3fc8f6250dbd4957b56b ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/config/default.yaml",
+    "run": {
+      "sphere_refine": [
+        {
+          "Nu": 32,
+          "Nv": 16
+        },
+        {
+          "Nu": 64,
+          "Nv": 32
+        },
+        {
+          "Nu": 128,
+          "Nv": 64
+        },
+        {
+          "Nu": 256,
+          "Nv": 128
+        }
+      ],
+      "R": 1.0,
+      "radius_factor": 2.5,
+      "edges_per_level": 512,
+      "lazy_alpha": 0.5,
+      "seed": 12345,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - levels=[(32, 16), (64, 32), (128, 64), (256, 128)]
+  - h=[0.09817477042468103, 0.04908738521234052, 0.02454369260617026, 0.01227184630308513]
+  - radius=[0.2454369260617026, 0.1227184630308513, 0.06135923151542565, 0.030679615757712823]
+  - mean_kappa=[-19130999977971.77, -4770649432007.334, -2159517594635.3577, -106077279961.29335]
+  - std_kappa=[87858810887624.45, 31905364657959.664, 15193553039240.611, 2397909703170.189]
+  - count=[512, 512, 512, 512]
+  - scipy_available=True
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v003/ollivier_hist_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v003/ollivier_convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
+=== RUN 2025-11-07T15:06:50Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v004 | seed=12345 | commit=None | code_sha=6e6f97e57903b28a58a457551e5b90651cc91d215ad335a414a63d54bb6e37fc ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/config/default.yaml",
+    "run": {
+      "sphere_refine": [
+        {
+          "Nu": 32,
+          "Nv": 16
+        },
+        {
+          "Nu": 64,
+          "Nv": 32
+        },
+        {
+          "Nu": 128,
+          "Nv": 64
+        },
+        {
+          "Nu": 256,
+          "Nv": 128
+        }
+      ],
+      "R": 1.0,
+      "radius_factor": 2.0,
+      "edges_per_level": 256,
+      "lazy_alpha": 0.6,
+      "seed": 12345,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - levels=[(32, 16), (64, 32), (128, 64), (256, 128)]
+  - h=[0.09817477042468103, 0.04908738521234052, 0.02454369260617026, 0.01227184630308513]
+  - radius=[0.19634954084936207, 0.09817477042468103, 0.04908738521234052, 0.02454369260617026]
+  - mean_kappa=[-0.05502198964012257, -0.05686672407518521, -0.06885663780986859, -0.07667948580725091]
+  - std_kappa=[0.12197046343138462, 0.1257467324688229, 0.1413153404315723, 0.1436534982236801]
+  - count=[256, 256, 256, 256]
+  - scipy_available=False
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v004/ollivier_hist_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v004/ollivier_convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
+=== RUN 2025-11-07T15:24:08Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v006 | seed=12345 | commit=None | code_sha=9fd42788c49bcea49505649aeb5170d6e1172a63723d13763450ae29f45c8e8e ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/config/default.yaml",
+    "run": {
+      "sphere_refine": [
+        {
+          "Nu": 32,
+          "Nv": 16
+        },
+        {
+          "Nu": 64,
+          "Nv": 32
+        },
+        {
+          "Nu": 128,
+          "Nv": 64
+        },
+        {
+          "Nu": 256,
+          "Nv": 128
+        }
+      ],
+      "R": 1.0,
+      "radius_factor": 2.5,
+      "edges_per_level": 512,
+      "lazy_alpha": 0.5,
+      "seed": 12345,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - levels=[(32, 16), (64, 32), (128, 64), (256, 128)]
+  - h=[0.09817477042468103, 0.04908738521234052, 0.02454369260617026, 0.01227184630308513]
+  - radius=[0.2454369260617026, 0.1227184630308513, 0.06135923151542565, 0.030679615757712823]
+  - mean_kappa=[-0.1263391717342752, -0.12433960830689639, -0.12965774371942823, -0.10472150539706225]
+  - std_kappa=[0.1701008639106605, 0.14357261897831436, 0.1573113220621844, 0.1448877633743426]
+  - count=[512, 512, 512, 512]
+  - scipy_available=False
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v006/ollivier_hist_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v006/ollivier_convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
+=== RUN 2025-11-07T15:30:54Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v008 | seed=12345 | commit=None | code_sha=b254f5798540b5350bdfff9da4d58dbb8bd5548236ae6a6f5fbb6f58ca204fbd ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/config/default.yaml",
+    "run": {
+      "sphere_refine": [
+        {
+          "Nu": 32,
+          "Nv": 16
+        },
+        {
+          "Nu": 64,
+          "Nv": 32
+        },
+        {
+          "Nu": 128,
+          "Nv": 64
+        },
+        {
+          "Nu": 256,
+          "Nv": 128
+        }
+      ],
+      "R": 1.0,
+      "radius_factor": 2.0,
+      "edges_per_level": 512,
+      "lazy_alpha": 0.5,
+      "seed": 12345,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - levels=[(32, 16), (64, 32), (128, 64), (256, 128)]
+  - h=[0.09817477042468103, 0.04908738521234052, 0.02454369260617026, 0.01227184630308513]
+  - radius=[0.19634954084936207, 0.09817477042468103, 0.04908738521234052, 0.02454369260617026]
+  - mean_kappa=[-0.11236735525639473, -0.11153297636695388, -0.11794653562622581, -0.1029664174582258]
+  - std_kappa=[0.19294963531865159, 0.1950169706169856, 0.1992843316207854, 0.18552669219781115]
+  - count=[448, 512, 512, 512]
+  - scipy_available=False
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v008/ollivier_hist_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v008/ollivier_convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
+=== RUN 2025-11-07T15:39:07Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v009 | seed=12345 | commit=None | code_sha=6cb2bb789dbda2991c3700138808dad302743951231acef790fcd3d3ff7bf4a3 ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/config/default.yaml",
+    "run": {
+      "sphere_refine": [
+        {
+          "Nu": 32,
+          "Nv": 16
+        },
+        {
+          "Nu": 64,
+          "Nv": 32
+        },
+        {
+          "Nu": 128,
+          "Nv": 64
+        },
+        {
+          "Nu": 256,
+          "Nv": 128
+        }
+      ],
+      "R": 1.0,
+      "radius_factor": 1.8,
+      "edges_per_level": 512,
+      "lazy_alpha": 0.5,
+      "seed": 12345,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - levels=[(32, 16), (64, 32), (128, 64), (256, 128)]
+  - h=[0.09817477042468103, 0.04908738521234052, 0.02454369260617026, 0.01227184630308513]
+  - radius=[0.17671458676442586, 0.08835729338221293, 0.044178646691106466, 0.022089323345553233]
+  - mean_kappa=[0.0034403900644382254, 0.0008016628197160855, 0.00020560544835652528, 4.944116949719959e-05]
+  - std_kappa=[0.0009615932639988503, 0.00025325189648713856, 5.559298995821178e-05, 1.2781836182717606e-05]
+  - count=[128, 512, 512, 512]
+  - scipy_available=True
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v009/ollivier_hist_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v009/ollivier_convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
+=== RUN 2025-11-07T15:46:08Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v010 | seed=12345 | commit=None | code_sha=26ce596c3712d1b221797bfd36a89ef92653ab50ef52e1b0f32d359863966327 ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/config/default.yaml",
+    "run": {
+      "sphere_refine": [
+        {
+          "Nu": 32,
+          "Nv": 16
+        },
+        {
+          "Nu": 64,
+          "Nv": 32
+        },
+        {
+          "Nu": 128,
+          "Nv": 64
+        },
+        {
+          "Nu": 256,
+          "Nv": 128
+        }
+      ],
+      "R": 1.0,
+      "radius_factor": 1.8,
+      "radius_phys": 0.05,
+      "edges_per_level": 512,
+      "lazy_alpha": 0.5,
+      "seed": 12345,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - levels=[(32, 16), (64, 32), (128, 64), (256, 128)]
+  - h=[0.09817477042468103, 0.04908738521234052, 0.02454369260617026, 0.01227184630308513]
+  - radius=[0.05, 0.05, 0.05, 0.05]
+  - mean_kappa=[nan, nan, 0.0004985115463686793, 0.0005790050085927791]
+  - std_kappa=[nan, nan, 0.0003290455972149842, 0.007548454427419099]
+  - count=[0, 0, 512, 512]
+  - scipy_available=True
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v010/ollivier_hist_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v010/ollivier_convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
+=== RUN 2025-11-07T15:51:13Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v011 | seed=12345 | commit=None | code_sha=3233ff218dffdd73dda00585426cb5d9c803da42e38d80fb82aad5ee8af14cd9 ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/config/default.yaml",
+    "run": {
+      "sphere_refine": [
+        {
+          "Nu": 32,
+          "Nv": 16
+        },
+        {
+          "Nu": 64,
+          "Nv": 32
+        },
+        {
+          "Nu": 128,
+          "Nv": 64
+        },
+        {
+          "Nu": 256,
+          "Nv": 128
+        }
+      ],
+      "R": 1.0,
+      "radius_factor": 1.8,
+      "radius_phys": 0.05,
+      "edges_per_level": 512,
+      "lazy_alpha": 0.5,
+      "seed": 12345,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - levels=[(32, 16), (64, 32), (128, 64), (256, 128)]
+  - h=[0.09817477042468103, 0.04908738521234052, 0.02454369260617026, 0.01227184630308513]
+  - radius=[0.05, 0.05, 0.05, 0.05]
+  - mean_kappa=[nan, nan, nan, -0.00026579451894912106]
+  - std_kappa=[nan, nan, nan, 0.011288288745714765]
+  - count=[0, 0, 0, 512]
+  - scipy_available=True
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v011/ollivier_hist_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/ollivier_ricci/images/v011/ollivier_convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+

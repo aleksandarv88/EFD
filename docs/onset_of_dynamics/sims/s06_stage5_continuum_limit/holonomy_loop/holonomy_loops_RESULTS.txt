@@ -1,0 +1,53 @@
+=== RUN 2025-11-07T14:37:52Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/holonomy_loop/images/v001 | seed=12345 | commit=None | code_sha=1a1f9e5f43e4fd69bf7531a4bd1243529f03115e2924380be70caab4e610255c ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/holonomy_loop/config/default.yaml",
+    "run": {
+      "sphere_refine": [
+        {
+          "Nu": 32,
+          "Nv": 16
+        },
+        {
+          "Nu": 64,
+          "Nv": 32
+        },
+        {
+          "Nu": 128,
+          "Nv": 64
+        },
+        {
+          "Nu": 256,
+          "Nv": 128
+        }
+      ],
+      "k_rings": [
+        1,
+        2
+      ],
+      "seeds_per_level": 64,
+      "R": 1.0,
+      "seed": 12345,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140
+    }
+  }METRICS:
+  - levels=[(32, 16), (64, 32), (128, 64), (256, 128)]
+  - h=[0.09817477042468103, 0.04908738521234052, 0.02454369260617026, 0.01227184630308513]
+  - L2=[5.820429696332807, 0.00026448283719656025, 1.6086191866115103e-05, 9.57843656770032e-07]
+  - slope=7.164377577773105
+  - k_rings=[1, 2]
+  - seeds_per_level=64
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/holonomy_loop/images/v001/holonomy_scatter_001.png
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/holonomy_loop/images/v001/holonomy_convergence_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
