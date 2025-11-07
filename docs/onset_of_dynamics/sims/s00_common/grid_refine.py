@@ -1,134 +1,98 @@
-"""
-grid_refine.py — Stage-5 helpers for building grid refinements and sampling node pairs.
-
-Creates 2D grids on the unit square with either 4- or 8-neighborhoods.
-Adds node attributes:
-  - "pos": (x, y) in [0,1]^2
-  - "ij":  (i, j) integer lattice indices
-Optionally tags edges with Euclidean length under "len".
-
-Also provides utilities to sample node pairs for distance tests.
-"""
-
+# docs/onset_of_dynamics/sims/s00_common/grid_refine.py
 from __future__ import annotations
 from dataclasses import dataclass
-from typing import Iterable, List, Tuple, Optional
 import math
-import numpy as np
 import networkx as nx
 
-# ---------------------------------------------------------------------------
-
-@dataclass(frozen=True)
+@dataclass
 class GridSpec:
-    nx: int              # columns (x)
-    ny: int              # rows (y)
-    diag: bool = False   # 8-neighbors if True, else 4-neighbors
-    tag_edge_len: bool = True
+    nx: int
+    ny: int
+    diag: bool = False            # use 8-neighbour (if radius_phys is None)
+    tag_edge_len: bool = True     # tag edges with 'len' weight
+    radius_phys: float | None = None  # NEW: connect all nodes within this physical radius
 
-def _add_edges(G: nx.Graph, spec: GridSpec) -> None:
-    nx_, ny_ = spec.nx, spec.ny
-    for j in range(ny_):
-        for i in range(nx_):
-            u = (i, j)
-            if i + 1 < nx_:
-                v = (i + 1, j)
-                G.add_edge(u, v)
-            if j + 1 < ny_:
-                v = (i, j + 1)
-                G.add_edge(u, v)
-            if spec.diag:
-                if i + 1 < nx_ and j + 1 < ny_:
-                    G.add_edge(u, (i + 1, j + 1))
-                if i + 1 < nx_ and j - 1 >= 0:
-                    G.add_edge(u, (i + 1, j - 1))
-
-def _tag_edge_lengths(G: nx.Graph) -> None:
-    for u, v in G.edges():
-        x1, y1 = G.nodes[u]["pos"]
-        x2, y2 = G.nodes[v]["pos"]
-        G.edges[u, v]["len"] = math.hypot(x2 - x1, y2 - y1)
+def _add_edge(G: nx.Graph, u: int, v: int, pos: dict, tag_len: bool):
+    (x1, y1) = pos[u]
+    (x2, y2) = pos[v]
+    if tag_len:
+        d = math.hypot(x2 - x1, y2 - y1)
+        G.add_edge(u, v, len=d)
+    else:
+        G.add_edge(u, v)
 
 def build_grid(spec: GridSpec) -> nx.Graph:
     """
-    Build a grid graph on [0,1]^2 with (spec.nx x spec.ny) lattice.
-    Nodes are keyed by (i,j). Attribute 'pos' holds normalized coords.
-
-    Returns
-    -------
-    G : networkx.Graph
+    Unit-square grid [0,1]x[0,1] with (nx x ny) nodes.
+    If radius_phys is set, connect all pairs within that physical radius (Euclidean),
+    which densifies directions as h -> 0 (good for continuum limits).
+    Otherwise, build standard 4- or 8-neighbour stencils.
     """
-    assert spec.nx >= 2 and spec.ny >= 2, "Need at least 2x2 grid."
+    nxg, nyg = spec.nx, spec.ny
+    assert nxg >= 2 and nyg >= 2, "nx, ny must be >= 2"
+
     G = nx.Graph()
-    for j in range(spec.ny):
-        y = j / (spec.ny - 1)
-        for i in range(spec.nx):
-            x = i / (spec.nx - 1)
-            G.add_node((i, j), pos=(float(x), float(y)), ij=(i, j))
-    _add_edges(G, spec)
-    if spec.tag_edge_len:
-        _tag_edge_lengths(G)
-    G.graph["kind"] = "grid"
-    G.graph["diag"] = spec.diag
-    G.graph["shape"] = (spec.nx, spec.ny)
-    return G
+    # nodes + positions
+    for j in range(nyg):
+        y = j / (nyg - 1)
+        for i in range(nxg):
+            x = i / (nxg - 1)
+            u = j * nxg + i
+            G.add_node(u, pos=(x, y))
 
-# ---------------------------------------------------------------------------
-# Pair sampling
-
-def _hop_distance(G: nx.Graph, src: Tuple[int, int]) -> dict:
-    """Unweighted BFS distance in hops."""
-    return nx.single_source_shortest_path_length(G, src)
-
-def sample_pairs_by_min_hops(
-    G: nx.Graph,
-    k: int,
-    rng: np.random.Generator,
-    min_hops: int = 4,
-    max_tries: int = 50_000,
-) -> List[Tuple[Tuple[int, int], Tuple[int, int]]]:
-    """
-    Sample k pairs of nodes (u,v) with BFS-hop distance >= min_hops.
-    Tries up to max_tries random draws; returns fewer than k if needed.
-    """
-    nodes = list(G.nodes())
-    n = len(nodes)
-    result: List[Tuple[Tuple[int, int], Tuple[int, int]]] = []
-    tried = 0
-    while len(result) < k and tried < max_tries:
-        u = nodes[rng.integers(0, n)]
-        v = nodes[rng.integers(0, n)]
-        if u == v:
-            tried += 1
-            continue
-        d = _hop_distance(G, u).get(v, None)
-        if d is not None and d >= min_hops:
-            result.append((u, v))
-        tried += 1
-    return result
-
-def sample_pairs_by_spacing(
-    G: nx.Graph,
-    k: int,
-    rng: np.random.Generator,
-    min_sep: float = 0.2,
-) -> List[Tuple[Tuple[int, int], Tuple[int, int]]]:
-    """
-    Sample k pairs with Euclidean separation (in 'pos') >= min_sep.
-    """
-    nodes = list(G.nodes())
     pos = nx.get_node_attributes(G, "pos")
-    n = len(nodes)
-    result: List[Tuple[Tuple[int, int], Tuple[int, int]]] = []
-    tries = 0
-    while len(result) < k and tries < 50_000:
-        u = nodes[rng.integers(0, n)]
-        v = nodes[rng.integers(0, n)]
-        if u == v:
-            tries += 1
-            continue
-        (x1, y1), (x2, y2) = pos[u], pos[v]
-        if math.hypot(x2 - x1, y2 - y1) >= min_sep:
-            result.append((u, v))
-        tries += 1
-    return result
+
+    # --- dense radius-based stencil (NEW) ---
+    if spec.radius_phys is not None and spec.radius_phys > 0.0:
+        r = float(spec.radius_phys)
+        hx = 1.0 / (nxg - 1)
+        hy = 1.0 / (nyg - 1)
+        rx = int(math.ceil(r / hx))
+        ry = int(math.ceil(r / hy))
+        for j in range(nyg):
+            for i in range(nxg):
+                u = j * nxg + i
+                x_u, y_u = pos[u]
+                for dj in range(-ry, ry + 1):
+                    vj = j + dj
+                    if vj < 0 or vj >= nyg:
+                        continue
+                    for di in range(-rx, rx + 1):
+                        vi = i + di
+                        if di == 0 and dj == 0:
+                            continue
+                        if vi < 0 or vi >= nxg:
+                            continue
+                        v = vj * nxg + vi
+                        x_v, y_v = pos[v]
+                        d = math.hypot(x_v - x_u, y_v - y_u)
+                        if d <= r + 1e-12:
+                            _add_edge(G, u, v, pos, spec.tag_edge_len)
+        return G
+
+    # --- fallback: classic 4- / 8-neighbour grid ---
+    def inside(i: int, j: int) -> bool:
+        return 0 <= i < nxg and 0 <= j < nyg
+
+    # 4-neighbour
+    for j in range(nyg):
+        for i in range(nxg):
+            u = j * nxg + i
+            for di, dj in ((1, 0), (0, 1)):
+                vi, vj = i + di, j + dj
+                if inside(vi, vj):
+                    v = vj * nxg + vi
+                    _add_edge(G, u, v, pos, spec.tag_edge_len)
+
+    # add diagonals if requested
+    if spec.diag:
+        for j in range(nyg):
+            for i in range(nxg):
+                u = j * nxg + i
+                for di, dj in ((1, 1), (1, -1)):
+                    vi, vj = i + di, j + dj
+                    if inside(vi, vj):
+                        v = vj * nxg + vi
+                        _add_edge(G, u, v, pos, spec.tag_edge_len)
+
+    return G
