@@ -1,0 +1,15 @@
+run:
+  sphere_refine:
+    - {Nu: 256,  Nv: 128}
+    - {Nu: 512,  Nv: 256}
+    - {Nu: 1024, Nv: 512}
+  R: 1.0
+  radius_factor: 1.8     # ignored when radius_phys set
+  radius_phys: 0.03      # <- fixed ε
+  edges_per_level: 2048
+  lazy_alpha: 0.5
+  zcut: 0.9              # keep equatorial band
+  deg_min: 4             # drop low-degree edges
+  seed: 12345
+  figsize: [6.5, 4.2]
+  dpi: 140

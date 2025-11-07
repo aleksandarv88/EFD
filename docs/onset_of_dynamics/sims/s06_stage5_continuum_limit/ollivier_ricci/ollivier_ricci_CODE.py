@@ -49,6 +49,8 @@ class RunConfig:
     radius_phys: float | None
     edges_per_level: int
     lazy_alpha: float
+    zcut_abs: float
+    min_deg: int
     seed: int
     figsize: tuple[float, float]
     dpi: int
@@ -88,6 +90,8 @@ def load_config(path: Path) -> RunConfig:
         radius_phys=None if radius_phys_val is None else float(radius_phys_val),
         edges_per_level=int(section.get("edges_per_level", 512)),
         lazy_alpha=float(section.get("lazy_alpha", 0.5)),
+        zcut_abs=float(section.get("zcut_abs", 0.7)),
+        min_deg=int(section.get("min_deg", 6)),
         seed=int(section.get("seed", 12345)),
         figsize=tuple(section.get("figsize", (6.5, 4.2))),
         dpi=int(section.get("dpi", 140)),
@@ -379,7 +383,7 @@ def main() -> None:
 
             valid_edges = lg.edges
             if valid_edges.size:
-                zcut = 0.7
+                zcut = cfg.zcut_abs
                 mask = (
                     (np.abs(lg.pos[valid_edges[:, 0], 2]) < zcut * R)
                     & (np.abs(lg.pos[valid_edges[:, 1], 2]) < zcut * R)
@@ -387,7 +391,7 @@ def main() -> None:
                 valid_edges = valid_edges[mask]
                 if valid_edges.size:
                     degrees = np.array([len(nbr) for nbr in lg.nbrs], dtype=int)
-                    deg_mask = np.minimum(degrees[valid_edges[:, 0]], degrees[valid_edges[:, 1]]) >= 6
+                    deg_mask = np.minimum(degrees[valid_edges[:, 0]], degrees[valid_edges[:, 1]]) >= cfg.min_deg
                     valid_edges = valid_edges[deg_mask]
 
             M = valid_edges.shape[0]
@@ -420,7 +424,7 @@ def main() -> None:
     )
     valid_edges_f = lg_finest.edges
     if valid_edges_f.size:
-        zcut = 0.7
+        zcut = cfg.zcut_abs
         mask_f = (
             (np.abs(lg_finest.pos[valid_edges_f[:, 0], 2]) < zcut * R)
             & (np.abs(lg_finest.pos[valid_edges_f[:, 1], 2]) < zcut * R)
@@ -428,7 +432,7 @@ def main() -> None:
         valid_edges_f = valid_edges_f[mask_f]
         if valid_edges_f.size:
             degrees_f = np.array([len(nbr) for nbr in lg_finest.nbrs], dtype=int)
-            deg_mask_f = np.minimum(degrees_f[valid_edges_f[:, 0]], degrees_f[valid_edges_f[:, 1]]) >= 6
+            deg_mask_f = np.minimum(degrees_f[valid_edges_f[:, 0]], degrees_f[valid_edges_f[:, 1]]) >= cfg.min_deg
             valid_edges_f = valid_edges_f[deg_mask_f]
     M_f = valid_edges_f.shape[0]
     sample = min(2000, M_f)
@@ -439,6 +443,8 @@ def main() -> None:
         kappa_finest.append(ricci_edge(u, v, lg_finest, alpha=cfg.lazy_alpha, R=R))
     kappa_finest = np.asarray(kappa_finest, dtype=float)
     kappa_finest = kappa_finest[np.isfinite(kappa_finest)]
+    if kappa_finest.size == 0:
+        kappa_finest = np.array([0.0], dtype=float)
 
     hist_path = plot_histogram(images_dir, kappa_finest, cfg.figsize, cfg.dpi)
     conv_path = plot_convergence(
@@ -463,6 +469,7 @@ def main() -> None:
         (mk / (rad * rad)) if rad and np.isfinite(mk) else float("nan")
         for mk, rad in zip(metrics["mean_kappa"], metrics["radius"])
     ]
+    metrics["mean_kappa_over_r2"] = normK
     print("K_hat (mean_kappa / radius^2) =", normK)
     cfg_snapshot = {"config_path": cfg_path.as_posix(), "run": asdict(cfg)}
 
@@ -480,88 +487,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-# ---------------------------------------------------------------------------
-# Geometry + graph utilities
-# ---------------------------------------------------------------------------
-
-@dataclass
-class LocalGraph:
-    pos: np.ndarray
-    nbrs: list[np.ndarray]
-    W: dict[tuple[int, int], float]
-    edges: np.ndarray
-    R: float
-
-
-def sphere_uv(R: float, Nu: int, Nv: int) -> np.ndarray:
-    us = np.linspace(0, 2 * math.pi, Nu, endpoint=False)
-    vs = np.linspace(0, math.pi, Nv)
-    verts = []
-    for v in vs:
-        sv, cv = math.sin(v), math.cos(v)
-        for u in us:
-            cu, su = math.cos(u), math.sin(u)
-            verts.append([R * sv * cu, R * sv * su, R * cv])
-    return np.array(verts, dtype=np.float64)
-
-
-def great_circle_dist(p: np.ndarray, q: np.ndarray, R: float) -> float:
-    dot = float(np.dot(p, q)) / (R * R)
-    dot = max(-1.0, min(1.0, dot))
-    return R * math.acos(dot)
-
-
-def build_radius_graph_on_sphere(R: float, Nu: int, Nv: int, radius: float) -> LocalGraph:
-    V = sphere_uv(R=R, Nu=Nu, Nv=Nv)
-    pos = V
-    N = V.shape[0]
-
-    def idx(iu: int, iv: int) -> int:
-        return iv * Nu + iu
-
-    if radius <= 0:
-        raise ValueError("radius must be > 0")
-
-    angle_max = min(radius / R, math.pi)
-    max_du = max(1, int(math.ceil((angle_max / (2 * math.pi)) * Nu * 2.0)))
-    max_dv = max(1, int(math.ceil((angle_max / math.pi) * Nv * 2.0)))
-
-    edges = []
-    nbrs = [set() for _ in range(N)]
-    W: dict[tuple[int, int], float] = {}
-
-    for iv in range(Nv):
-        for iu in range(Nu):
-            i = idx(iu, iv)
-            for dv in range(-max_dv, max_dv + 1):
-                jv = iv + dv
-                if jv < 0 or jv >= Nv:
-                    continue
-                for du in range(-max_du, max_du + 1):
-                    if du == 0 and dv == 0:
-                        continue
-                    ju = (iu + du) % Nu
-                    j = idx(ju, jv)
-                    d_geo = great_circle_dist(pos[i], pos[j], R)
-                    if d_geo <= radius:
-                        a, b = (i, j) if i < j else (j, i)
-                        if (a, b) not in W:
-                            W[(a, b)] = d_geo
-                            edges.append((a, b))
-                            nbrs[a].add(b)
-                            nbrs[b].add(a)
-
-    edges_arr = np.asarray(edges, dtype=np.int32) if edges else np.empty((0, 2), dtype=np.int32)
-    nbr_arrays = [np.fromiter(ns, dtype=np.int32) if ns else np.empty((0,), dtype=np.int32) for ns in nbrs]
-    return LocalGraph(pos=pos, nbrs=nbr_arrays, W=W, edges=edges_arr, R=R)
-
-
-def cost_matrix_geo(pos: np.ndarray, supp_u: np.ndarray, supp_v: np.ndarray, R: float) -> np.ndarray:
-    Pu = pos[supp_u]
-    Pv = pos[supp_v]
-    Su, Sv = Pu.shape[0], Pv.shape[0]
-    D = np.empty((Su, Sv), dtype=float)
-    for i in range(Su):
-        for j in range(Sv):
-            D[i, j] = great_circle_dist(Pu[i], Pv[j], R)
-    return D

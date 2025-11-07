@@ -1,0 +1,220 @@
+=== RUN 2025-11-07T16:30:10Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/or_vs_defect/images/v001 | seed=12345 | commit=None | code_sha=fb5baac8795f8630d4380eb58235786b74d6d9b6fded0040df93b65cc4f2ce11 ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/or_vs_defect/config/default.yaml",
+    "run": {
+      "sphere_refine": [
+        {
+          "Nu": 64,
+          "Nv": 32
+        },
+        {
+          "Nu": 128,
+          "Nv": 64
+        },
+        {
+          "Nu": 256,
+          "Nv": 128
+        }
+      ],
+      "R": 1.0,
+      "radius_factor": 1.8,
+      "radius_phys": 0.05,
+      "edges_per_level": 512,
+      "lazy_alpha": 0.5,
+      "seed": 12345,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140,
+      "zcut": 0.7,
+      "deg_min": 6
+    }
+  }METRICS:
+  - levels=[(256, 128), (128, 64), (64, 32)]
+  - h=[0.01227184630308513, 0.02454369260617026, 0.04908738521234052]
+  - radius=[0.05, 0.05, 0.05]
+  - count=[512, 0, 0]
+  - slope=[2054.3251760492494, nan, nan]
+  - intercept=[-5.1367515075310575, nan, nan]
+  - pearson_r=[0.010090016383203533, nan, nan]
+  - pearson_r2=[0.00010180843061331571, nan, nan]
+  - mean_kappa=[-0.00026579451894912106, nan, nan]
+  - std_kappa=[0.011288288745714765, nan, nan]
+  - scipy_available=True
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/or_vs_defect/images/v001/or_vs_defect_scatter_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
+=== RUN 2025-11-07T16:47:45Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/or_vs_defect/images/v002 | seed=12345 | commit=None | code_sha=fb5baac8795f8630d4380eb58235786b74d6d9b6fded0040df93b65cc4f2ce11 ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/or_vs_defect/config/default.yaml",
+    "run": {
+      "sphere_refine": [
+        {
+          "Nu": 256,
+          "Nv": 128
+        },
+        {
+          "Nu": 512,
+          "Nv": 256
+        },
+        {
+          "Nu": 1024,
+          "Nv": 512
+        }
+      ],
+      "R": 1.0,
+      "radius_factor": 1.8,
+      "radius_phys": 0.03,
+      "edges_per_level": 2048,
+      "lazy_alpha": 0.5,
+      "seed": 12345,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140,
+      "zcut": 0.9,
+      "deg_min": 4
+    }
+  }METRICS:
+  - levels=[(1024, 512), (512, 256), (256, 128)]
+  - h=[0.0030679615757712823, 0.006135923151542565, 0.01227184630308513]
+  - radius=[0.03, 0.03, 0.03]
+  - count=[2048, 2048, 2048]
+  - slope=[106648.77281946961, 14032.235028111778, 12462.468512190844]
+  - intercept=[-95.98468262336442, -12.629440018068701, -11.217091508488204]
+  - pearson_r=[0.04906867763892804, 0.015248478336056245, 0.0180610656623612]
+  - pearson_r2=[0.002407735125233037, 0.00023251609156517663, 0.00032620209286012274]
+  - mean_kappa=[0.00017398455195798466, 7.515192003047783e-05, 0.0009607140490802541]
+  - std_kappa=[0.004898747983908521, 0.008382178592832419, 0.025760647724191767]
+  - scipy_available=True
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/or_vs_defect/images/v002/or_vs_defect_scatter_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
+=== RUN 2025-11-07T16:55:52Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/or_vs_defect/images/v003 | seed=12345 | commit=None | code_sha=fb5baac8795f8630d4380eb58235786b74d6d9b6fded0040df93b65cc4f2ce11 ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/or_vs_defect/config/default.yaml",
+    "run": {
+      "sphere_refine": [
+        {
+          "Nu": 64,
+          "Nv": 32
+        },
+        {
+          "Nu": 128,
+          "Nv": 64
+        },
+        {
+          "Nu": 256,
+          "Nv": 128
+        },
+        {
+          "Nu": 512,
+          "Nv": 256
+        }
+      ],
+      "R": 1.0,
+      "radius_factor": 1.8,
+      "radius_phys": null,
+      "edges_per_level": 512,
+      "lazy_alpha": 0.5,
+      "seed": 12345,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140,
+      "zcut": 0.7,
+      "deg_min": 6
+    }
+  }METRICS:
+  - levels=[(512, 256), (256, 128), (128, 64), (64, 32)]
+  - h=[0.006135923151542565, 0.01227184630308513, 0.02454369260617026, 0.04908738521234052]
+  - radius=[0.011044661672776616, 0.022089323345553233, 0.044178646691106466, 0.08835729338221293]
+  - count=[0, 0, 0, 0]
+  - slope=[nan, nan, nan, nan]
+  - intercept=[nan, nan, nan, nan]
+  - pearson_r=[nan, nan, nan, nan]
+  - pearson_r2=[nan, nan, nan, nan]
+  - mean_kappa=[nan, nan, nan, nan]
+  - std_kappa=[nan, nan, nan, nan]
+  - scipy_available=True
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/or_vs_defect/images/v003/or_vs_defect_scatter_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
+=== RUN 2025-11-07T17:08:27Z | C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/or_vs_defect/images/v004 | seed=12345 | commit=None | code_sha=fb5baac8795f8630d4380eb58235786b74d6d9b6fded0040df93b65cc4f2ce11 ===
+STAGES: S1 n/a | S2 n/a | S3 n/a | S4 n/a | S5 n/a
+DOC SHAS: S1=n/a S2=n/a S3=n/a S4=n/a S5=n/a
+CONFIG:
+  {
+    "config_path": "C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/or_vs_defect/config/default.yaml",
+    "run": {
+      "sphere_refine": [
+        {
+          "Nu": 256,
+          "Nv": 128
+        },
+        {
+          "Nu": 512,
+          "Nv": 256
+        },
+        {
+          "Nu": 1024,
+          "Nv": 512
+        }
+      ],
+      "R": 1.0,
+      "radius_factor": 1.8,
+      "radius_phys": 0.03,
+      "edges_per_level": 2048,
+      "lazy_alpha": 0.5,
+      "seed": 12345,
+      "figsize": [
+        6.5,
+        4.2
+      ],
+      "dpi": 140,
+      "zcut": 0.9,
+      "deg_min": 4
+    }
+  }METRICS:
+  - levels=[(1024, 512), (512, 256), (256, 128)]
+  - h=[0.0030679615757712823, 0.006135923151542565, 0.01227184630308513]
+  - radius=[0.03, 0.03, 0.03]
+  - count=[2048, 2048, 2048]
+  - slope=[106648.77281946961, 14032.235028111778, 12462.468512190844]
+  - intercept=[-95.98468262336442, -12.629440018068701, -11.217091508488204]
+  - pearson_r=[0.04906867763892804, 0.015248478336056245, 0.0180610656623612]
+  - pearson_r2=[0.002407735125233037, 0.00023251609156517663, 0.00032620209286012274]
+  - mean_kappa=[0.00017398455195798466, 7.515192003047783e-05, 0.0009607140490802541]
+  - std_kappa=[0.004898747983908521, 0.008382178592832419, 0.025760647724191767]
+  - scipy_available=True
+IMAGES:
+  C:/Users/Asus/Desktop/MATH/EFD/docs/onset_of_dynamics/sims/s06_stage5_continuum_limit/or_vs_defect/images/v004/or_vs_defect_scatter_001.png
+ENV:
+  python=3.10.11 | numpy=2.2.6 | networkx=3.4.2 | matplotlib=3.10.7
+  os=Windows-10-AMD64
+=== END RUN ===
+
