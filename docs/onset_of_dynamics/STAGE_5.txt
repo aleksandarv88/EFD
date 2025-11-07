@@ -1,0 +1,230 @@
+============================================================
+EFD — STAGE 5 OPERATIONALIZATION (ASCII EDITION)
+Metric & Curvature from Coherence → Simulation Recipe
+PURPOSE
+
+Turn Stage-3 math (metric, holonomy, Ollivier–Ricci) into a reproducible,
+testable sim protocol for the Stage-5 continuum limit. No new axioms.
+Only implementation hooks, procedures, and pass/fail criteria.
+
+SCOPE
+
+• Fixed snapshot state X (post Stage-1/2).
+• Build metric support U_X, weights w, distances d_X.
+• Compute curvature: holonomy 𝓗 and Ollivier–Ricci κ.
+• Run refinements h→0 to confirm discrete→continuum convergence.
+
+IMPORTS (FROM EARLIER STAGES)
+
+• ε* : τ-plateau threshold (Stage-1/2).
+• I_X : influence (Stage-1).
+• R : least-fixed-point re-coherence (Stage-1).
+• Transport T via R (Stage-3).
+• U_X, w, d_X, κ, small-loop holonomy (Stage-3).
+
+============================================================
+0) DIRECTORY & FILES (SIM PACKING)
+
+Root: docs/onset_of_dynamics/sims/06_stage5_continuum_limit/
+
+01_distance_convergence_grid/
+02_curvature_convergence_known_surfaces/
+03_holonomy_to_riemann_tensor_patch/
+
+Each:
+*_CODE.py
+*_RESULTS.txt
+configs/default.yaml
+images/vNNN/
+logs/
+
+============================================================
+
+DISCRETE GEOMETRY (RECAP → CALLABLE)
+============================================================
+1.1 Metric support graph
+
+Given X, build undirected graph U_X=(V,E):
+J_ij := max{ I_X(j|i), I_X(i|j) }
+edge {i,j} in E iff J_ij > ε*
+weight w_ij := ε* / J_ij (strictly > 0)
+
+1.2 Shortest-path metric
+
+For path γ: L_X(γ)=Σ w_edge
+Distance: d_X(i,j)=min_γ L_X(γ) (∞ if disconnected)
+Axioms hold on each connected component (standard).
+
+1.3 Transport & holonomy (local curvature A)
+
+Atomic edits set 𝒜_i at node i.
+One-step transport:
+X' = R_i(σ·X)
+T_{i→j}(σ) := argmax_{τ∈𝒜_j} C( R_j(τ·X') )
+Loop holonomy magnitude on cycle γ at base i:
+𝓗_X(γ) := sup_{σ∈𝒜_i, |ΔC_i(σ)|>0}
+|ΔC_i(T_γ(σ)) - ΔC_i(σ)| / |ΔC_i(σ)|
+
+1.4 Ollivier–Ricci (local curvature B)
+
+Neighbor measure at i:
+μ_i(j) = J_ij / Σ_{k∈N(i)} J_ik
+Edge curvature:
+κ(i,j) = 1 - W1( μ_i, μ_j ; ground = d_X ) / w_ij
+
+============================================================
+2) LIBRARY HOOKS (MINIMAL SIGNATURES)
+
+[lib/efd/geometry.py]
+build_U_and_w(X, I, eps_star) -> (U, w_dict)
+all_pairs_shortest(U, w) -> d_dict # or on-demand Dijkstra
+
+[lib/efd/curvature.py]
+neighbor_measures(J) -> {i: μ_i}
+ollivier_ricci(U, w, μ, d) -> {edge: κ}
+
+[lib/efd/holonomy.py]
+transport_step(X, i, j, sigma) -> sigma_on_j
+holonomy_on_cycle(X, cycle) -> float_H
+
+[lib/efd/utils.py] (optional)
+simple_cycles_local(U, i, max_len=6) -> list_of_cycles
+
+============================================================
+3) REFINEMENT SCHEMES (h → 0)
+3.1 Grid refinements (distance test)
+
+Domain: unit square. Levels h ∈ {1/8,1/16,1/32,1/64}.
+Construct synthetic influences so that target metric is known:
+• Euclidean: constant J → constant w.
+• Anisotropic: J field encodes desired tensor g (via w∝local length).
+
+3.2 Known-surface meshes (curvature sign/magnitude)
+
+Refine triangulations of:
+• Sphere (+ curvature), Cylinder (mixed/≈0), Saddle (− curvature).
+
+3.3 Local bump patch (holonomy→Riemann)
+
+2D patch with smooth metric bump (Gaussian). Shrink loop area → 0 and
+extrapolate 𝓗/area to curvature at the base point.
+
+============================================================
+4) METRICS & PASS/FAIL CRITERIA
+4.1 Distance convergence (01_distance_convergence_grid)
+
+Sample pairs {(p,q)} (fixed physical coords).
+Compute:
+d_discrete(h; p,q) from U_h, w_h
+d_target(p,q) from known metric
+Errors:
+L1_err(h)=avg |d_discrete - d_target|
+L2_err(h)=sqrt(avg (·)^2)
+PASS: L1_err, L2_err decrease with h; scatter vs identity line slope≈1.
+
+4.2 Ollivier–Ricci vs analytic sign (02_curvature_…)
+
+For each refined mesh:
+κ_edge(h) vs analytic curvature sign at edge midpoint.
+PASS: sign agreement fraction ↑ with refinement; mean abs error ↓.
+
+4.3 Holonomy/area limit (03_holonomy_to_riemann_…)
+
+For shrinking simple loops {γ_a} of area a:
+y(a) := 𝓗_X(γ_a)/a
+Extrapolate y(0) by linear fit in small-a regime.
+PASS: y(0) within tolerance of analytic curvature at the point.
+
+============================================================
+5) PROCEDURES (PSEUDOCODE)
+5.1 Build geometry
+
+U,w = build_U_and_w(X,I,eps_star)
+d = all_pairs_shortest(U,w)
+
+5.2 Ollivier–Ricci
+
+μ = neighbor_measures(J) # from J_ij := max{I(j|i),I(i|j)}
+kappa= ollivier_ricci(U,w,μ,d)
+
+5.3 Holonomy on local cycles
+
+for i in nodes_of_interest:
+cycles = simple_cycles_local(U,i,max_len=6)
+for γ in cycles:
+Hγ = holonomy_on_cycle(X,γ)
+areaγ = flag_complex_area(U,γ) # triangle fill count or weighted
+record Hγ, areaγ
+
+5.4 Distance convergence loop (grid)
+
+for h in refinements:
+X_h, J_h = make_snapshot_for_level(h) # from config or derived
+U_h,w_h = build_U_and_w(X_h,J_h,eps*)
+d_h = shortest(U_h,w_h)
+err += compare_to_target_metric(d_h) # L1/L2
+report monotone decrease
+
+5.5 Holonomy→curvature loop (bump)
+
+for a in decreasing_areas:
+γ_a = small_loop(center, area=a) # e.g., 4-cycle or triangle fan
+H_a = holonomy_on_cycle(X,γ_a)
+y_a = H_a / a
+fit y(a) ~ y0 + m a on smallest K areas
+assert |y0 - K_true(center)| < tol
+
+============================================================
+6) ASSUMPTIONS (TO CITE IN DOC)
+
+(A1) Locality of C: bounded scopes; coarse-grained density 𝒞(x) exists.
+(A2) Weight scaling: w ~ O(h) along edges on regular refinements.
+(A3) Transport linearizes: T consistent to first order with parallel
+transport of the limiting connection (small edits regime).
+(A4) Degree bounds & mesh regularity: no degeneracy as h→0.
+
+============================================================
+7) RESULT BLOCK (STANDARDIZED OUTPUT)
+
+=== RUN <UTC_ISO> | images/vNNN | seed=<…> | commit=<…> ===
+STAGE5:
+distance:
+L1_err: <float>
+L2_err: <float>
+pairs: <int>
+ollivier_ricci:
+mean_abs_err: <float>
+sign_agree: <0..1>
+edges: <int>
+holonomy_limit:
+y0_est: <float>
+y0_target: <float>
+abs_diff: <float>
+PLOTS:
+images/vNNN/fig_distance_scatter_###.png
+images/vNNN/fig_kappa_hist_###.png
+images/vNNN/fig_holonomy_fit_###.png
+ENV:
+python=3.11.* | numpy=… | networkx=… | matplotlib=…
+=== END RUN ===
+
+============================================================
+8) FAILURE MODES & DIAGNOSTICS
+
+• Non-monotone distance errors → check ε* plateau stability; ensure J_ij
+fields are consistent across refinements; verify component connectivity.
+• κ noisy/sign flips → increase neighborhood sample; ensure d_X computed
+on same U,w used for κ; consider smoothing tiny J near ε* threshold.
+• Holonomy drift vs area → reduce loop size; ensure area measurement from
+flag complex matches edge set; limit to cycles without shortcuts.
+
+============================================================
+9) VIZ NOTES (NO NEW PRIMITIVES)
+
+• Distance: scatter d_discrete vs d_target + identity line.
+• κ: histogram and edge heatmap overlay on mesh.
+• Holonomy: log–log plot 𝓗 vs area and linear fit of 𝓗/area vs area.
+• Watermark: “EFD | Stage 5 | images\vNNN | <UTC>”.
+
+============================================================
+END — OPERATIONALIZATION IS READY TO ARCHIVE

@@ -25,7 +25,34 @@ EFD\
 │  │  ├─ Stage_2.txt
 │  │  ├─ Stage_3.txt
 │  │  ├─ Stage_4.txt
-│  │  └─ Visualization_Guidelines.txt   # visual style spec (no code)
+│  │  ├─ Visualization_Guidelines.txt   # visual style spec (no code)
+│  │  └─ sims\                            # SIMULATIONS (one folder per sim)
+│  │     ├─ 00_common\                   # sim-side plumbing (wrap lib\efd)
+│  │     │  ├─ __init__.py
+│  │     │  ├─ sim_paths.py              # images\vNNN, logs, results paths
+│  │     │  ├─ sim_results.py            # standardized run-block appender
+│  │     │  └─ sim_plots.py              # figure naming conventions
+│  │     ├─ 01_construct_model\
+│  │     │  ├─ construct_model_CODE.py
+│  │     │  ├─ construct_model_RESULTS.txt
+│  │     │  ├─ README.md
+│  │     │  ├─ configs\default.yaml
+│  │     │  ├─ images\                   # auto-created vNNN on each run
+│  │     │  └─ logs\
+│  │     ├─ 02_stage1_recoherence_order\
+│  │     ├─ 03_stage2_propagation_speed\
+│  │     ├─ 04_stage3_geometry\
+│  │     ├─ 05_stage4_energy_balance\
+│  │     ├─ 06_stage5_continuum_limit\
+│  │     ├─ 07_stress_tests\
+│  │     ├─ 08_visualization_gallery\    # NEW: build unified visual outputs
+│  │     │  ├─ viz_gallery_CODE.py
+│  │     │  ├─ viz_gallery_RESULTS.txt
+│  │     │  ├─ README.md
+│  │     │  ├─ configs\default.yaml
+│  │     │  ├─ images\                   # panel/renders (auto vNNN)
+│  │     │  └─ logs\
+│  │     └─ run_all.py                   # (optional) orchestrator
 │  └─ roadmap\
 │     ├─ EFD_Onset_Of_Dynamics_MATH_ROADMAP.txt
 │     └─ CHANGELOG.md                 # (optional) central changelog across stages
@@ -49,34 +76,6 @@ EFD\
 │  ├─ palettes.json                   # named color palettes
 │  ├─ styles.md                       # typography, DPI, figure sizing guidance
 │  └─ templates\                      # panel layouts, legends, watermarks (images)
-├─ Onset_Of_Dynamics\
-│  └─ sims\                            # SIMULATIONS (one folder per sim)
-│     ├─ 00_common\                   # sim-side plumbing (wrap lib\efd)
-│     │  ├─ __init__.py
-│     │  ├─ sim_paths.py              # images\vNNN, logs, results paths
-│     │  ├─ sim_results.py            # standardized run-block appender
-│     │  └─ sim_plots.py              # figure naming conventions
-│     ├─ 01_construct_model\
-│     │  ├─ construct_model_CODE.py
-│     │  ├─ construct_model_RESULTS.txt
-│     │  ├─ README.md
-│     │  ├─ configs\default.yaml
-│     │  ├─ images\                   # auto-created vNNN on each run
-│     │  └─ logs\
-│     ├─ 02_stage1_recoherence_order\
-│     ├─ 03_stage2_propagation_speed\
-│     ├─ 04_stage3_geometry\
-│     ├─ 05_stage4_energy_balance\
-│     ├─ 06_stage5_continuum_limit\
-│     ├─ 07_stress_tests\
-│     ├─ 08_visualization_gallery\    # NEW: build unified visual outputs
-│     │  ├─ viz_gallery_CODE.py
-│     │  ├─ viz_gallery_RESULTS.txt
-│     │  ├─ README.md
-│     │  ├─ configs\default.yaml
-│     │  ├─ images\                   # panel/renders (auto vNNN)
-│     │  └─ logs\
-│     └─ run_all.py                   # (optional) orchestrator
 └─ tools\                              # (optional) utilities
    └─ collect_reports.py              # aggregate *_RESULTS.txt → CSV
 
@@ -175,11 +174,11 @@ NAMING & PATH HYGIENE (WINDOWS)
 __pycache__/
 *.py[cod]
 .venv/
-Onset_Of_Dynamics/sims/**/logs/
+docs/onset_of_dynamics/sims/**/logs/
 # Uncomment if you DON'T want images/animations in git:
-# Onset_Of_Dynamics/sims/**/images/v*/
-# Onset_Of_Dynamics/sims/**/images/*.mp4
-# Onset_Of_Dynamics/sims/**/images/*.gif
+# docs/onset_of_dynamics/sims/**/images/v*/
+# docs/onset_of_dynamics/sims/**/images/*.mp4
+# docs/onset_of_dynamics/sims/**/images/*.gif
 
 ============================================================
 WHY TWO “COMMONS”?
