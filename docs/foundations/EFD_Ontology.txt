@@ -1,0 +1,70 @@
+======================================================
+EFD ONTOLOGY v0.1 (PRIMAL LOOP) — FROZEN VERSION
+================================================
+
+1. PRIMAL LOOP
+   nothing ↔ something
+
+   * neither precedes the other
+   * both co-define through contrast (difference Δ)
+   * this is the first self-reference — the origin of ontology
+
+2. DIFFERENCE (Δ)
+
+   * minimal act of distinction
+   * Δ(a,b) ⇒ existence of a,b
+   * identity = stable repetition of Δ
+   * existence = awareness of difference
+
+3. CLOSURE
+
+   * Δ applies to its own outputs
+   * Δ → Δ² → Δ³ → … (recursive closure)
+   * no external allowance; closure is logically forced
+   * recursion defines the total field of possibilities
+
+4. SUBSTRATE (Ω)
+
+   * total static set of all self-consistent differences
+   * timeless and complete — all possible relations coexist
+   * recursion closure of Δ forms Ω instantly (no time process)
+   * perceived dynamics arise from internal traversal of Ω
+
+5. MANIFEST LAYER (M)
+
+   * local coherent region of Ω
+   * traversal of Ω appears as time, computation, and causality
+   * internal order of updates = perceived temporal flow
+   * boundaries of coherence define ∂M
+
+6. BOUNDARIES (∂M)
+
+   * emerge where multiple differences intersect or conflict
+   * represent transition zones between coherent regions
+   * formalized as the interface of resolved ↔ unresolved Δ
+   * ∂M = { x ∈ Ω | x touches M but not fully coherent with M }
+
+7. NOISE (η)
+
+   * inevitable mismatch at self-reference boundary
+   * η = residual difference that cannot resolve to exact inversion
+   * drives change, diversity, and apparent randomness
+   * existence requires η ≠ 0 (perfect symmetry collapses distinction)
+
+8. STABLE FEEDBACK LOOPS (Λ)
+
+   * self-consistent substructures: Λ ≈ Δ(Λ)
+   * represent regions of recursive stability within Ω
+   * produce emergent utilities: space, time, energy, and matter
+   * each Λ is both autonomous and coupled within the global Ω
+
+9. GLOBAL STRUCTURE
+
+   * one primal loop at root (nothing ↔ something)
+   * countless interlocking loops within Ω (Λ₁, Λ₂, …)
+   * their mutual interference generates the richness of reality
+
+10. ONTOLOGICAL SUMMARY
+    loop → difference → closure → substrate → boundary → noise → feedback
+    Each step forced by the logic of self-reference;
+    together they constitute the static yet living totality of existence.
