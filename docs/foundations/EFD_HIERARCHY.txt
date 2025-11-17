@@ -1,0 +1,253 @@
+======================================================
+EFD_HIERARCHY_1.0.txt
+======================================================
+
+TITLE: EFD HIERARCHY — LEVELS OF REALITY IN EFD
+
+Goal:
+  Provide a clean, layered map of EFD:
+    from pure logic → substrate → emergence → physics → mind.
+
+Hierarchy is top-down:
+  EFD does not derive from physics,
+  physics emerges as a mid-level shadow of EFD.
+
+------------------------------------------------------
+0. OVERVIEW DIAGRAM
+------------------------------------------------------
+
+Very high-level:
+
+  LEVEL 0: Logical Ontology
+      (nothing ↔ possibility) → Δ → closure
+
+  LEVEL 1: Substrate Structure
+      Ω (superposition of all possibilities)
+      M (manifest slice)
+      ∂M (boundary)
+      η (noise)
+      stable loops
+
+  LEVEL 2: Emergence Principle
+      F(L) = S(L) − λ η(L)
+      high-F loops persist and scaffold
+
+  LEVEL 3: Proto-Physics / Geometry
+      topology of loops
+      metric/curvature emergence
+      conservation patterns
+
+  LEVEL 4: Effective Physics
+      QM, QFT, GR, Newtonian mechanics
+      observers as stable loops
+
+  LEVEL 5: Mind / Consciousness / Culture
+      self-referential observer-of-observer loops
+      information, meaning, theory-building
+
+------------------------------------------------------
+1. LEVEL 0 — LOGICAL ONTOLOGY
+------------------------------------------------------
+
+Core question:
+  How do we get "something" without assuming it?
+
+Objects:
+  - primal loop: (nothing ↔ possibility)
+  - difference operator: Δ
+  - recursive closure of Δ
+
+Outcome:
+  - non-emptiness of P derived (not assumed)
+  - minimal structure for "distinguishability"
+
+Linked doc:
+  - EFD_FOUNDATIONS_LOGIC_2.3.txt (sections 0–4)
+  - EFD_FOUNDATIONS_MATH2.2.txt (sections 0–4)
+
+Interpretation:
+  This level is pre-physical. It sets up the logical conditions
+  under which "anything at all" can be spoken about.
+
+------------------------------------------------------
+2. LEVEL 1 — SUBSTRATE STRUCTURE
+------------------------------------------------------
+
+Core question:
+  Once difference is closed, what kind of "space" do we get?
+
+Objects:
+  - Ω : static closure of Δ, interpreted as superposition of all possibilities
+  - M : manifest slice (coherent traversal of Ω)
+  - ∂M : boundary between reconciled and unreconciled structures
+  - η : noise as unresolved Δ at ∂M
+  - stable feedback loops: L with Δ(L) ≈ L
+
+Outcome:
+  - a timeless substrate (Ω) with all possibilities present
+  - local "worlds" M emerge as partial, coherent navigations of Ω
+  - noise (η) prevents trivial collapse into tautology
+
+Linked doc:
+  - EFD_FOUNDATIONS_LOGIC_2.3.txt (sections 5–8)
+  - EFD_FOUNDATIONS_MATH2.2.txt (sections 5–8)
+
+Interpretation:
+  This level defines the raw "field of possibilities" and the idea
+  that laws/objects/observers are stable loops in this field.
+
+------------------------------------------------------
+3. LEVEL 2 — EMERGENCE PRINCIPLE
+------------------------------------------------------
+
+Core question:
+  Out of all logically allowed configurations, which ones persist?
+
+Objects:
+  - stability S(L): how much a loop maps into itself
+  - noise η(L): mismatch at the loop's boundary
+  - emergence functional:
+        F(L) = S(L) − λ η(L)
+
+EFD Emergence Principle:
+  Structures that score high on F(L) (high stability, low boundary noise)
+  are the ones that actually persist and scaffold higher complexity.
+
+Outcome:
+  - selection of "real" structures from Ω
+  - basis for why we see robust laws and objects instead of arbitrary chaos
+
+Linked doc:
+  - EFD_EMERGENCE_1.0.txt
+
+Interpretation:
+  This is not a physical variational principle.
+  It is an ontological selection rule: what can consistently exist.
+
+------------------------------------------------------
+4. LEVEL 3 — PROTO-PHYSICS / GEOMETRY
+------------------------------------------------------
+
+Core question:
+  How do recognizable physical structures (metric, curvature, fields)
+  arise from stable loops?
+
+Objects:
+  - graph / hypergraph representations of Ω and loops
+  - angle defects, curvature measures
+  - continuity / refinement limits
+  - conserved patterns under loop-dynamics
+
+Outcome:
+  - discrete curvature approximates smooth curvature
+  - stable loop networks exhibit proto-metric and proto-topology
+  - "space" and "geometry" appear as large-scale behavior of loops
+
+Linked docs / code:
+  - docs/onset_of_dynamics/*
+  - curvature and continuum-limit sims
+  - logs showing convergence (e.g. L2 error vs h)
+
+Interpretation:
+  This is where the substrate starts to "look" like something familiar:
+  planes, spheres, saddles, curvature, and eventually spacetime.
+
+------------------------------------------------------
+5. LEVEL 4 — EFFECTIVE PHYSICS
+------------------------------------------------------
+
+Core question:
+  How do standard physical theories emerge as approximations
+  to the loop dynamics?
+
+Objects:
+  - QM / wavefunction:
+        relational superposition of embeddings of stable loops
+  - QFT:
+        excitations on structured connectivity patterns
+  - GR:
+        large-scale curvature of stable networks
+  - Newtonian mechanics:
+        low-speed, weak-curvature limit of stable trajectories
+
+Outcome:
+  - Schrödinger equation: linear evolution when C ("connectivity") is fixed
+  - Einstein equations: geometry-only evolution in high-stability regimes
+  - conservation laws as algebraic shadows of Δ(L) ≈ L
+
+Linked doc / future:
+  - EFD_PHYSICS_MAP (to be written)
+  - notes on:
+        (ψ, C, S) master evolution,
+        emergent limits → QM, QFT, GR, Newton
+
+Interpretation:
+  Physics is a mid-level, coarse-grained language describing
+  how high-F(L) loops behave when viewed from inside M.
+
+------------------------------------------------------
+6. LEVEL 5 — MIND / CONSCIOUSNESS / CULTURE
+------------------------------------------------------
+
+Core question:
+  How do observers, self-models, and meaning arise from loops?
+
+Objects:
+  - observer-loop L₁:
+        stable boundary with inputs/outputs (world ↔ inside)
+  - consciousness-loop L₂:
+        loop that models L₁ and includes itself in the model
+  - higher-order loops:
+        language, science, EFD itself as feedback structures
+
+Outcome:
+  - proto-consciousness:
+        minimal self-closed observer with tiny boundary
+  - human-like consciousness:
+        dense, deep loop hierarchies with rich world-models
+  - culture/theory:
+        loops operating over many minds and artifacts
+
+Linked doc / future:
+  - EFD_MIND_*.txt (to be defined later)
+
+Interpretation:
+  Mind is not an add-on to physics.
+  It is a particular configuration of high-level loops within Ω, 
+  capable of representing and modifying other loops, including itself.
+
+------------------------------------------------------
+7. FLOW (TOP-DOWN AND BOTTOM-UP)
+------------------------------------------------------
+
+Top-down (conceptual dependency):
+
+  Level 0 → Level 1 → Level 2 → Level 3 → Level 4 → Level 5
+  (logic)  (substrate)  (emergence)  (proto-physics)  (physics)  (mind)
+
+Bottom-up (what we empirically see):
+
+  We start at Level 4–5 (physics, minds),
+  then infer Level 3 (proto-geometry, loops),
+  then Level 2 (emergence logic),
+  then Level 1–0 (substrate and primal loop).
+
+The role of EFD is to provide the *top-down* map that makes sense of
+what we infer bottom-up.
+
+------------------------------------------------------
+8. HOW TO READ THE FOUNDATION DOCUMENTS
+------------------------------------------------------
+
+Suggested reading order:
+
+  1. EFD_HIERARCHY_1.0.txt     ← this file (big picture)
+  2. EFD_FOUNDATIONS_LOGIC_2.3.txt
+  3. EFD_FOUNDATIONS_MATH2.2.txt
+  4. EFD_EMERGENCE_1.0.txt
+  5. onset_of_dynamics docs + sims (Level 3)
+  6. future: EFD_PHYSICS_MAP, EFD_MIND
+
+======================================================
+END OF FILE
+======================================================

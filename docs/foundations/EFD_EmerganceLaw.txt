@@ -1,0 +1,131 @@
+======================================================
+9. EMERGENCE PRINCIPLE (EFD-first, not physics-first)
+======================================================
+
+This section formalizes how structures “exist,” “persist,” and 
+“scale up” in EFD, without importing physical variational rules.
+Physics emerges *after*, not *before*.
+
+------------------------------------------------------
+9.1 Ontological Ground (Level 0)
+------------------------------------------------------
+
+From the foundational pipeline:
+
+    (nothing ↔ possibility) → Δ → closure → Ω
+
+we obtain:
+
+- Ω : the superposition of all possibilities
+- M : a coherent local traversal of Ω
+- ∂M : incomplete boundary of M
+- η : inherent noise from unresolved Δ at ∂M
+- stable loops L : patterns satisfying Δ(L) ≈ L
+
+These stable loops are the “entities” from which all observed 
+structure arises.
+
+No physical laws are assumed here.
+This is pure ontology.
+
+------------------------------------------------------
+9.2 Emergence (Level 1)
+------------------------------------------------------
+
+**Core EFD Insight:**
+A structure persists only if it maintains internal coherence  
+while exporting mismatch (noise) outward to its boundary.
+
+Define:
+
+    S(L) : stability (degree to which Δ(L) maps into L itself)
+    η(L) : boundary noise of L (unresolved Δ at ∂L)
+
+Define the **emergence functional**:
+
+    F(L) = S(L) − λ η(L)
+
+Interpretation:
+
+- S(L) is not “energy.”  
+- η(L) is not “entropy.”  
+- F(L) is not a “physics quantity.”
+
+Instead:
+
+    F(L) measures the ability of L to persist as a self-referential
+    structure under the primal logic.
+
+**EFD Emergence Principle (ontology-level):**
+
+    Structures that maximize F(L) (i.e. high stability, low boundary
+    mismatch) are the structures that persist and scaffold further 
+    complexity.
+
+This is not something we *assume* from physics.
+It is forced by the definitional logic of self-consistency in Ω.
+
+------------------------------------------------------
+9.3 Physics as an Effective Description (Level 2)
+------------------------------------------------------
+
+Only after the ontology-level emergence is in place:
+
+- High-F(L) feedback loops
+- arranged across large coherent regions of M
+- with low η
+- and strong internal Δ-closure
+
+do we observe the familiar effective laws:
+
+    - least-action principles
+    - energy and momentum conservation
+    - classical mechanics
+    - field equations
+    - quantum amplitudes
+    - spacetime geometry
+
+These are not fundamental laws of nature.
+
+They are **coarse-grained summaries** of the behavior of high-F(L)
+stable loops under the EFD emergence logic.
+
+In other words:
+
+    Physics does not constrain EFD.
+    EFD constrains physics.
+
+Least action is the smooth, continuum shadow of:
+
+    maximize stability, push mismatch out.
+
+Conservation laws are the algebraic shadow of:
+
+    Δ(L) ≈ L under traversal of M.
+
+Field equations are geometric shadows of:
+
+    stable, large-scale self-referential closures of Δ.
+
+------------------------------------------------------
+9.4 Summary
+------------------------------------------------------
+
+Level 0 — Ontology:  
+    primal loop → Δ → Ω → M → ∂M → η → stable loops
+
+Level 1 — Emergence:  
+    structures persist when they maximize  
+        F(L) = S(L) − λ η(L)
+
+Level 2 — Physics:  
+    effective macroscopic description of high-F(L) loops
+
+This hierarchy ensures:
+
+    EFD does not borrow physics;
+    physics falls out of EFD by emergence.
+
+======================================================
+END SECTION 9
+======================================================

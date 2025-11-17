@@ -1,81 +1,129 @@
 ======================================================
-docs/foundations/EFD_FOUNDATIONS_MATH2.1.txt
+docs/foundations/EFD_FOUNDATIONS_MATH2.2.txt
 ======================================================
-TITLE: EFD FOUNDATIONS — MATHEMATICAL CORE v2.1 (aligned to primal loop)
+
+TITLE: EFD FOUNDATIONS — MATHEMATICAL CORE v2.2
+(Aligned to primal loop, superposition, and relational emergence)
 
 0. FRAMEWORK
-Base logic     : classical (first-order with sets)
-Universe       : P defined as the minimal self-consistent closure of difference
-Difference     : Δ ⊆ P × P, forced by (∅ ↔ ∃)
+Base logic     : classical first-order with sets
+Universe P     : minimal self-consistent closure of difference
+Difference Δ   : forced by primal loop (nothing ↔ possibility)
 
-Comment:
-Earlier versions assumed “a non-empty set P”. Here non-emptiness is DERIVED
-from the primal loop (nothing ↔ something), which forces a nontrivial Δ.
+Key update:
+    Ω is not just closure of Δ — it is interpreted as the
+    **full superposition of all possibilities**.
 
+------------------------------------------------------
 1. PRIMITIVES
-We take as primitive:
-    (i) the primal mutual-definition loop (∅ ↔ ∃)
-    (ii) the existence of a nontrivial difference operator Δ
-From (i) we get that “absence” and “presence” co-arise.
-From (ii) we can state Δ(a,b) ⇔ a ≠ b.
+------------------------------------------------------
+(i) primal mutual-definition loop:
+        (nothing ↔ possibility)
+(ii) existence of a nontrivial difference operator Δ
 
+From (i):
+    “absence” and “presence” arise together by mutual definition.
+
+From (ii):
+    Δ(a,b) ⇔ a ≠ b
+
+------------------------------------------------------
 2. DERIVED NON-EMPTINESS
+------------------------------------------------------
 (G2) Non-empty (derived):
-    from (∅ ↔ ∃) we obtain ∃a,b ∈ P : a ≠ b and (a,b) ∈ Δ
-so P is not assumed non-empty; it is non-empty because mutual definition is impossible
-without at least two distinguishables.
+    From (nothing ↔ possibility), at least two distinguishables exist.
+Therefore P is non-empty without assuming it.
 
+------------------------------------------------------
 3. GUARDS
+------------------------------------------------------
 (G1) Irreflexive      : ∀a ∈ P : (a,a) ∉ Δ
 (G2) Non-empty (der.) : ∃a,b ∈ P : a ≠ b ∧ (a,b) ∈ Δ
-(G3) Partial allowed  : Δ need not be total on P
+(G3) Δ need not be total
 
-3.1 BASE DIFFERENCE
-To bind the logical primal loop (∅ ↔ ∃) to the mathematical construction,
-we take as initial pair:
-    let a := ∅
-    let b := ∃
-and define the base relation
-    Δ¹ := { (a, b) }
-All higher-order differences are generated from this base.
+------------------------------------------------------
+4. BASE DIFFERENCE
+------------------------------------------------------
+Bind logic to math via:
+    a := nothing
+    b := possibility
 
-4. CLOSURE CONSTRUCTION
+Base relation:
+    Δ¹ := { (a,b) }
+
+Higher relations:
+    Δⁿ⁺¹ := { (u,v) | u,v ∈ Δⁿ, u ≠ v }
+
+------------------------------------------------------
+5. SUBSTRATE (Ω)
+------------------------------------------------------
 Define:
-    Δ¹ := Δ
-    Δ² := { ((x1,x2),(y1,y2)) | (x1,x2)∈Δ ∧ (y1,y2)∈Δ ∧ (x1,x2) ≠ (y1,y2) }
-In general:
-    Δⁿ⁺¹ := { (u,v) | u∈Δⁿ, v∈Δⁿ, u ≠ v }
-Then define the substrate:
     Ω := ⋃_{n≥1} Δⁿ
-This is the mathematical counterpart of “closure of difference”.
 
-5. STATIC SUBSTRATE
-By definition Ω is a completed object:
-    Ω is not built in time
-    Ω is the set/class obtained by closing Δ under itself
-This matches the ontology: static totality, internally traversed.
+Interpretation update:
+    Ω represents the **superposition of all possible difference structures**.
+    Each element exists only relationally (by difference with all others).
 
-6. MANIFEST SLICE
-Let M ⊆ Ω be any subcollection that is closed under the coherence rules
-defined for the physical/observable layer (to be defined in later docs).
-Then “time” is an order on M induced by its traversal:
-    t : M → ℕ (or any well-order) such that coherence increases with t.
+Ω is static:
+    not accumulated in time,
+    but a completed closure object.
 
+------------------------------------------------------
+6. MANIFEST SLICE (M)
+------------------------------------------------------
+Let M ⊆ Ω be any subset closed under coherence constraints.
+
+Time is induced as a traversal ordering:
+    t : M → ℕ, monotone in coherence.
+
+------------------------------------------------------
 7. BOUNDARY AND NOISE
-Let Coherent(M) be the set of fully reconciled elements.
+------------------------------------------------------
+Coherent(M) := fully reconciled elements.
+
 Define:
-    ∂M := Ω \ Coherent(M)  intersect  N(M)
-where N(M) is the neighborhood (touching) of M in Ω.
-Noise η is the measure/indicator of non-reconciliation at ∂M.
-Neighborhood N(M) is understood in the Δ-sense: elements directly
-related to M by the difference relation. No additional metric or
-topology is assumed.
+    ∂M := (Ω \ Coherent(M)) ∩ N(M)
 
+where N(M) is Δ-neighborhood.
+
+Noise η measures non-reconciliation at ∂M.
+
+------------------------------------------------------
 8. STABLE LOOPS (FIXED POINTS)
-A structure L ⊆ Ω is a stable feedback loop iff
+------------------------------------------------------
+A structure L ⊆ Ω is stable iff:
     Δ(L) ≈ L
-(≈: equal modulo boundary terms carrying η)
-(≈ meaning equality up to the permitted equivalence in the model).
-These subsets will later be interpreted as laws/fields/metrics.
+where ≈ is equivalence modulo boundary noise.
 
+These loops give rise to:
+    - laws
+    - fields
+    - particles
+    - geometric structure
+
+------------------------------------------------------
+9. SUPERPOSITION (Mathematical Form)
+------------------------------------------------------
+Let L be a stable loop.
+
+Define relational embedding set:
+    Rel(L) := { r ∈ Ω | r specifies attachment of L to surrounding structure }
+
+Superposition = non-singleton set Rel(L).
+
+Collapse = selection of r* ∈ Rel(L) maximizing stability.
+
+------------------------------------------------------
+10. EMERGENCE PRINCIPLE (Placeholder)
+------------------------------------------------------
+**(To be expanded)**
+
+Emergence functional:
+    F(L) = S(L) - λ η(L)
+
+Emergent structures extremize F:
+    δF(L) = 0
+
+======================================================
 END OF FILE
+======================================================
