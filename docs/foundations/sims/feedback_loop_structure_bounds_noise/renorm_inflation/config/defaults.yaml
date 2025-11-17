@@ -1,0 +1,10 @@
+observer:
+  # existing:
+  gini_budgets_walkers: [2000, 5000, 10000, 20000]
+  gini_repeats: 3
+  component_percentile_hi: 0.995
+  boundary_percentile_lo: 0.985
+
+  # new for S07:
+  renorm:
+    levels: 5   # Level 0 (original) + 4 contractions. Use 4–6 for quick tests.

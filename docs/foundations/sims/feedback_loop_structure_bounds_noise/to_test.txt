@@ -1,0 +1,32 @@
+Edge-Intensity Gini and Observation Budget:
+At larger values of ( B ), the Gini coefficient of edge loads reaches higher or equal levels and stabilizes at a plateau.
+Sharper Structure, Boundaries, and Residence:
+    At elevated qhiq_{hi}q_{hi}
+    (where qlo=qhi−0.01q_{lo} = q_{hi} - 0.01q_{lo} = q_{hi} - 0.01
+    ), the mean component run-length attains greater values, while conductance reaches lower levels.
+Noise Localization at Boundaries:
+    Nodes adjacent to two-tier boundaries exhibit higher participation entropy compared to core nodes (based on distributions at fixed qhiq_{hi}q_{hi}
+    , qloq_{lo}q_{lo}
+    ).
+Cross-Lens Convergence in the Core:
+    The Jaccard similarity between top-( q ) edge-intensity sets and co-membership sets achieves higher values at larger ( q ).
+Core vs. Halo Stability Across Ensembles/Blocks:
+    Edges present in at least ( p ) fraction of {b}\{b\}\{b\}
+    and at least ( p ) fraction of {s}\{s\}\{s\}
+    constitute a 'core'; all others form a 'halo'. Core edges display lower conductance and correspond to longer run-lengths.
+Perturbation-Reconfiguration Relations:
+    Across ordered blocks {b}\{b\}\{b\}
+    , elevated boundary-crossing rates in block ( b ) align with larger partition differences between blocks ( b ) and b+1b+1b+1
+    . (Blocks represent a data ordering, not sequential steps.)
+Critical Scale:
+A specific q∗q^*q^*
+ exists where the run-length histogram shifts to a bimodal form as qhiq_{hi}q_{hi}
+ varies across its range.
+Renormalization and Fixed-Point Behavior:
+Following component contraction at depth ( g ), the statistics {Gini, conductance, run-length trend, cross-lens Jaccard} maintain their forms, adjusted by scale factors.
+Size Scaling:
+    For ( N ) with observation budget proportional to ( N ), the edge-intensity Gini reaches non-decreasing levels with larger ( N ); boundary counts exhibit sublinear growth.
+    Directional Motifs:
+    The overlap of top loop-bigrams attains higher values at elevated qhiq_{hi}q_{hi}
+    and larger observation budget ( B ); motifs show concentration near boundaries.
+

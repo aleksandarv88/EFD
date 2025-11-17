@@ -1,0 +1,41 @@
+# ===========================
+# EFD — FOUNDATIONS — defaults
+# ===========================
+
+sim:
+  # Substrate size (complete graph on N nodes; no self-loops)
+  N: 512
+
+  # How many independent walkers to simulate
+  walkers: 15000
+
+  # Max steps per walker (upper bound; they reset to start-of-loop after each loop)
+  max_steps: 6000
+
+  # Stop each walker after collecting at most this many loops (keeps things bounded)
+  max_loops_per_walk: 10
+
+  # RNG seed for reproducibility
+  seed: 12345
+
+observer:
+  # Multi-resolution percentiles for the loop-intensity (edge-load) graph.
+  # Higher percentiles = harsher cut = more fragmented components.
+  edge_intensity_percentiles: [0.97, 0.985, 0.99, 0.995, 0.999, 0.9995]
+
+  # Multi-resolution percentiles for the co-membership graph
+  co_membership_percentiles: [0.99, 0.995, 0.999, 0.9995]
+
+  # Sequentiality: components are defined at this percentile on edge-intensity,
+  # then we measure run-lengths of component IDs along time-ordered segments.
+  sequential_component_percentile: 0.985
+
+  # Two-tier boundary observer:
+  # - Build components at the "hi" percentile
+  # - Consider edges >= "lo" percentile to detect boundaries ACROSS those hi-components
+  # (Must satisfy: 0 < boundary_percentile_lo < component_percentile_hi < 1)
+  component_percentile_hi: 0.995
+  boundary_percentile_lo: 0.985
+
+  # How many items to print in “top_*” lists (edges, nodes, boundaries, motifs)
+  top_k: 20

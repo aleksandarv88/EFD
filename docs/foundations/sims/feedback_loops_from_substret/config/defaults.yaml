@@ -1,0 +1,12 @@
+sim:
+  seed: 12345
+  N: 256
+  walkers: 200
+  max_steps: 4000
+  max_loops_per_walk: 5
+  sample_loops: 8
+
+output:
+  results_file: construct_model_RESULTS.txt
+  images_dir: images
+  logs_dir: logs

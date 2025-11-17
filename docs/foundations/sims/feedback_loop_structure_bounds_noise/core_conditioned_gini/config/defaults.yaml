@@ -1,0 +1,16 @@
+observer:
+  # budgets in cumulative walkers (same as before)
+  gini_budgets_walkers: [2000, 5000, 10000, 20000]
+  gini_repeats: 3
+
+  # q-sweep (hi percentiles) — pick as many as you want (0<q<1)
+  q_sweep_hi: [0.99, 0.995, 0.997, 0.999]
+
+  # low percentile for boundary lens (unchanged)
+  boundary_percentile_lo: 0.985
+
+  # where we "freeze" the core (first q in q_sweep_hi at this budget)
+  frozen_core_pick_budget: 2000
+
+  # head-mass top-fractions (optional readouts)
+  head_mass_epsilons: [0.01, 0.05]

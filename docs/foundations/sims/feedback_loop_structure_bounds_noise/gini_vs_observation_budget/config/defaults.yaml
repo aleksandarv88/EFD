@@ -1,0 +1,7 @@
+observer:
+  gini_budgets_walkers: [2000, 5000, 10000, 20000]
+  gini_repeats: 3
+  component_percentile_hi: 0.995
+  boundary_percentile_lo: 0.985
+  head_mass_epsilons: [0.01, 0.05]   # top 1% and 5% of edges
+

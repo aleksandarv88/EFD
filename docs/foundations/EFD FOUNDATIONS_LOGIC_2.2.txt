@@ -1,189 +1,101 @@
-============================================================
-EFD FOUNDATIONS v4.0 — LINGUISTIC CLEANROOM (Ω→M→∂M→Noise)
-==========================================================
+======================================================
+docs/foundations/EFD_FOUNDATIONS_LOGIC_2.2.txt
+======================================================
+TITLE: EFD FOUNDATIONS v4.0 — LINGUISTIC CLEANROOM
+PIPELINE: (∅ ↔ ∃) → Δ → closure → Ω → M → ∂M → Noise
 
-0. PREMISE — PURE POSSIBILITY AND DIFFERENCE
+0. MOTIVATION
+We want an ontology that does not assume “something” is already there.
+We start from a mutual-definition loop:
+    nothing ↔ something
+Neither side is primitive. Each is only meaningful by contrast with the other.
+That contrast is the origin of DIFFERENCE (Δ).
+From closure of Δ we get Ω (the total static field of all self-consistent differences).
+Manifest reality (the world we experience) is a traversal of Ω.
 
----
+1. PRIMAL LOOP
+Definition:
+    PRIMAL LOOP := (nothing ↔ something)
+Properties:
+    - non-sequential: no “first”
+    - relational: neither term exists without the other
+    - self-referential: the loop defines the condition for definition itself
+Consequence:
+    The loop forces at least one nontrivial distinction.
 
-Before any definable thing exists, there is only Ω — PURE POSSIBILITY:
-openness where distinctions are admissible, with no claim that all are
-instantiated. Ω is not a field or process; it has no time or measure.
+2. DIFFERENCE (Δ)
+Once the loop is present, difference is forced:
+    Δ(a,b)  ⇔  a ≠ b
+This is the minimal act of distinction.
+By stating that a and b differ, we commit to the existence of a and b as referents.
+So existence here is not “substance” but “referential availability.”
 
-DIFFERENCE is the first fact within that openness: something can be
-not identical to something else.
+3. CLOSURE OF DIFFERENCE
+Difference is not a one-off. If Δ is a rule, it can be applied to its own products.
+    Δ → Δ² → Δ³ → …
+This recursive closure is logically forced: if a difference can be made, a difference
+between differences can be made. There is no upper bound on depth.
 
----
+4. SUBSTRATE (Ω)
+Ω := the static, timeless, complete set of all self-consistent differences obtained
+by closing Δ under itself.
+Important:
+    - Ω is not assumed.
+    - Ω is derived from the primal loop via Δ and closure.
+    - Ω is “there” as a logical object, not as temporal accumulation.
+Thus:
+    (∅ ↔ ∃) → Δ → closure → Ω
 
-1. NECESSITY OF DIFFERENCE
+5. MANIFEST LAYER (M)
+M ⊆ Ω
+M is a coherent, locally consistent traversal of Ω.
+Selection of M is domain-level (e.g. physical) and not ontology-level:
+the ontology only guarantees Ω; choosing which coherent slice to work
+with belongs to the later EFD layers (onset_of_dynamics, physics).
+From inside M, recursion appears as:
+    - update
+    - time
+    - causality
+But these are internal views of movement through a static Ω.
 
----
+6. BOUNDARY (∂M)
+Because Δ is applied recursively, some regions are fully coherent with M and some
+are not yet reconciled.
+Define:
+    ∂M := { x ∈ Ω | x touches M but is not fully coherent with M }
+This is the natural place where multiple distinctions intersect and cannot all be
+flattened at once.
 
-Within unbounded possibility, “no difference” is a singular configuration
-with zero logical measure among admissible configurations. Therefore,
-difference is logically inevitable — not an event but a consequence of
-possibility itself.
+7. NOISE (η)
+Self-reference is never perfectly exact: representation ≠ represented.
+The residual mismatch at ∂M is noise:
+    η := unresolved Δ at the boundary
+Noise is not an external disturbance; it is the local remainder of self-reference.
+η ≠ 0 keeps the system from collapsing into a tautology and drives apparent dynamics.
 
----
+8. STABLE FEEDBACK LOOPS
+Within Ω, some configurations satisfy:
+    L ≈ Δ(L)
+Here “≈” means equality up to boundary differences, i.e. two loop
+structures are considered the same if they differ only on ∂M where
+noise (η) resides.
+These are stable feedback loops.
+From inside them, they look like:
+    - laws
+    - metric/space
+    - ordered change/time
+    - persistent asymmetry/energy-matter
 
-2. DIFFERENCE AS PRIMITIVE
+9. SUMMARY
+Ontology is:
+    primal loop
+    → difference
+    → recursive closure
+    → static substrate (Ω)
+    → manifest traversal (M)
+    → boundary (∂M)
+    → noise (η)
+    → stable loops (emergent physics)
+This removes the earlier hidden assumption “start from non-empty Ω”.
 
----
-
-Difference (Δ) is irreducible. It is not caused or derived; it is the
-relation that makes relations possible.
-
-Ω and Δ are complementary:
-Ω permits distinctions; Δ gives them content.
-
----
-
-3. DISTINCTION — DIFFERENCE REFERENCING DIFFERENCE
-
----
-
-Each Difference implies at least two distinguishable aspects. When
-differences reference one another, a web of distinctions arises — a
-co‑inductive totality where parts are defined only through contrast.
-No base element exists; all definitions are mutual.
-
----
-
-4. RELATIONAL CONTEXT
-
----
-
-All distinctions coexist within Ω as one relational backdrop. Meaning
-arises only through relation; isolation has no definition. Local
-concentrations of mutually supporting differences form provisional
-contexts inside the whole.
-
-*Coarse‑graining (partial views) induces effective constraints that may be
-mutually incompatible, shifting which relations are pushed to ∂M; this is
-perceived as flicker from within a partial context.*
-
----
-
-5. CONSISTENCY PRESSURE
-
----
-
-Some relational combinations contradict — defining the same distinction
-as both identical and non‑identical. Such contradictions cannot sustain
-mutual reference and drop out. Consistency acts as logical pressure,
-favoring stable connectivity.
-
----
-
-6. LOGICAL SUBSTRATE — M (MAXIMALLY COHERENT REGION)
-
----
-
-From Ω, select a maximally coherent region M: within M, local differences
-cohere; adding anything further (still admissible in Ω) would break that
-coherence. M can be infinite in extent yet is coherence‑bounded.
-It is not equilibrium in time but timeless coherence.
-
----
-
-7. SELF‑REFERENCE AND FEEDBACK
-
----
-
-Within M, relations may reference their own configurations. This
-reflexivity is FEEDBACK — a structural self‑relation, not a temporal
-loop. Feedback expresses M’s capacity to evaluate and sustain its own
-coherence.
-
----
-
-7.1 LOOP CLOSURE (L ⇒ M_L)
-
----
-
-Any persistent feedback loop L induces its *minimal coherence closure*
-M_L: the smallest region that contains whatever relations L requires to
-remain self‑consistent under its own checks. Boundaries and noise are
-always understood relative to such a coherent region.
-
----
-
-8. PERSISTENCE
-
----
-
-When recursive relations remain coherent under all internal reference,
-a PERSISTENT CONFIGURATION arises — a pattern retaining identity under
-self‑consistency. Persistence is invariance under coherence, not duration
-in time.
-
----
-
-NOISE — BOUNDARY NON‑INVARIANCE (ATEMPORAL)
-
----
-
-For any coherent region M (including a loop’s closure M_L), define the
-boundary ∂M as the interface where additions admissible in Ω would break
-M’s coherence. Noise is NON‑INVARIANCE at ∂M: alternative, mutually
-incompatible local resolutions permitted by Ω that M cannot accommodate
-simultaneously while remaining coherent.
-
-This is not randomness and not temporal change. It follows from:
-• maximal coherence of M (interior stability), and
-• contact with Ω at ∂M (admissible but incompatible extensions).
-
-From an internal viewpoint this presents as “flicker”: inclusion/exclusion
-of particular relations across overlapping coherent views touching ∂M of
-the same timeless whole.
-
-*Noise emerges from Ω, Δ, and maximal coherence alone — no extra primitives.*
-
----
-
-COUPLING (STATIC) — JOINT COHERENCE WITHOUT TIME
-
----
-
-Coupling is a **static** property. Loops couple when their constraints
-overlap or are glued by a mediator relation/invariant, so that only
-*joint* assignments are coherent. No process is required — coupling is
-simultaneous satisfiability in the shared closure.
-
-Given loops {L_i}, their joint persistence selects a shared closure M_L:
-
-a maximally coherent envelope that supports all L_i together and excludes
-admissible but incompatible extensions to its boundary ∂M_L.
-
----
-
-OBSERVERS — LIMITED INTERFACE, INDUCED TIME, PROTECTED LAWS
-
----
-
-An **observer** is a persistent loop‑cluster L with a **finite interface**
-(“blanket”) B ⊂ ∂M_L. Its internal self‑checks impose an order on
-re‑coherences experienced as **time** (internal to L, not in Ω). To remain
-stable against boundary flicker across B, the cluster locks onto
-**protected invariants** — its effective **laws**. Objectivity arises as
-the intersection of invariants stabilized by many overlapping observers.
-
----
-
-## SUMMARY CHAIN
-
-Ω (Pure Possibility)  →  Difference
-Difference            →  Distinctions
-Distinctions          →  Relational Context
-Context               →  Consistency Pressure
-Consistency           →  M (Maximally Coherent Region)
-M                     →  ∂M (Boundary)
-∂M                    →  Noise (non‑invariance)
-L (Feedback)          →  M_L (Loop closure)
-M_L + Coupling        →  Observers (finite blankets)
-Observers             →  Shared invariants (emergent “universe”)
-M + Feedback          →  Persistence
-
-============================================================
-Existence = Persistent Difference within Pure Possibility. ∎
-============================================================
+END OF FILE

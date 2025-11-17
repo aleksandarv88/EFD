@@ -1,0 +1,6 @@
+observer:
+  noise_blocks: 5
+  noise_top_edge_percentile: 0.995
+  noise_frag_percentiles: [0.97, 0.985, 0.99, 0.995, 0.999]
+  noise_top_co_percentile: 0.995
+  noise_entropy_quantiles: [0.0, 0.25, 0.5, 0.75, 0.9, 1.0]

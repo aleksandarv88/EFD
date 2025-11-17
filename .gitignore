@@ -9,3 +9,7 @@ sims/**/logs/
 .DS_Store
 Thumbs.db
 "@ | Out-File -Encoding ASCII .gitignore
+
+# ignore the entire visualization workspace
+viz/
+

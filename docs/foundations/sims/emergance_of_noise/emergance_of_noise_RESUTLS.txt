@@ -1,0 +1,62 @@
+=== RUN 2025-11-10T15:06:22Z | seed=12345 | N=256 | walkers=10000 | steps_per=4000 ===
+RESULTS:
+{
+  "heterogeneity": {
+    "node_load_gini": 0.011107317651211757,
+    "edge_load_gini": 0.13682598534387425
+  },
+  "temporal_persistence": {
+    "top_edge_percentile": 0.995,
+    "pairwise_jaccard": {
+      "mean": 0.004672071099716525,
+      "min": 0.0016155088852988692,
+      "max": 0.008532423208191127
+    },
+    "edge_persistence": {
+      "num_edges_in_union": 1529,
+      "appear_count_hist": {
+        "1": 1500,
+        "2": 29
+      },
+      "stable_edges_count": 0,
+      "unstable_edges_count": 1500
+    }
+  },
+  "cross_lens_consistency": {
+    "edge_top_percentile": 0.995,
+    "edge_threshold": 29,
+    "edge_top_count": 217,
+    "co_top_percentile": 0.995,
+    "co_threshold": 170,
+    "co_top_count": 191,
+    "intersection_count": 8,
+    "union_count": 400,
+    "jaccard": 0.02
+  },
+  "participation_entropy": {
+    "quantiles": {
+      "0.0": 7.8853702703492266,
+      "0.25": 7.903173986172295,
+      "0.5": 7.908790494911443,
+      "0.75": 7.913911661890193,
+      "0.9": 7.918649458181688,
+      "1.0": 7.927209617656821
+    },
+    "mean": 7.908475762904385
+  },
+  "novelty_rate_brief": {
+    "blocks": 5,
+    "mean_new_fraction": 0.24381748302349196
+  },
+  "fragility_brief": {
+    "percentiles": [
+      0.97,
+      0.985,
+      0.99,
+      0.995,
+      0.999
+    ],
+    "unique_edges_scored": 32640
+  }
+}
+

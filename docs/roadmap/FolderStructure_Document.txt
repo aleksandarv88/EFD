@@ -27,25 +27,25 @@ EFD\
 │  │  ├─ Stage_4.txt
 │  │  ├─ Visualization_Guidelines.txt   # visual style spec (no code)
 │  │  └─ sims\                            # SIMULATIONS (one folder per sim)
-│  │     ├─ 00_common\                   # sim-side plumbing (wrap lib\efd)
+│  │     ├─ s00_common\                   # sim-side plumbing (wrap lib\efd)
 │  │     │  ├─ __init__.py
 │  │     │  ├─ sim_paths.py              # images\vNNN, logs, results paths
 │  │     │  ├─ sim_results.py            # standardized run-block appender
 │  │     │  └─ sim_plots.py              # figure naming conventions
-│  │     ├─ 01_construct_model\
+│  │     ├─ s01_construct_model\
 │  │     │  ├─ construct_model_CODE.py
 │  │     │  ├─ construct_model_RESULTS.txt
 │  │     │  ├─ README.md
 │  │     │  ├─ configs\default.yaml
 │  │     │  ├─ images\                   # auto-created vNNN on each run
 │  │     │  └─ logs\
-│  │     ├─ 02_stage1_recoherence_order\
-│  │     ├─ 03_stage2_propagation_speed\
-│  │     ├─ 04_stage3_geometry\
-│  │     ├─ 05_stage4_energy_balance\
-│  │     ├─ 06_stage5_continuum_limit\
-│  │     ├─ 07_stress_tests\
-│  │     ├─ 08_visualization_gallery\    # NEW: build unified visual outputs
+│  │     ├─ s02_stage1_recoherence_order\
+│  │     ├─ s03_stage2_propagation_speed\
+│  │     ├─ s04_stage3_geometry\
+│  │     ├─ s05_stage4_energy_balance\
+│  │     ├─ s06_stage5_continuum_limit\
+│  │     ├─ s07_stress_tests\
+│  │     ├─ s08_visualization_gallery\    # NEW: build unified visual outputs
 │  │     │  ├─ viz_gallery_CODE.py
 │  │     │  ├─ viz_gallery_RESULTS.txt
 │  │     │  ├─ README.md
