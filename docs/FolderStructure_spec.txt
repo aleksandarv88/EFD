@@ -1,0 +1,236 @@
+============================================================
+ABSTRACT PROJECT STRUCTURE SPEC
+(not tied to a specific path or project name)
+============================================================
+
+PURPOSE
+This document describes an ABSTRACT model for organizing:
+  - theory documents,
+  - simulations,
+  - multiple AI-generated variants,
+  - configs and media.
+
+It is a GUIDELINE, not a fixed tree.
+Concrete folder names (like "foundations", "onset_of_dynamics")
+are examples of {chapter_name}, not requirements.
+
+The *canonical* structure should live in a database or manifest;
+the filesystem is one possible EXPORT of that structure.
+
+============================================================
+1. CORE CONCEPTS
+============================================================
+
+We assume these logical entities:
+
+  PROJECT
+    - The whole thing (e.g., “EFD”).
+
+  CHAPTER
+    - A thematic block (e.g., “foundations”, “onset_of_dynamics”).
+    - Contains conceptual docs and (optionally) simulations.
+
+  DOCUMENT
+    - A text file describing some part of the theory.
+    - Lives under a chapter.
+    - Has a filename and internal version metadata.
+
+  SIMULATION
+    - A specific experiment or numeric test inside a chapter.
+    - Can be implemented by multiple AI engines.
+
+  AI ENGINE
+    - A label like "gpt", "grok", "gemini", "claude", etc.
+    - For each sim+AI pair, we can have code, configs, media.
+
+  FILE TYPES (within a sim run)
+    - code      : Python or other source
+    - result    : logs, metrics, human-readable summaries
+    - config    : YAML/JSON/etc. for parameters
+    - media     : images, videos, numeric data, etc.
+    - readme    : explanatory text for humans
+
+These concepts can be implemented in:
+  - a database schema (Django+Postgres),
+  - a manifest file (e.g., YAML),
+  - AND a folder tree as export.
+
+============================================================
+2. ABSTRACT DIRECTORY PATTERN
+============================================================
+
+ROOT/
+  README.*                # project-level overview
+  docs/                   # all theory + chapter content
+    README.txt            # how docs/ is organized
+
+    {chapter_name}/
+      README.txt          # what this chapter is, how to read it
+
+      {doc_name1}.txt
+      {doc_name2}.txt
+      ...
+
+      sims/               # OPTIONAL: only if this chapter has sims
+        README.txt        # how sims/ in this chapter are organized
+
+        {sim_name}/
+          README.txt      # what this sim does, main idea, outputs
+
+          {ai_engine_1}/
+            README.txt
+            {sim_name}_CODE_{ai_engine_1}.py
+            {sim_name}_RESULT_{ai_engine_1}.txt
+
+            config/
+              defaults.yaml
+              settings_1.yaml
+              settings_2.yaml
+              ...
+
+            media/
+              images/
+                {sim_name}_v001_*.png
+                {sim_name}_v002_*.png
+                ...
+              videos/
+                {sim_name}_v001_*.mp4
+              data/
+                {sim_name}_metrics_v001.json
+                {sim_name}_metrics_v002.csv
+                ...
+
+          {ai_engine_2}/
+            README.txt
+            {sim_name}_CODE_{ai_engine_2}.py
+            {sim_name}_RESULT_{ai_engine_2}.txt
+            config/
+            media/
+              images/
+              videos/
+              data/
+
+          ... (more AI engines as needed)
+
+============================================================
+3. NAMING CONVENTIONS (ABSTRACT)
+============================================================
+
+Placeholders:
+
+  {chapter_name}
+    - short, snake_case or hyphenated
+    - examples: foundations, onset_of_dynamics, physics, mind
+
+  {doc_name}
+    - descriptive, may include a version suffix if desired
+    - examples: THEORY_OVERVIEW_1.0.txt, FOUNDATIONS_LOGIC.txt
+
+  {sim_name}
+    - describes what the sim tests
+    - examples: curvature_angle_defect, continuum_limit, feedback_primes
+
+  {ai_engine}
+    - lowercase name of AI source
+    - examples: gpt, grok, gemini, claude, local
+
+  {sim_name}_CODE_{ai_engine}.py
+    - main code file for that AI's implementation of the sim
+
+  {sim_name}_RESULT_{ai_engine}.txt
+    - run logs, metrics, summary blocks
+
+Media naming examples (not mandatory but recommended):
+
+  images:
+    fig_<topic>_###.png
+    e.g., fig_curvature_hist_001.png
+
+  videos:
+    anim_<topic>_###.mp4
+
+  data:
+    <topic>_metrics_vNNN.json
+    e.g., curvature_metrics_v003.json
+
+Configs:
+
+  defaults.yaml            # baseline configuration
+  settings_<variant>.yaml  # specific variations
+
+============================================================
+4. VERSIONING (ABSTRACT PRINCIPLE)
+============================================================
+
+Two complementary approaches:
+
+  1) IN-DOCUMENT VERSIONING
+     - Put version and change notes inside .txt docs.
+     - Keep filenames relatively stable:
+         {doc_name}.txt
+     - Example doc header:
+         Version: vX.Y | Status: DRAFT/APPROVED
+         Approved On: YYYY-MM-DD
+         Summary: <short text>
+
+  2) GIT-LEVEL VERSIONING
+     - Use Git tags to freeze important snapshots.
+     - Example:
+         git tag -a foundations-v2.3 -m "Foundations approved v2.3"
+
+The folder schema itself should NOT hard-code version numbers everywhere.
+Versioning is mostly semantic (inside docs + git), not structural.
+
+============================================================
+5. RELATION TO DATABASE / DJANGO
+============================================================
+
+The *canonical* structure can live in a database, e.g.:
+
+  - Project, Chapter, Document, Simulation, AIEngine, SimulationRun, FileAsset
+
+The folder tree described here is then:
+
+  - one possible MATERIALIZATION (export) of that DB state.
+  - generated by a script or management command.
+
+Programming pattern:
+
+  1. Edit / manage structure in DB (via Django admin or custom UI).
+  2. Run an "export" tool to write:
+       - docs/{chapter_name}/{doc_name}.txt from Document records
+       - docs/{chapter_name}/sims/... from Simulation + AIEngine + FileAsset
+  3. Commit the exported files to Git if desired.
+
+This way:
+  - structure can evolve over time,
+  - renames are safe (DB migrations handle relationships),
+  - no data is lost due to manual folder edits.
+
+============================================================
+6. EXTENSIBILITY
+============================================================
+
+This abstract model supports:
+
+  - Adding new chapters:
+      Just add {chapter_name}/ with its own README + docs + sims.
+  - Adding new simulations:
+      Add {sim_name}/ under chapter's sims/, with per-AI folders.
+  - Adding new AI engines:
+      Add another {ai_engine}/ subfolder with its own code/config/media.
+  - Changing layout:
+      Update the export script & DB; regenerate the tree.
+
+No individual path (like a specific "foundations" or "s01_stage") is sacred.
+Only the ABSTRACT pattern is stable:
+
+  PROJECT
+    → CHAPTER
+      → DOCUMENTS + SIMULATIONS
+        → AI VARIANTS
+          → code/config/media
+
+============================================================
+END OF ABSTRACT STRUCTURE SPEC
+============================================================

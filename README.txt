@@ -46,5 +46,18 @@ HOW TO READ THIS PROJECT
    will show config, media, and code details for that AI run.
 
 ======================================================
+FOR MAINTAINERS / PROJECT STRUCTURE
+======================================================
+
+The abstract folder and naming scheme for chapters, docs,
+and simulations is described in:
+
+    docs/FolderStructure_Spec.txt
+
+If you add new chapters, simulations, or AI-specific runs,
+follow that spec (or update it first, then regenerate).
+
+
+======================================================
 END OF ROOT README
 ======================================================

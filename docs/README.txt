@@ -38,5 +38,16 @@ Each chapter folder has its own README.txt that explains:
   - how any sims are organized.
 
 ======================================================
+STRUCTURE SPEC
+======================================================
+
+For a detailed abstract description of how chapters,
+documents, sims, and AI-specific folders are organized,
+see:
+
+    docs/FolderStructure_Spec.txt
+
+======================================================
 END OF docs/README
 ======================================================
+
